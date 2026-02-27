@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nostos | Merci</title>
+    <link rel="icon" type="image/png" href="Assets/NOSTOS_logo-removebg.png">
+    <meta name="description" content="Confirmation de paiement Nostos." />
+    <link rel="canonical" href="https://nostosprogram.com/merci">
+    <meta name="robots" content="noindex, nofollow">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { obsidian: '#1A1A1B', paper: '#F9F7F2', stone: '#F0EEE6', cobalt: '#2563EB' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #F9F7F2; color: #1A1A1B; }
+        .noise { background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png"); opacity: 0.4; pointer-events: none; }
+        .border-ink-10 { border-color: rgba(26, 26, 27, 0.1); }
+    </style>
+</head>
+<body class="antialiased selection:bg-cobalt selection:text-white">
+    <div class="fixed inset-0 noise z-0"></div>
+    <main class="min-h-screen px-6 py-12 relative z-10 flex items-center justify-center">
+        <div class="w-full max-w-2xl bg-paper/90 border border-ink-10 p-8 md:p-12 text-center">
+            <img src="Assets/NOSTOS_logo-removebg.png" alt="Nostos logo" class="w-20 h-auto mx-auto mb-4">
+            <h1 class="font-serif text-4xl text-obsidian mb-3">Merci</h1>
+            <p id="statusText" class="text-stone-600">Vérification de votre paiement…</p>
+            <div id="successBox" class="hidden mt-6 space-y-3">
+                <p class="text-obsidian text-lg">Paiement confirmé. Votre programme Nostos est activé.</p>
+                <p id="purchaseDetails" class="text-sm text-stone-600"></p>
+                <p class="text-sm text-stone-600">Vous allez recevoir les emails de la séquence automatiquement.</p>
+                <a href="index.html" class="inline-flex mt-2 bg-obsidian text-paper px-6 py-3 text-xs uppercase tracking-widest">Retour à l’accueil</a>
+            </div>
+            <div id="errorBox" class="hidden mt-6 border border-red-200 bg-red-50 text-red-700 text-sm p-4"></div>
+        </div>
+    </main>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const sessionId = params.get('session_id');
+        const statusText = document.getElementById('statusText');
+        const successBox = document.getElementById('successBox');
+        const errorBox = document.getElementById('errorBox');
+        const purchaseDetails = document.getElementById('purchaseDetails');
+        let purchaseTracked = false;
+
+        function readConsent() {
+            try {
+                const raw = localStorage.getItem('nostos_cookie_consent');
+                return raw ? JSON.parse(raw) : null;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function trackPurchase(amount, currency) {
+            if (purchaseTracked) return;
+            const consent = readConsent();
+            if (!consent || consent.marketing !== true) return;
+
+            if (typeof window.fbq === 'function') {
+                window.fbq('track', 'Purchase', {
+                    value: amount,
+                    currency: currency || 'EUR'
+                });
+            }
+
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'purchase',
+                value: amount,
+                currency: currency || 'EUR'
+            });
+            purchaseTracked = true;
+        }
+
+        async function init() {
+            if (!sessionId) {
+                statusText.textContent = 'Session de paiement manquante.';
+                errorBox.textContent = 'Cette page de confirmation n’est accessible qu’après un paiement validé.';
+                errorBox.classList.remove('hidden');
+                return;
+            }
+
+            try {
+                const res = await fetch(`/.netlify/functions/verify-checkout-session?session_id=${encodeURIComponent(sessionId)}`);
+                const data = await res.json();
+                if (!res.ok || !data.ok) {
+                    throw new Error(data.error || 'Paiement non vérifié');
+                }
+
+                statusText.classList.add('hidden');
+                successBox.classList.remove('hidden');
+                const amount = typeof data.amount_total === 'number' ? data.amount_total : 39;
+                const currency = data.currency || 'EUR';
+                purchaseDetails.textContent = `Montant payé : ${amount.toFixed(2)} ${currency}.`;
+                trackPurchase(amount, currency);
+            } catch (err) {
+                statusText.textContent = 'Vérification impossible.';
+                errorBox.textContent = err.message || 'Impossible de vérifier le paiement.';
+                errorBox.classList.remove('hidden');
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>

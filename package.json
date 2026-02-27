@@ -1,0 +1,12 @@
+﻿{
+  "name": "nostos-site",
+  "private": true,
+  "version": "1.0.0",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "stripe": "^18.4.0"
+  }
+}

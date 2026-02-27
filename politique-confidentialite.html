@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politique de confidentialité | Nostos</title>
+    <link rel="icon" type="image/png" href="Assets/NOSTOS_logo-removebg.png">
+    <meta name="description" content="Politique de confidentialité du site Nostos." />
+    <link rel="canonical" href="https://nostosprogram.com/politique-confidentialite.html">
+    <meta name="robots" content="index, follow">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Nostos">
+    <meta property="og:title" content="Nostos | Politique de confidentialité">
+    <meta property="og:description" content="Politique de confidentialité du site Nostos.">
+    <meta property="og:url" content="https://nostosprogram.com/politique-confidentialite.html">
+    <meta property="og:image" content="https://nostosprogram.com/Assets/NOSTOS_logo-removebg.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nostos | Politique de confidentialité">
+    <meta name="twitter:description" content="Politique de confidentialité du site Nostos.">
+    <meta name="twitter:image" content="https://nostosprogram.com/Assets/NOSTOS_logo-removebg.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#1A1A1B',
+                        paper: '#F9F7F2',
+                        stone: '#F0EEE6',
+                        cobalt: '#2563EB'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #F9F7F2; color: #1A1A1B; }
+        .noise { background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png"); opacity: 0.4; pointer-events: none; }
+        .border-ink-10 { border-color: rgba(26, 26, 27, 0.1); }
+        .cookie-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 100; background: rgba(249, 247, 242, 0.98); border-top: 1px solid rgba(26, 26, 27, 0.15); backdrop-filter: blur(4px); }
+        .cookie-panel { max-width: 960px; margin: 0 auto; padding: 18px 20px; }
+        .cookie-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .cookie-btn { border: 1px solid #1A1A1B; color: #1A1A1B; padding: 10px 14px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+        .cookie-btn-primary { background: #1A1A1B; color: #F9F7F2; }
+        .cookie-link { border: 0; padding: 6px 2px; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: #57534e; background: transparent; text-decoration: underline; }
+        .cookie-toggle { display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 1px solid rgba(26, 26, 27, 0.15); padding: 10px 12px; }
+        .cookie-toggle input { width: 18px; height: 18px; }
+        .cookie-hidden { display: none; }
+        @media (max-width: 640px) { .cookie-actions .cookie-btn { width: 100%; } }
+    </style>
+</head>
+<body class="antialiased selection:bg-cobalt selection:text-white">
+    <div class="fixed inset-0 noise z-0"></div>
+
+    <main class="relative z-10 py-16 px-6">
+        <div class="max-w-3xl mx-auto bg-paper/90 border border-ink-10 p-8 md:p-12 space-y-8">
+            <div class="space-y-4 text-center">
+                <img src="Assets/NOSTOS_logo-removebg.png" alt="Nostos logo" class="w-20 h-auto mx-auto">
+                <h1 class="font-serif text-4xl">Politique de confidentialité</h1>
+            </div>
+
+            <section class="space-y-3 text-sm leading-relaxed text-stone-700">
+                <h2 class="text-lg font-semibold text-obsidian">Données collectées</h2>
+                <p>Dans le cadre de l’achat du programme, les données suivantes peuvent être collectées :</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>Prénom</li>
+                    <li>Adresse email</li>
+                    <li>Données de paiement (via Stripe)</li>
+                </ul>
+                <p>Le paiement est sécurisé et traité par Stripe. Nostos ne stocke aucune donnée bancaire.</p>
+            </section>
+
+            <section class="space-y-3 text-sm leading-relaxed text-stone-700">
+                <h2 class="text-lg font-semibold text-obsidian">Finalités du traitement</h2>
+                <p>Les données sont utilisées pour :</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>Fournir l’accès au programme</li>
+                    <li>Envoyer les emails liés au programme</li>
+                    <li>Envoyer éventuellement des emails d’information liés à Nostos</li>
+                </ul>
+            </section>
+
+            <section class="space-y-3 text-sm leading-relaxed text-stone-700">
+                <h2 class="text-lg font-semibold text-obsidian">Outils utilisés</h2>
+                <p>Les données peuvent être traitées via :</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>Stripe (paiement)</li>
+                    <li>Kit (envoi des emails)</li>
+                    <li>Google Analytics (analyse de fréquentation)</li>
+                    <li>Meta Pixel (publicité)</li>
+                </ul>
+            </section>
+
+            <section class="space-y-3 text-sm leading-relaxed text-stone-700">
+                <h2 class="text-lg font-semibold text-obsidian">Durée de conservation</h2>
+                <p>Les données sont conservées :</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>Données clients : 3 ans après le dernier contact</li>
+                    <li>Données de facturation : 10 ans (obligation légale)</li>
+                </ul>
+            </section>
+
+            <section class="space-y-3 text-sm leading-relaxed text-stone-700">
+                <h2 class="text-lg font-semibold text-obsidian">Droits des utilisateurs</h2>
+                <p>Conformément au RGPD, vous disposez des droits suivants :</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>Droit d’accès</li>
+                    <li>Droit de rectification</li>
+                    <li>Droit d’effacement</li>
+                    <li>Droit d’opposition</li>
+                </ul>
+                <p>Pour exercer ces droits : <a href="mailto:contact@nostosprogram.com" class="underline">contact@nostosprogram.com</a></p>
+            </section>
+
+            <section class="space-y-3 text-sm leading-relaxed text-stone-700">
+                <h2 class="text-lg font-semibold text-obsidian">Cookies</h2>
+                <p>Le site utilise :</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>Cookies nécessaires au fonctionnement</li>
+                    <li>Google Analytics</li>
+                    <li>Meta Pixel</li>
+                </ul>
+                <p>Un bandeau de consentement permet d’accepter ou refuser les cookies non essentiels.</p>
+            </section>
+
+            <div class="pt-4 border-t border-ink-10">
+                <a href="index.html" class="text-sm uppercase tracking-[0.2em] text-stone-500 hover:text-obsidian transition-colors">Retour à l’accueil</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-10 border-t border-ink-10 text-center text-stone-400 relative z-10">
+        <div class="max-w-5xl mx-auto px-6 space-y-4">
+            <div class="text-[9px] uppercase tracking-[0.4em] font-bold">&copy; 2026 NOSTOS. Le retour à l'essentiel.</div>
+            <div class="flex flex-wrap items-center justify-center gap-5 text-[11px] uppercase tracking-[0.2em]">
+                <a href="mentions-legales.html" class="hover:text-obsidian transition-colors">Mentions légales</a>
+                <a href="cgv.html" class="hover:text-obsidian transition-colors">CGV</a>
+                <a href="politique-confidentialite.html" class="hover:text-obsidian transition-colors">Politique de confidentialité</a>
+                <button type="button" id="openCookieSettings" class="hover:text-obsidian transition-colors">Modifier mes choix</button>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cookieBanner" class="cookie-banner cookie-hidden" role="dialog" aria-live="polite" aria-label="Préférences cookies">
+        <div class="cookie-panel">
+            <p class="text-sm text-obsidian mb-3">Nous utilisons des cookies nécessaires au fonctionnement du site et, avec votre accord, des cookies Analytics/Marketing.</p>
+            <div id="cookieCustomizePanel" class="cookie-hidden mb-3 space-y-2">
+                <div class="cookie-toggle">
+                    <div><p class="text-sm font-semibold text-obsidian">Nécessaires</p><p class="text-xs text-stone-500">Toujours actifs</p></div>
+                    <input type="checkbox" checked disabled aria-label="Cookies nécessaires activés">
+                </div>
+                <div class="cookie-toggle">
+                    <div><p class="text-sm font-semibold text-obsidian">Analytics/Marketing</p><p class="text-xs text-stone-500">Mesure d’audience et publicités</p></div>
+                    <input type="checkbox" id="marketingToggle" aria-label="Activer Analytics/Marketing">
+                </div>
+            </div>
+            <div class="cookie-actions">
+                <button type="button" id="acceptAllCookies" class="cookie-btn cookie-btn-primary">Accepter</button>
+                <button type="button" id="rejectAllCookies" class="cookie-link">Tout refuser</button>
+                <button type="button" id="customizeCookies" class="cookie-btn">Personnaliser</button>
+                <button type="button" id="saveCookies" class="cookie-btn cookie-hidden">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const CONSENT_KEY = 'nostos_cookie_consent';
+        const CONSENT_VERSION = 1;
+        const GTM_ID = 'GTM-TX27DHHX';
+        let consentState = null;
+        let gtmLoaded = false;
+
+        function readConsent() {
+            try {
+                const raw = localStorage.getItem(CONSENT_KEY);
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                if (parsed && parsed.version === CONSENT_VERSION && parsed.necessary === true && typeof parsed.marketing === 'boolean') return parsed;
+            } catch (e) {}
+            return null;
+        }
+
+        function saveConsent(marketing) {
+            const consent = { necessary: true, marketing: marketing, timestamp: new Date().toISOString(), version: CONSENT_VERSION };
+            localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
+            consentState = consent;
+            if (consentState.marketing) loadGTM();
+            hideBanner();
+        }
+
+        function loadGTM() {
+            if (gtmLoaded) return;
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            const tag = document.createElement('script');
+            tag.async = true;
+            tag.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+            document.head.appendChild(tag);
+            gtmLoaded = true;
+        }
+
+        function showBanner(customize) {
+            const panel = document.getElementById('cookieCustomizePanel');
+            const saveBtn = document.getElementById('saveCookies');
+            if (customize) { panel.classList.remove('cookie-hidden'); saveBtn.classList.remove('cookie-hidden'); }
+            else { panel.classList.add('cookie-hidden'); saveBtn.classList.add('cookie-hidden'); }
+            document.getElementById('cookieBanner').classList.remove('cookie-hidden');
+        }
+
+        function hideBanner() { document.getElementById('cookieBanner').classList.add('cookie-hidden'); }
+
+        document.getElementById('acceptAllCookies').addEventListener('click', () => saveConsent(true));
+        document.getElementById('rejectAllCookies').addEventListener('click', () => saveConsent(false));
+        document.getElementById('customizeCookies').addEventListener('click', () => showBanner(true));
+        document.getElementById('saveCookies').addEventListener('click', () => saveConsent(document.getElementById('marketingToggle').checked));
+        document.getElementById('openCookieSettings').addEventListener('click', () => {
+            const current = readConsent();
+            document.getElementById('marketingToggle').checked = !!(current && current.marketing);
+            showBanner(true);
+        });
+
+        consentState = readConsent();
+        if (!consentState) showBanner(false);
+        else {
+            document.getElementById('marketingToggle').checked = !!consentState.marketing;
+            if (consentState.marketing) loadGTM();
+        }
+    </script>
+</body>
+</html>
+

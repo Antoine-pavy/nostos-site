@@ -1,0 +1,18 @@
+[build]
+  functions = "netlify/functions"
+  publish = "."
+
+[[redirects]]
+  from = "/checkout"
+  to = "/checkout.html"
+  status = 200
+
+[[redirects]]
+  from = "/merci"
+  to = "/merci.html"
+  status = 200
+
+[[redirects]]
+  from = "/annulation"
+  to = "/annulation.html"
+  status = 200

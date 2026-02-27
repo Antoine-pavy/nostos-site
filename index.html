@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nostos — Programme 30 jours</title>
+    <link rel="icon" type="image/png" href="Assets/NOSTOS_logo-removebg.png">
+    <meta name="description" content="Nostos est un programme de 30 jours pour se détacher progressivement des écrans, retrouver de la clarté et remettre l’élan d’agir au centre. Un cadre simple, des emails quotidiens et des outils concrets issus des sciences de l’attention." />
+    <link rel="canonical" href="https://nostosprogram.com/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Nostos">
+    <meta property="og:title" content="Nostos | Programme 30 jours">
+    <meta property="og:description" content="Programme de 30 jours pour se détacher des écrans, retrouver de la clarté et redevenir acteur de sa trajectoire.">
+    <meta property="og:url" content="https://nostosprogram.com/">
+    <meta property="og:image" content="https://nostosprogram.com/Assets/NOSTOS_logo-removebg.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nostos | Programme 30 jours">
+    <meta name="twitter:description" content="Programme de 30 jours pour se détacher des écrans et retrouver l’élan d’agir.">
+    <meta name="twitter:image" content="https://nostosprogram.com/Assets/NOSTOS_logo-removebg.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#1A1A1B',
+                        paper: '#F9F7F2',
+                        stone: '#F0EEE6',
+                        cobalt: '#2563EB',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #F9F7F2; color: #1A1A1B; }
+        .noise {
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .border-ink-10 { border-color: rgba(26, 26, 27, 0.1); }
+        .glow-hover:hover { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); }
+        .cookie-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 100; background: rgba(249, 247, 242, 0.98); border-top: 1px solid rgba(26, 26, 27, 0.15); backdrop-filter: blur(4px); }
+        .cookie-panel { max-width: 960px; margin: 0 auto; padding: 18px 20px; }
+        .cookie-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .cookie-btn { border: 1px solid #1A1A1B; color: #1A1A1B; padding: 10px 14px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+        .cookie-btn-primary { background: #1A1A1B; color: #F9F7F2; }
+        .cookie-link { border: 0; padding: 6px 2px; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: #57534e; background: transparent; text-decoration: underline; }
+        .cookie-toggle { display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 1px solid rgba(26, 26, 27, 0.15); padding: 10px 12px; }
+        .cookie-toggle input { width: 18px; height: 18px; }
+        .cookie-hidden { display: none; }
+        @media (max-width: 640px) {
+            .cookie-actions .cookie-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cobalt selection:text-white">
+    <div class="fixed inset-0 noise z-50"></div>
+
+    <div class="absolute top-6 left-8 z-40">
+        <img src="Assets/NOSTOS_logo-removebg.png" alt="Nostos logo" class="w-20 h-auto">
+    </div>
+
+    <section class="relative pt-32 pb-20 px-6 overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <span class="inline-block py-1 px-3 border border-cobalt/20 text-cobalt text-[10px] uppercase tracking-[0.2em] mb-6 rounded-sm bg-cobalt/5">
+                Fondé sur les mécanismes de l’attention et du comportement
+            </span>
+            <h1 class="font-serif text-5xl md:text-7xl mb-8 leading-tight text-obsidian">
+                Échange le scroll pour ce qui compte <br> <span class="italic text-stone-400"> vraiment.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-stone-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+                30 jours pour sortir du bruit, retrouver la clarté, redevenir acteur de ta trajectoire.
+            </p>
+            <div class="flex flex-col gap-3 justify-center items-center">
+                <a href="https://buy.stripe.com/test_8x29AS0AFcKK9st9tm67S00" data-cta="hero-cta" class="w-full md:w-auto bg-obsidian text-paper px-8 py-4 font-bold uppercase text-sm hover:bg-stone-800 transition-all glow-hover">
+                    Accéder à NOSTOS 
+                </a>
+                <span class="text-stone-400 text-[10px] font-mono uppercase tracking-widest text-center">Paiement sécurisé • accès immédiat • 30 emails sur 30 jours</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 border-y border-ink-10 bg-stone/30">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 text-obsidian">
+                <div class="space-y-4">
+                    <div class="text-cobalt font-mono text-[10px] uppercase tracking-widest font-bold">01. LA BOUCLE</div>
+                    <h3 class="text-xl font-serif italic">Scroll réflexe</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">Tu ressens une tension, un inconfort, une fatigue mentale. Sans y penser, tu prends ton téléphone. Sur le moment, ça soulage. Puis vient la sensation d’avoir encore perdu du temps. Le malaise revient. La boucle continue.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="text-cobalt font-mono text-[10px] uppercase tracking-widest font-bold">02. LE FLOU</div>
+                    <h3 class="text-xl font-serif italic">Attention morcelée</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">Même loin de ton téléphone, ton esprit reste dispersé. Te concentrer vraiment devient difficile. Aller au fond des choses te demande un effort inhabituel.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="text-cobalt font-mono text-[10px] uppercase tracking-widest font-bold">03. LA FUITE</div>
+                    <h3 class="text-xl font-serif italic">Temps qui s’effrite</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">“Juste cinq minutes” deviennent une heure. Puis une soirée. À la fin de la semaine, tu réalises que tu as cédé une part précieuse de ton temps à des contenus qui ne te nourrissent pas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-obsidian text-paper">
+        <div class="max-w-3xl mx-auto text-center space-y-8">
+            <h2 class="font-serif text-3xl italic">Le problème n’est pas ta volonté</h2>
+            <div class="space-y-4 text-stone-400 font-light text-lg">
+                <p>Ce n’est pas un manque de discipline.</p>
+                <p>Ce n’est pas un défaut de caractère.</p>
+                <p class="text-white border-y border-white/10 py-4">Nos environnements numériques sont conçus pour capter l’attention.</p>
+                <p>À force de stimulations constantes, le cerveau s’habitue, la motivation s’érode, et les projets deviennent flous.</p>
+                <p class="pt-8 font-serif text-2xl italic text-white">Pas parce qu’ils ont perdu leur valeur. Mais parce que ton attention est ailleurs.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-24 border-y border-ink-10 bg-stone/30">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-8">
+            <img src="Assets/NOSTOS_logo-removebg.png" alt="Nostos logo" class="w-20 h-auto mx-auto">
+            <div class="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-stone-500 font-semibold">
+            </div>
+            <div class="space-y-6 leading-relaxed">
+                <p class="text-obsidian text-2xl md:text-3xl font-serif font-medium">
+                    Nostos est un programme de <span class="inline-block text-3xl md:text-4xl leading-none font-semibold">30 jours</span> conçu pour t’aider à te <span class="underline decoration-cobalt/70 underline-offset-4">détacher progressivement des écrans</span>, faire de la place et retrouver l’élan d’agir.
+                </p>
+                <p class="text-stone-600 text-lg md:text-xl border-t border-stone-300 pt-6">
+                    Fondé sur des principes concrets issus des sciences du comportement et de l’attention, <span class="italic">il propose un cadre pour que les écrans redeviennent des outils, et non des refuges.</span>
+                </p>
+            </div>
+            <div class="pt-4 space-y-3">
+                <a href="https://buy.stripe.com/test_8x29AS0AFcKK9st9tm67S00" data-cta="program-cta" class="inline-flex items-center justify-center bg-obsidian text-paper px-8 py-4 font-bold uppercase text-sm tracking-widest hover:bg-stone-800 transition-all">
+                    Rejoindre le programme
+                </a>
+                <p class="text-stone-500 text-[10px] font-mono uppercase tracking-widest">Paiement sécurisé • accès immédiat • 30 emails sur 30 jours</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="protocol" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-serif mb-6 text-center text-obsidian">Ce que tu vas vivre pendant 30 jours</h2>
+            <p class="text-center text-stone-500 text-sm uppercase tracking-[0.2em] mb-12">Tu recevras 1 email/jour avec :</p>
+            <div class="space-y-12">
+                <div class="group flex gap-8 border-l border-stone-300 pl-8 relative py-2 transition-all">
+                    <div class="absolute -left-[4.5px] top-0 w-2 h-2 bg-cobalt rounded-none"></div>
+                    <div>
+                        <span class="text-[10px] font-mono text-stone-400 uppercase tracking-widest">La pratique</span>
+                        <h4 class="text-xl font-semibold mb-2 text-obsidian">Challenges progressifs</h4>
+                        <p class="text-stone-600 text-sm italic">Espacés dans le temps et rapides à réaliser pour réduire le temps d'écran sans brutalité.</p>
+                    </div>
+                </div>
+                <div class="group flex gap-8 border-l border-stone-300 pl-8 relative py-2">
+                    <div class="absolute -left-[4.5px] top-0 w-2 h-2 bg-stone-300 rounded-none group-hover:bg-cobalt transition-colors"></div>
+                    <div>
+                        <span class="text-[10px] font-mono text-stone-400 uppercase tracking-widest">Le pourquoi</span>
+                        <h4 class="text-xl font-semibold mb-2 text-obsidian">Explications accessibles</h4>
+                        <p class="text-stone-600 text-sm italic">Sur les mécanismes de l’attention, de la dopamine et de la motivation.</p>
+                    </div>
+                </div>
+                <div class="group flex gap-8 border-l border-stone-300 pl-8 relative py-2">
+                    <div class="absolute -left-[4.5px] top-0 w-2 h-2 bg-stone-300 rounded-none group-hover:bg-cobalt transition-colors"></div>
+                    <div>
+                        <span class="text-[10px] font-mono text-stone-400 uppercase tracking-widest">L'objectif</span>
+                        <h4 class="text-xl font-semibold mb-2 text-obsidian">Reconstruction d’habitudes</h4>
+                        <p class="text-stone-600 text-sm italic">Saines, durables, adaptées à la vraie vie.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pt-16 pb-24 px-6 bg-obsidian text-paper">
+        <div class="max-w-4xl mx-auto text-center p-10 md:p-14 relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-40 h-40 border border-white/10 rounded-full"></div>
+            <div class="absolute -bottom-12 -left-12 w-56 h-56 border border-white/10 rounded-full"></div>
+            <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-10">Pourquoi maintenant ?</h2>
+            <div class="space-y-4 text-stone-200 text-lg md:text-xl leading-relaxed">
+                <p>Parce que la motivation ne revient pas par hasard.</p>
+                <p>Elle revient quand l’environnement change.</p>
+                <p><span class="font-semibold">Nostos</span> te donne un cadre,</p>
+                <p>un rythme,</p>
+                <p>et un chemin clair.</p>
+                <p class="mt-4 text-stone-300 text-lg md:text-xl font-serif italic border-t border-white/10 pt-6">Tu peux continuer à scroller en attendant que “l’envie revienne”.</p>
+                <p class="text-white text-2xl md:text-3xl font-serif">Ou décider de redonner de l'attention à ce qui compte vraiment.</p>
+            </div>
+            <div class="mt-10">
+                <a href="https://buy.stripe.com/test_8x29AS0AFcKK9st9tm67S00" data-cta="why-cta" class="inline-flex items-center justify-center bg-paper text-obsidian px-8 py-4 font-bold uppercase text-sm tracking-widest hover:bg-stone-200 transition-all">
+                    Rejoindre le programme
+                </a>
+                <p class="mt-3 text-stone-300 text-[10px] font-mono uppercase tracking-widest">Paiement sécurisé • accès immédiat • 30 emails sur 30 jours</p>
+            </div>
+        </div>
+    </section>
+    
+            <footer class="py-12 border-t border-ink-10 text-center text-stone-400">
+        <div class="max-w-5xl mx-auto px-6 space-y-4">
+            <div class="text-[9px] uppercase tracking-[0.4em] font-bold">
+                &copy; 2026 NOSTOS. Le retour à l'essentiel.
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-5 text-[11px] uppercase tracking-[0.2em]">
+                <a href="mentions-legales.html" class="hover:text-obsidian transition-colors">Mentions légales</a>
+                <a href="cgv.html" class="hover:text-obsidian transition-colors">CGV</a>
+                <a href="politique-confidentialite.html" class="hover:text-obsidian transition-colors">Politique de confidentialité</a>
+                <button type="button" id="openCookieSettings" class="hover:text-obsidian transition-colors">Modifier mes choix</button>
+                <a href="https://www.instagram.com/nostosprogram/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Nostos">
+                    <svg class="w-4 h-4 fill-current hover:text-obsidian transition-colors" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm9.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cookieBanner" class="cookie-banner cookie-hidden" role="dialog" aria-live="polite" aria-label="Préférences cookies">
+        <div class="cookie-panel">
+            <p class="text-sm text-obsidian mb-3">Nous utilisons des cookies nécessaires au fonctionnement du site et, avec votre accord, des cookies Analytics/Marketing.</p>
+            <div id="cookieCustomizePanel" class="cookie-hidden mb-3 space-y-2">
+                <div class="cookie-toggle">
+                    <div>
+                        <p class="text-sm font-semibold text-obsidian">Nécessaires</p>
+                        <p class="text-xs text-stone-500">Toujours actifs</p>
+                    </div>
+                    <input type="checkbox" checked disabled aria-label="Cookies nécessaires activés">
+                </div>
+                <div class="cookie-toggle">
+                    <div>
+                        <p class="text-sm font-semibold text-obsidian">Analytics/Marketing</p>
+                        <p class="text-xs text-stone-500">Mesure d’audience et publicités</p>
+                    </div>
+                    <input type="checkbox" id="marketingToggle" aria-label="Activer Analytics/Marketing">
+                </div>
+            </div>
+            <div class="cookie-actions">
+                <button type="button" id="acceptAllCookies" class="cookie-btn cookie-btn-primary">Accepter</button>
+                <button type="button" id="rejectAllCookies" class="cookie-link">Tout refuser</button>
+                <button type="button" id="customizeCookies" class="cookie-btn">Personnaliser</button>
+                <button type="button" id="saveCookies" class="cookie-btn cookie-hidden">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const CONSENT_KEY = 'nostos_cookie_consent';
+        const CONSENT_VERSION = 1;
+        const GTM_ID = 'GTM-TX27DHHX';
+        let consentState = null;
+        let gtmLoaded = false;
+
+        function readConsent() {
+            try {
+                const raw = localStorage.getItem(CONSENT_KEY);
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                if (parsed && parsed.version === CONSENT_VERSION && parsed.necessary === true && typeof parsed.marketing === 'boolean') {
+                    return parsed;
+                }
+            } catch (e) {}
+            return null;
+        }
+
+        function saveConsent(marketing) {
+            const consent = {
+                necessary: true,
+                marketing: marketing,
+                timestamp: new Date().toISOString(),
+                version: CONSENT_VERSION
+            };
+            localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
+            consentState = consent;
+            applyConsent();
+            hideBanner();
+        }
+
+        function loadGTM() {
+            if (gtmLoaded) return;
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            const tag = document.createElement('script');
+            tag.async = true;
+            tag.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+            document.head.appendChild(tag);
+            gtmLoaded = true;
+        }
+
+        function applyConsent() {
+            if (consentState && consentState.marketing) {
+                loadGTM();
+            }
+        }
+
+        function showBanner(customize) {
+            const banner = document.getElementById('cookieBanner');
+            const panel = document.getElementById('cookieCustomizePanel');
+            const saveBtn = document.getElementById('saveCookies');
+            if (customize) {
+                panel.classList.remove('cookie-hidden');
+                saveBtn.classList.remove('cookie-hidden');
+            } else {
+                panel.classList.add('cookie-hidden');
+                saveBtn.classList.add('cookie-hidden');
+            }
+            banner.classList.remove('cookie-hidden');
+        }
+
+        function hideBanner() {
+            document.getElementById('cookieBanner').classList.add('cookie-hidden');
+        }
+
+        function isMarketingAllowed() {
+            return !!(consentState && consentState.marketing === true);
+        }
+
+        document.getElementById('acceptAllCookies').addEventListener('click', () => saveConsent(true));
+        document.getElementById('rejectAllCookies').addEventListener('click', () => saveConsent(false));
+        document.getElementById('customizeCookies').addEventListener('click', () => showBanner(true));
+        document.getElementById('saveCookies').addEventListener('click', () => {
+            const marketing = document.getElementById('marketingToggle').checked;
+            saveConsent(marketing);
+        });
+        document.getElementById('openCookieSettings').addEventListener('click', () => {
+            const current = readConsent();
+            document.getElementById('marketingToggle').checked = !!(current && current.marketing);
+            showBanner(true);
+        });
+
+        consentState = readConsent();
+        if (!consentState) {
+            showBanner(false);
+        } else {
+            document.getElementById('marketingToggle').checked = !!consentState.marketing;
+            applyConsent();
+        }
+
+        // Hero Animation
+        gsap.from("h1", { opacity: 0, y: 30, duration: 1.2, ease: "power2.out", delay: 0.2 });
+        gsap.from("p", { opacity: 0, y: 20, duration: 1, ease: "power2.out", delay: 0.5 });
+
+        // CTA click tracking (GTM dataLayer)
+        document.querySelectorAll('[data-cta]').forEach((el) => {
+            el.addEventListener('click', () => {
+                if (!isMarketingAllowed()) return;
+                const label = el.getAttribute('data-cta-label') || el.textContent.trim();
+                const id = el.id || null;
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({ event: 'cta_click', label, id, cta: el.getAttribute('data-cta') });
+            });
+        });
+        
+        // Purchase Mockup
+        function handlePurchase() {
+            const btn = document.getElementById('purchaseBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'INITIALIZING...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                document.getElementById('successModal').classList.remove('hidden');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 1200);
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
+
+
+

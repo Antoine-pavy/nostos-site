@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nostos — Liste d’attente</title>
+    <link rel="icon" type="image/png" href="Assets/NOSTOS_logo-removebg.png">
+    <meta name="description" content="Donne ton email pour être informé de la sortie du programme Nostos." />
+    <link rel="canonical" href="https://nostosprogram.com/waitlist.html">
+    <meta name="robots" content="index, follow">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Nostos">
+    <meta property="og:title" content="Nostos | Liste d’attente">
+    <meta property="og:description" content="Inscris-toi pour être informé(e) de la sortie du programme Nostos.">
+    <meta property="og:url" content="https://nostosprogram.com/waitlist.html">
+    <meta property="og:image" content="https://nostosprogram.com/Assets/NOSTOS_logo-removebg.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nostos | Liste d’attente">
+    <meta name="twitter:description" content="Inscris-toi pour être informé(e) de la sortie du programme Nostos.">
+    <meta name="twitter:image" content="https://nostosprogram.com/Assets/NOSTOS_logo-removebg.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#1A1A1B',
+                        paper: '#F9F7F2',
+                        stone: '#F0EEE6',
+                        cobalt: '#2563EB',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #F9F7F2; color: #1A1A1B; }
+        .noise {
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .border-ink-10 { border-color: rgba(26, 26, 27, 0.1); }
+        .glow-hover:hover { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); }
+        .cookie-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 100; background: rgba(249, 247, 242, 0.98); border-top: 1px solid rgba(26, 26, 27, 0.15); backdrop-filter: blur(4px); }
+        .cookie-panel { max-width: 960px; margin: 0 auto; padding: 18px 20px; }
+        .cookie-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .cookie-btn { border: 1px solid #1A1A1B; color: #1A1A1B; padding: 10px 14px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+        .cookie-btn-primary { background: #1A1A1B; color: #F9F7F2; }
+        .cookie-link { border: 0; padding: 6px 2px; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: #57534e; background: transparent; text-decoration: underline; }
+        .cookie-toggle { display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 1px solid rgba(26, 26, 27, 0.15); padding: 10px 12px; }
+        .cookie-toggle input { width: 18px; height: 18px; }
+        .cookie-hidden { display: none; }
+        @media (max-width: 640px) {
+            .cookie-actions .cookie-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cobalt selection:text-white">
+    <div class="fixed inset-0 noise z-0"></div>
+
+    <main class="min-h-screen flex items-center justify-center px-6 relative z-10">
+        <div class="max-w-2xl w-full text-center border border-ink-10 bg-paper/90 p-10 md:p-14">
+            <img src="Assets/NOSTOS_logo-removebg.png" alt="Nostos logo" class="w-20 h-auto mx-auto mb-6">
+            <span class="inline-block py-1 px-3 border border-cobalt/20 text-cobalt text-[10px] uppercase tracking-[0.2em] mb-4 rounded-sm bg-cobalt/5">
+                Liste d’attente
+            </span>
+            <h1 class="font-serif text-4xl md:text-5xl mb-4 leading-tight text-obsidian">
+                Sois informé(e) de la sortie du programme
+            </h1>
+            <p class="text-stone-600 text-lg mb-8">
+                Zéro spam. Une notification quand le programme ouvre.
+            </p>
+
+            <form class="flex flex-col md:flex-row gap-4 justify-center" name="waitlist" method="post" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="waitlist" />
+                <input type="text" name="bot-field" class="hidden" tabindex="-1" autocomplete="off" />
+                <input type="email" name="email" required placeholder="Ton email" class="w-full md:flex-1 border border-ink-10 px-4 py-3 bg-white text-obsidian focus:outline-none focus:ring-2 focus:ring-cobalt/40" />
+                <button type="submit" data-cta="waitlist-submit" class="w-full md:w-auto bg-obsidian text-paper px-8 py-3 font-bold uppercase text-xs tracking-widest hover:bg-stone-800 transition-all glow-hover">
+                    M’inscrire
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="py-10 border-t border-ink-10 text-center text-stone-400 relative z-10">
+        <div class="max-w-5xl mx-auto px-6 space-y-4">
+            <div class="text-[9px] uppercase tracking-[0.4em] font-bold">
+                &copy; 2026 NOSTOS. Le retour à l'essentiel.
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-5 text-[11px] uppercase tracking-[0.2em]">
+                <a href="mentions-legales.html" class="hover:text-obsidian transition-colors">Mentions légales</a>
+                <a href="cgv.html" class="hover:text-obsidian transition-colors">CGV</a>
+                <a href="politique-confidentialite.html" class="hover:text-obsidian transition-colors">Politique de confidentialité</a>
+                <button type="button" id="openCookieSettings" class="hover:text-obsidian transition-colors">Modifier mes choix</button>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cookieBanner" class="cookie-banner cookie-hidden" role="dialog" aria-live="polite" aria-label="Préférences cookies">
+        <div class="cookie-panel">
+            <p class="text-sm text-obsidian mb-3">Nous utilisons des cookies nécessaires au fonctionnement du site et, avec votre accord, des cookies Analytics/Marketing.</p>
+            <div id="cookieCustomizePanel" class="cookie-hidden mb-3 space-y-2">
+                <div class="cookie-toggle">
+                    <div>
+                        <p class="text-sm font-semibold text-obsidian">Nécessaires</p>
+                        <p class="text-xs text-stone-500">Toujours actifs</p>
+                    </div>
+                    <input type="checkbox" checked disabled aria-label="Cookies nécessaires activés">
+                </div>
+                <div class="cookie-toggle">
+                    <div>
+                        <p class="text-sm font-semibold text-obsidian">Analytics/Marketing</p>
+                        <p class="text-xs text-stone-500">Mesure d’audience et publicités</p>
+                    </div>
+                    <input type="checkbox" id="marketingToggle" aria-label="Activer Analytics/Marketing">
+                </div>
+            </div>
+            <div class="cookie-actions">
+                <button type="button" id="acceptAllCookies" class="cookie-btn cookie-btn-primary">Accepter</button>
+                <button type="button" id="rejectAllCookies" class="cookie-link">Tout refuser</button>
+                <button type="button" id="customizeCookies" class="cookie-btn">Personnaliser</button>
+                <button type="button" id="saveCookies" class="cookie-btn cookie-hidden">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const CONSENT_KEY = 'nostos_cookie_consent';
+        const CONSENT_VERSION = 1;
+        const GTM_ID = 'GTM-TX27DHHX';
+        let consentState = null;
+        let gtmLoaded = false;
+
+        function readConsent() {
+            try {
+                const raw = localStorage.getItem(CONSENT_KEY);
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                if (parsed && parsed.version === CONSENT_VERSION && parsed.necessary === true && typeof parsed.marketing === 'boolean') {
+                    return parsed;
+                }
+            } catch (e) {}
+            return null;
+        }
+
+        function saveConsent(marketing) {
+            const consent = {
+                necessary: true,
+                marketing: marketing,
+                timestamp: new Date().toISOString(),
+                version: CONSENT_VERSION
+            };
+            localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
+            consentState = consent;
+            applyConsent();
+            hideBanner();
+        }
+
+        function loadGTM() {
+            if (gtmLoaded) return;
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            const tag = document.createElement('script');
+            tag.async = true;
+            tag.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+            document.head.appendChild(tag);
+            gtmLoaded = true;
+        }
+
+        function applyConsent() {
+            if (consentState && consentState.marketing) {
+                loadGTM();
+            }
+        }
+
+        function showBanner(customize) {
+            const banner = document.getElementById('cookieBanner');
+            const panel = document.getElementById('cookieCustomizePanel');
+            const saveBtn = document.getElementById('saveCookies');
+            if (customize) {
+                panel.classList.remove('cookie-hidden');
+                saveBtn.classList.remove('cookie-hidden');
+            } else {
+                panel.classList.add('cookie-hidden');
+                saveBtn.classList.add('cookie-hidden');
+            }
+            banner.classList.remove('cookie-hidden');
+        }
+
+        function hideBanner() {
+            document.getElementById('cookieBanner').classList.add('cookie-hidden');
+        }
+
+        function isMarketingAllowed() {
+            return !!(consentState && consentState.marketing === true);
+        }
+
+        document.getElementById('acceptAllCookies').addEventListener('click', () => saveConsent(true));
+        document.getElementById('rejectAllCookies').addEventListener('click', () => saveConsent(false));
+        document.getElementById('customizeCookies').addEventListener('click', () => showBanner(true));
+        document.getElementById('saveCookies').addEventListener('click', () => {
+            const marketing = document.getElementById('marketingToggle').checked;
+            saveConsent(marketing);
+        });
+        document.getElementById('openCookieSettings').addEventListener('click', () => {
+            const current = readConsent();
+            document.getElementById('marketingToggle').checked = !!(current && current.marketing);
+            showBanner(true);
+        });
+
+        consentState = readConsent();
+        if (!consentState) {
+            showBanner(false);
+        } else {
+            document.getElementById('marketingToggle').checked = !!consentState.marketing;
+            applyConsent();
+        }
+
+        // CTA click tracking (GTM dataLayer)
+        document.querySelectorAll('[data-cta]').forEach((el) => {
+            el.addEventListener('click', () => {
+                if (!isMarketingAllowed()) return;
+                const label = el.getAttribute('data-cta-label') || el.textContent.trim();
+                const id = el.id || null;
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({ event: 'cta_click', label, id, cta: el.getAttribute('data-cta') });
+            });
+        });
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nostos | Paiement annulé</title>
+    <link rel="icon" type="image/png" href="Assets/NOSTOS_logo-removebg.png">
+    <meta name="description" content="Paiement annulé pour le programme Nostos." />
+    <link rel="canonical" href="https://nostosprogram.com/annulation">
+    <meta name="robots" content="noindex, nofollow">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { obsidian: '#1A1A1B', paper: '#F9F7F2', stone: '#F0EEE6', cobalt: '#2563EB' }, fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] } } }
+        }
+    </script>
+    <style>
+        body { background-color: #F9F7F2; color: #1A1A1B; }
+        .noise { background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png"); opacity: 0.4; pointer-events: none; }
+        .border-ink-10 { border-color: rgba(26, 26, 27, 0.1); }
+    </style>
+</head>
+<body class="antialiased selection:bg-cobalt selection:text-white">
+    <div class="fixed inset-0 noise z-0"></div>
+    <main class="min-h-screen px-6 py-12 relative z-10 flex items-center justify-center">
+        <div class="w-full max-w-2xl bg-paper/90 border border-ink-10 p-8 md:p-12 text-center">
+            <img src="Assets/NOSTOS_logo-removebg.png" alt="Nostos logo" class="w-20 h-auto mx-auto mb-4">
+            <h1 class="font-serif text-4xl text-obsidian mb-3">Paiement annulé</h1>
+            <p class="text-stone-600 mb-6">Votre paiement n’a pas été finalisé. Vous pouvez reprendre le checkout quand vous voulez.</p>
+            <div class="flex flex-col md:flex-row gap-3 justify-center">
+                <a href="checkout.html" class="inline-flex items-center justify-center bg-obsidian text-paper px-6 py-3 text-xs uppercase tracking-widest">Reprendre le paiement</a>
+                <a href="index.html" class="inline-flex items-center justify-center border border-obsidian text-obsidian px-6 py-3 text-xs uppercase tracking-widest">Retour à l’accueil</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
