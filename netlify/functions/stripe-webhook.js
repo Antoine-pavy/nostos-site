@@ -55,9 +55,15 @@ exports.handler = async (event) => {
   const kitApiKey = process.env.KIT_API_KEY;
   const kitTagId = process.env.KIT_TAG_ID;
 
-  if (!stripeKey || !webhookSecret || !kitApiKey || !kitTagId) {
-    console.error('[stripe-webhook] Missing required env vars');
-    return response(500, { error: 'Missing webhook/KIT configuration' });
+  const missing = [];
+  if (!stripeKey) missing.push('STRIPE_SECRET_KEY');
+  if (!webhookSecret) missing.push('STRIPE_WEBHOOK_SECRET');
+  if (!kitApiKey) missing.push('KIT_API_KEY');
+  if (!kitTagId) missing.push('KIT_TAG_ID');
+
+  if (missing.length > 0) {
+    console.error('[stripe-webhook] Missing required env vars:', missing.join(', '));
+    return response(500, { error: 'Missing webhook/KIT configuration', missing });
   }
 
   const signature = getHeader(event.headers, 'stripe-signature');
