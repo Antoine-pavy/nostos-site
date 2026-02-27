@@ -1,4 +1,4 @@
-﻿const Stripe = require('stripe');
+const Stripe = require('stripe');
 
 const KIT_API_BASE = 'https://api.kit.com/v4';
 
@@ -14,33 +14,35 @@ function getHeader(headers, key) {
   if (!headers) return null;
   const direct = headers[key];
   if (direct) return direct;
-  const lowerKey = key.toLowerCase();
-  const foundKey = Object.keys(headers).find((k) => k.toLowerCase() === lowerKey);
-  return foundKey ? headers[foundKey] : null;
+  const wanted = key.toLowerCase();
+  const found = Object.keys(headers).find((k) => k.toLowerCase() === wanted);
+  return found ? headers[found] : null;
 }
 
-async function kitRequest(path, payload, kitApiKey) {
+async function kitPost(path, payload, kitApiKey) {
   const res = await fetch(`${KIT_API_BASE}${path}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      // V4 supports API keys; keep both headers for compatibility.
-      'Authorization': `Bearer ${kitApiKey}`,
       'X-Kit-Api-Key': kitApiKey
     },
     body: JSON.stringify(payload)
   });
 
-  const text = await res.text();
-  if (!res.ok) {
-    throw new Error(`Kit API error (${res.status}) on ${path}: ${text}`);
+  const raw = await res.text();
+  let data = null;
+  try {
+    data = raw ? JSON.parse(raw) : null;
+  } catch (e) {
+    data = { raw };
   }
 
-  try {
-    return JSON.parse(text);
-  } catch (e) {
-    return { raw: text };
-  }
+  return { ok: res.ok, status: res.status, data, raw };
+}
+
+function isSubscriberAlreadyExists(result) {
+  const text = (result && (result.raw || JSON.stringify(result.data) || '')).toLowerCase();
+  return text.includes('already exists') || text.includes('has already been taken') || text.includes('email_address');
 }
 
 exports.handler = async (event) => {
@@ -51,11 +53,10 @@ exports.handler = async (event) => {
   const stripeKey = process.env.STRIPE_SECRET_KEY;
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
   const kitApiKey = process.env.KIT_API_KEY;
-  const kitSequenceId = process.env.KIT_SEQUENCE_ID;
   const kitTagId = process.env.KIT_TAG_ID;
 
-  if (!stripeKey || !webhookSecret || !kitApiKey || (!kitSequenceId && !kitTagId)) {
-    console.error('[stripe-webhook] Missing configuration variables');
+  if (!stripeKey || !webhookSecret || !kitApiKey || !kitTagId) {
+    console.error('[stripe-webhook] Missing required env vars');
     return response(500, { error: 'Missing webhook/KIT configuration' });
   }
 
@@ -67,7 +68,7 @@ exports.handler = async (event) => {
 
   const stripe = new Stripe(stripeKey);
   const isBase64 = Boolean(event.isBase64Encoded);
-  console.log(`[stripe-webhook] Incoming webhook. base64=${isBase64}`);
+  console.log(`[stripe-webhook] Incoming webhook payload. base64=${isBase64}`);
 
   let stripeEvent;
   try {
@@ -78,7 +79,7 @@ exports.handler = async (event) => {
     return response(400, { error: `Webhook signature verification failed: ${err.message}` });
   }
 
-  console.log(`[stripe-webhook] Event type: ${stripeEvent.type}`);
+  console.log(`Stripe event received: ${stripeEvent.type}`);
 
   if (stripeEvent.type !== 'checkout.session.completed') {
     return response(200, { received: true, ignored: true, type: stripeEvent.type });
@@ -87,43 +88,49 @@ exports.handler = async (event) => {
   try {
     const session = stripeEvent.data.object;
     const email = (session.customer_details && session.customer_details.email) || session.customer_email || '';
-    const firstName = (session.metadata && session.metadata.first_name) || '';
-    const objective = (session.metadata && session.metadata.objective) || '';
+    const fullName = (session.metadata && (session.metadata.full_name || session.metadata.first_name)) || '';
 
     if (!email) {
-      throw new Error('Missing customer email in checkout.session.completed');
+      console.error('[stripe-webhook] checkout.session.completed missing email');
+      return response(200, { received: true, processed: false, error: 'missing_email' });
     }
 
-    console.log(`[stripe-webhook] checkout.session.completed for ${email}`);
+    console.log(`Creating/Upserting Kit subscriber: ${email}`);
 
-    const fields = {};
-    if (objective) fields.objective = objective;
-
-    await kitRequest('/subscribers', {
+    const createResult = await kitPost('/subscribers', {
       email_address: email,
-      first_name: firstName,
-      fields
+      first_name: fullName
     }, kitApiKey);
-    console.log('[stripe-webhook] Kit subscriber upsert done');
 
-    if (kitSequenceId) {
-      await kitRequest(`/sequences/${kitSequenceId}/subscribers`, {
-        email_address: email
-      }, kitApiKey);
-      console.log(`[stripe-webhook] Kit sequence subscribed: ${kitSequenceId}`);
+    if (!(createResult.status === 200 || createResult.status === 201)) {
+      if (isSubscriberAlreadyExists(createResult)) {
+        console.log(`[stripe-webhook] Subscriber already exists: ${email}`);
+      } else {
+        console.error('[stripe-webhook] Kit create subscriber error:', {
+          status: createResult.status,
+          body: createResult.raw
+        });
+        return response(200, { received: true, processed: false });
+      }
     }
 
-    if (kitTagId) {
-      await kitRequest(`/tags/${kitTagId}/subscribers`, {
-        email_address: email
-      }, kitApiKey);
-      console.log(`[stripe-webhook] Kit tag applied: ${kitTagId}`);
+    console.log(`Tagging subscriber with tag ${kitTagId}`);
+
+    const tagResult = await kitPost(`/tags/${kitTagId}/subscribers`, {
+      email_address: email
+    }, kitApiKey);
+
+    if (!(tagResult.status === 200 || tagResult.status === 201)) {
+      console.error('[stripe-webhook] Kit tag subscriber error:', {
+        status: tagResult.status,
+        body: tagResult.raw
+      });
+      return response(200, { received: true, processed: false });
     }
 
     return response(200, { received: true, processed: true });
   } catch (error) {
-    console.error('[stripe-webhook] Processing error:', error.message);
-    // Return 200 to avoid endless Stripe retries while logging the issue.
+    console.error('[stripe-webhook] Processing error:', error);
     return response(200, { received: true, processed: false });
   }
 };

@@ -33,7 +33,7 @@ exports.handler = async (event) => {
 
     const payload = JSON.parse(event.body || '{}');
     const email = String(payload.email || '').trim().toLowerCase();
-    const firstName = String(payload.first_name || payload.firstName || '').trim();
+    const fullName = String(payload.full_name || payload.fullName || payload.first_name || payload.firstName || '').trim();
 
     if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
       return json(400, { error: 'Email invalide' });
@@ -48,12 +48,12 @@ exports.handler = async (event) => {
       success_url: `${siteUrl}/merci?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/annulation`,
       metadata: {
-        first_name: firstName,
+        full_name: fullName,
         source: 'nostosprogram.com'
       },
       payment_intent_data: {
         metadata: {
-          first_name: firstName,
+          full_name: fullName,
           source: 'nostosprogram.com',
           kit_sync_completed: 'false'
         }

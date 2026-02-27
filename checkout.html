@@ -49,8 +49,8 @@
 
             <form id="checkoutForm" class="space-y-5">
                 <div>
-                    <label for="firstName" class="block text-xs uppercase tracking-[0.2em] text-stone-500 mb-2">Prénom</label>
-                    <input id="firstName" name="first_name" type="text" required class="w-full border border-ink-10 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cobalt/30" placeholder="Antoine">
+                    <label for="fullName" class="block text-xs uppercase tracking-[0.2em] text-stone-500 mb-2">Nom complet</label>
+                    <input id="fullName" name="full_name" type="text" required class="w-full border border-ink-10 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cobalt/30" placeholder="Antoine Pavy">
                 </div>
                 <div>
                     <label for="email" class="block text-xs uppercase tracking-[0.2em] text-stone-500 mb-2">Email</label>
@@ -83,7 +83,7 @@
             submitBtn.textContent = 'Redirection…';
 
             const payload = {
-                first_name: form.first_name.value.trim(),
+                full_name: form.full_name.value.trim(),
                 email: form.email.value.trim()
             };
 
