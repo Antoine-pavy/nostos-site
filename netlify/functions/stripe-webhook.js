@@ -18,7 +18,7 @@ function getHeader(headers, key) {
 }
 
 async function kitRequest(path, payload) {
-  const res = await fetch(`https://api.convertkit.com${path}`, {
+  const res = await fetch(`https://api.kit.com${path}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
