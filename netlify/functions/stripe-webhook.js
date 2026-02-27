@@ -1,5 +1,7 @@
 ﻿const Stripe = require('stripe');
 
+const KIT_API_BASE = 'https://api.kit.com/v4';
+
 function response(statusCode, body) {
   return {
     statusCode,
@@ -17,10 +19,15 @@ function getHeader(headers, key) {
   return foundKey ? headers[foundKey] : null;
 }
 
-async function kitRequest(path, payload) {
-  const res = await fetch(`https://api.kit.com${path}`, {
+async function kitRequest(path, payload, kitApiKey) {
+  const res = await fetch(`${KIT_API_BASE}${path}`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      // V4 supports API keys; keep both headers for compatibility.
+      'Authorization': `Bearer ${kitApiKey}`,
+      'X-Kit-Api-Key': kitApiKey
+    },
     body: JSON.stringify(payload)
   });
 
@@ -92,29 +99,24 @@ exports.handler = async (event) => {
     const fields = {};
     if (objective) fields.objective = objective;
 
-    await kitRequest('/v3/subscribers', {
-      api_key: kitApiKey,
-      email,
+    await kitRequest('/subscribers', {
+      email_address: email,
       first_name: firstName,
       fields
-    });
+    }, kitApiKey);
     console.log('[stripe-webhook] Kit subscriber upsert done');
 
     if (kitSequenceId) {
-      await kitRequest(`/v3/sequences/${kitSequenceId}/subscribe`, {
-        api_key: kitApiKey,
-        email,
-        first_name: firstName
-      });
+      await kitRequest(`/sequences/${kitSequenceId}/subscribers`, {
+        email_address: email
+      }, kitApiKey);
       console.log(`[stripe-webhook] Kit sequence subscribed: ${kitSequenceId}`);
     }
 
     if (kitTagId) {
-      await kitRequest(`/v3/tags/${kitTagId}/subscribe`, {
-        api_key: kitApiKey,
-        email,
-        first_name: firstName
-      });
+      await kitRequest(`/tags/${kitTagId}/subscribers`, {
+        email_address: email
+      }, kitApiKey);
       console.log(`[stripe-webhook] Kit tag applied: ${kitTagId}`);
     }
 
