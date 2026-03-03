@@ -294,6 +294,7 @@
         const CONSENT_VERSION = 1;
         const GTM_ID = 'GTM-TX27DHHX';
         const META_PIXEL_ID = '1837727546891540';
+        const FORCE_META_PIXEL_DEBUG = true;
         let consentState = null;
         let gtmLoaded = false;
         let metaPixelLoaded = false;
@@ -403,6 +404,9 @@
         } else {
             document.getElementById('marketingToggle').checked = !!consentState.marketing;
             applyConsent();
+        }
+        if (FORCE_META_PIXEL_DEBUG) {
+            loadMetaPixel();
         }
 
         // Hero Animation
