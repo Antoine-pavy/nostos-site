@@ -38,7 +38,7 @@
             <div id="successBox" class="hidden mt-6 space-y-3">
                 <p class="text-obsidian text-lg">Paiement confirmé. Votre programme Nostos est activé.</p>
                 <p id="purchaseDetails" class="text-sm text-stone-600"></p>
-                <p class="text-sm text-stone-600">Vous allez recevoir les emails de la séquence automatiquement.</p>
+                <p class="text-sm text-stone-600">Vous allez recevoir les emails de la séquence automatiquement. Pensez à vérifier vos spams si vous ne recevez rien.</p>
                 <a href="index.html" class="inline-flex mt-2 bg-obsidian text-paper px-6 py-3 text-xs uppercase tracking-widest">Retour à l’accueil</a>
             </div>
             <div id="errorBox" class="hidden mt-6 border border-red-200 bg-red-50 text-red-700 text-sm p-4"></div>
@@ -110,9 +110,17 @@
 
         async function init() {
             if (!sessionId) {
-                statusText.textContent = 'Session de paiement manquante.';
-                errorBox.textContent = 'Cette page de confirmation n’est accessible qu’après un paiement validé.';
-                errorBox.classList.remove('hidden');
+                const fromStripe = /stripe\.com/i.test(document.referrer || '');
+                if (fromStripe) {
+                    statusText.classList.add('hidden');
+                    successBox.classList.remove('hidden');
+                    purchaseDetails.textContent = 'Montant payé : 39.00 EUR.';
+                    trackPurchase(39, 'EUR');
+                } else {
+                    statusText.textContent = 'Session de paiement manquante.';
+                    errorBox.textContent = 'Cette page de confirmation n’est accessible qu’après un paiement validé.';
+                    errorBox.classList.remove('hidden');
+                }
                 return;
             }
 
