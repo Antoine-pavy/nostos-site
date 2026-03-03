@@ -53,6 +53,8 @@
         const errorBox = document.getElementById('errorBox');
         const purchaseDetails = document.getElementById('purchaseDetails');
         let purchaseTracked = false;
+        let metaPixelLoaded = false;
+        const META_PIXEL_ID = '1837727546891540';
 
         function readConsent() {
             try {
@@ -63,10 +65,32 @@
             }
         }
 
+        function ensureMetaPixelLoaded() {
+            if (metaPixelLoaded) return;
+            !(function(f,b,e,v,n,t,s){
+                if(f.fbq)return;
+                n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                if(!f._fbq)f._fbq=n;
+                n.push=n;
+                n.loaded=!0;
+                n.version='2.0';
+                n.queue=[];
+                t=b.createElement(e);
+                t.async=!0;
+                t.src=v;
+                s=b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t,s);
+            })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+            window.fbq('init', META_PIXEL_ID);
+            window.fbq('track', 'PageView');
+            metaPixelLoaded = true;
+        }
+
         function trackPurchase(amount, currency) {
             if (purchaseTracked) return;
             const consent = readConsent();
             if (!consent || consent.marketing !== true) return;
+            ensureMetaPixelLoaded();
 
             if (typeof window.fbq === 'function') {
                 window.fbq('track', 'Purchase', {
@@ -116,3 +140,4 @@
     </script>
 </body>
 </html>
+
