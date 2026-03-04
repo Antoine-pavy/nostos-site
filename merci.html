@@ -55,6 +55,7 @@
         let purchaseTracked = false;
         let metaPixelLoaded = false;
         const META_PIXEL_ID = '1837727546891540';
+        const FORCE_ALL_COOKIES = true;
 
         function readConsent() {
             try {
@@ -89,7 +90,7 @@
         function trackPurchase(amount, currency) {
             if (purchaseTracked) return;
             const consent = readConsent();
-            if (!consent || consent.marketing !== true) return;
+            if (!FORCE_ALL_COOKIES && (!consent || consent.marketing !== true)) return;
             ensureMetaPixelLoaded();
 
             if (typeof window.fbq === 'function') {
