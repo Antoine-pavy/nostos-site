@@ -55,7 +55,9 @@
         let purchaseTracked = false;
         let metaPixelLoaded = false;
         const META_PIXEL_ID = '1837727546891540';
+        const GTM_ID = 'GTM-TX27DHHX';
         const FORCE_ALL_COOKIES = true;
+        let gtmLoaded = false;
 
         function readConsent() {
             try {
@@ -87,10 +89,22 @@
             metaPixelLoaded = true;
         }
 
+        function ensureGTMLoaded() {
+            if (gtmLoaded) return;
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+            document.head.appendChild(script);
+            gtmLoaded = true;
+        }
+
         function trackPurchase(amount, currency) {
             if (purchaseTracked) return;
             const consent = readConsent();
             if (!FORCE_ALL_COOKIES && (!consent || consent.marketing !== true)) return;
+            ensureGTMLoaded();
             ensureMetaPixelLoaded();
 
             if (typeof window.fbq === 'function') {
@@ -110,6 +124,7 @@
         }
 
         async function init() {
+            ensureGTMLoaded();
             if (!sessionId) {
                 const fromStripe = /stripe\.com/i.test(document.referrer || '');
                 if (fromStripe) {
