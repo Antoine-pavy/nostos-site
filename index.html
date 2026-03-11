@@ -82,6 +82,14 @@
         }
         .preview-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .preview-card:focus-visible { outline: 2px solid #2563EB; outline-offset: 4px; }
+        .protocol-card {
+            transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+        }
+        .protocol-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 24px rgba(0, 0, 0, 0.08);
+            border-color: rgba(26, 26, 27, 0.22);
+        }
         @media (max-width: 640px) {
             .preview-stage { width: min(100%, 340px); height: 450px; }
         }
@@ -103,7 +111,7 @@
                 Échange le scroll pour ce qui compte <br> <span class="italic text-stone-400"> vraiment.</span>
             </h1>
             <p class="text-lg md:text-xl text-stone-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-                30 jours pour sortir du bruit, retrouver la clarté, redevenir acteur de ta trajectoire.
+                Un protocole de 30 jours pour reprendre le contrôle de ton attention dans un monde conçu pour la capturer.
             </p>
             <div class="flex flex-col gap-3 justify-center items-center">
                 <a href="#about-nostos" class="w-full md:w-auto bg-obsidian text-paper px-8 py-4 font-bold uppercase text-sm hover:bg-stone-800 transition-all glow-hover">
@@ -111,11 +119,32 @@
                 </a>
                 <span class="text-stone-400 text-[10px] font-mono uppercase tracking-widest text-center">Paiement sécurisé • accès immédiat • 30 emails sur 30 jours</span>
             </div>
+            <div class="max-w-4xl mx-auto mt-8 border border-ink-10 rounded-2xl overflow-hidden text-left">
+                <div class="grid md:grid-cols-2">
+                    <div class="p-5 md:p-6 border-b md:border-b-0 md:border-r border-ink-10 bg-stone/35">
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-stone-500 mb-5">Aujourd’hui</p>
+                        <ul class="space-y-3 text-stone-700 text-base md:text-lg leading-snug font-normal">
+                            <li class="flex items-start gap-3"><span class="text-red-400">✕</span><span>Une attention fragmentée par le scroll</span></li>
+                            <li class="flex items-start gap-3"><span class="text-red-400">✕</span><span>Difficulté à se concentrer longtemps</span></li>
+                            <li class="flex items-start gap-3"><span class="text-red-400">✕</span><span>Projets constamment remis à plus tard</span></li>
+                        </ul>
+                    </div>
+                    <div class="p-5 md:p-6 bg-paper">
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-stone-500 mb-5">Après Nostos</p>
+                        <ul class="space-y-3 text-obsidian text-base md:text-lg leading-snug font-normal">
+                            <li class="flex items-start gap-3"><span class="text-green-700">✓</span><span>Une attention stable et plus claire</span></li>
+                            <li class="flex items-start gap-3"><span class="text-green-700">✓</span><span>Capacité de se plonger dans le "Deep Work"</span></li>
+                            <li class="flex items-start gap-3"><span class="text-green-700">✓</span><span>Énergie et temps retrouvé pour ce qui compte</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section class="py-24 border-y border-ink-10 bg-stone/30">
         <div class="max-w-6xl mx-auto px-6">
+            <p class="text-center text-stone-600 mb-10 text-sm md:text-base">Si tu es ici, c’est probablement que cette sensation te parle déjà.</p>
             <div class="grid md:grid-cols-3 gap-12 text-obsidian">
                 <div class="space-y-4">
                     <div class="text-cobalt font-mono text-[10px] uppercase tracking-widest font-bold">01. LA BOUCLE</div>
@@ -139,6 +168,7 @@
     <section class="py-24 px-6 bg-obsidian text-paper">
         <div class="max-w-3xl mx-auto text-center space-y-8">
             <h2 class="font-serif text-3xl italic">Le problème n’est pas ta volonté</h2>
+            <p class="text-stone-300 text-sm md:text-base">Ces mécanismes sont aujourd’hui largement documentés par les sciences du comportement et de l’attention.</p>
             <div class="space-y-4 text-stone-400 font-light text-lg">
                 <p>Ce n’est pas un manque de discipline.</p>
                 <p>Ce n’est pas un défaut de caractère.</p>
@@ -156,7 +186,7 @@
             </div>
             <div class="space-y-6 leading-relaxed">
                 <p class="text-obsidian text-2xl md:text-3xl font-serif font-medium">
-                    Nostos est un programme de <span class="inline-block text-3xl md:text-4xl leading-none font-semibold">30 jours</span> conçu pour t’aider à te <span class="underline decoration-cobalt/70 underline-offset-4">détacher progressivement des écrans</span>, faire de la place et retrouver l’élan d’agir.
+                    Nostos est un protocole de <span class="inline-block text-3xl md:text-4xl leading-none font-semibold">30 jours</span> pour <span class="underline decoration-cobalt/70 underline-offset-4">reprendre le contrôle de ton attention</span>.
                 </p>
                 <p class="text-stone-600 text-lg md:text-xl border-t border-stone-300 pt-6">
                     Fondé sur des principes concrets issus des sciences du comportement et de l’attention, <span class="italic">il propose un cadre pour que les écrans redeviennent des outils, et non des refuges.</span>
@@ -164,7 +194,7 @@
             </div>
             <div class="pt-4 space-y-3">
                 <a href="https://buy.stripe.com/fZu14m99igVZ0Kf3whg7e00" data-cta="program-cta" class="inline-flex items-center justify-center bg-obsidian text-paper px-8 py-4 font-bold uppercase text-sm tracking-widest hover:bg-stone-800 transition-all">
-                    Commencer le programme
+                    Commencer
                 </a>
                 <p class="text-stone-500 text-[10px] font-mono uppercase tracking-widest">Paiement sécurisé • accès immédiat • 30 emails sur 30 jours</p>
             </div>
@@ -203,7 +233,7 @@
             </div>
         </div>
     </section>
-    
+
     <section class="pb-24 px-6">
         <div class="max-w-5xl mx-auto text-center">
             <p class="text-stone-500 text-xs uppercase tracking-[0.2em] mb-6">Aperçu des emails (clique pour défiler)</p>
@@ -224,6 +254,29 @@
         </div>
     </section>
 
+    <section class="py-24 px-6 border-y border-ink-10 bg-stone/30">
+        <div class="max-w-4xl mx-auto">
+            <div class="border border-ink-10 bg-paper p-8 md:p-10">
+                <h2 class="text-4xl md:text-5xl font-serif mb-10 text-obsidian text-center">Contenu du programme</h2>
+                <div class="space-y-3 text-stone-700">
+                    <p>📌 Le protocole Nostos sur 30 jours, structuré étape par étape.</p>
+                    <p>📌 Une carte simple pour suivre ta progression et rester engagé.</p>
+                    <p>📌 Un guide anti-rechute pour reprendre rapidement le contrôle.</p>
+                    <p>📌 Une sélection d’outils pratiques pour réduire les distractions.</p>
+                    <p>📌 Des explications scientifiques accessibles et applicables.</p>
+                    <p>📌 Un plan de continuité pour maintenir les bénéfices après 30 jours.</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <p class="text-obsidian text-lg md:text-xl mb-5">Tout ce dont tu as besoin pour reprendre le contrôle de ton attention.</p>
+                <a href="https://buy.stripe.com/fZu14m99igVZ0Kf3whg7e00" data-cta="mid-cta" class="inline-flex items-center justify-center bg-obsidian text-paper px-8 py-4 font-bold uppercase text-sm tracking-widest hover:bg-stone-800 transition-all">
+                    Commencer le programme
+                </a>
+                <p class="mt-3 text-stone-500 text-[10px] font-mono uppercase tracking-widest">Paiement sécurisé • accès immédiat • 30 emails sur 30 jours</span></p>
+            </div>
+        </div>
+    </section>
+
     <section class="pt-16 pb-24 px-6 bg-obsidian text-paper">
         <div class="max-w-4xl mx-auto text-center p-10 md:p-14 relative overflow-hidden">
             <div class="absolute -top-10 -right-10 w-40 h-40 border border-white/10 rounded-full"></div>
@@ -235,14 +288,53 @@
                 <p><span class="font-semibold">Nostos</span> te donne un cadre,</p>
                 <p>un rythme,</p>
                 <p>et un chemin clair.</p>
+                <p class="text-white border-y border-white/10 py-4">Chaque semaine passée à scroller sans t’en rendre compte est une semaine de moins consacrée à ce qui compte vraiment pour toi.</p>
                 <p class="mt-4 text-stone-300 text-lg md:text-xl font-serif italic border-t border-white/10 pt-6">Tu peux continuer à scroller en attendant que “l’envie revienne”.</p>
                 <p class="text-white text-2xl md:text-3xl font-serif">Ou décider de redonner de l'attention à ce qui compte vraiment.</p>
             </div>
-            <div class="mt-10">
-                <a href="https://buy.stripe.com/fZu14m99igVZ0Kf3whg7e00" data-cta="why-cta" class="inline-flex items-center justify-center bg-paper text-obsidian px-8 py-4 font-bold uppercase text-sm tracking-widest hover:bg-stone-200 transition-all">
-                    Commencer le programme
-                </a>
-                <p class="mt-3 text-stone-300 text-[10px] font-mono uppercase tracking-widest">Paiement sécurisé • accès immédiat • 30 emails sur 30 jours</p>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 border-b border-ink-10">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-serif mb-10 text-center text-obsidian">Au jour 31 tu pourras :</h2>
+            <div class="grid md:grid-cols-2 gap-5 text-stone-700">
+                <article class="group border border-ink-10 bg-paper p-6 rounded-2xl hover:shadow-sm hover:-translate-y-0.5 transition-all">
+                    <p class="flex items-start gap-3 text-base md:text-lg"><span class="w-6 h-6 rounded-full bg-stone/70 text-obsidian flex items-center justify-center text-sm mt-0.5">✓</span><span>te concentrer plus longtemps sans distraction</span></p>
+                </article>
+                <article class="group border border-ink-10 bg-paper p-6 rounded-2xl hover:shadow-sm hover:-translate-y-0.5 transition-all">
+                    <p class="flex items-start gap-3 text-base md:text-lg"><span class="w-6 h-6 rounded-full bg-stone/70 text-obsidian flex items-center justify-center text-sm mt-0.5">✓</span><span>réduire fortement le scroll automatique</span></p>
+                </article>
+                <article class="group border border-ink-10 bg-paper p-6 rounded-2xl hover:shadow-sm hover:-translate-y-0.5 transition-all">
+                    <p class="flex items-start gap-3 text-base md:text-lg"><span class="w-6 h-6 rounded-full bg-stone/70 text-obsidian flex items-center justify-center text-sm mt-0.5">✓</span><span>retrouver du temps pour tes projets</span></p>
+                </article>
+                <article class="group border border-ink-10 bg-paper p-6 rounded-2xl hover:shadow-sm hover:-translate-y-0.5 transition-all">
+                    <p class="flex items-start gap-3 text-base md:text-lg"><span class="w-6 h-6 rounded-full bg-stone/70 text-obsidian flex items-center justify-center text-sm mt-0.5">✓</span><span>ressentir plus de clarté mentale</span></p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-obsidian text-paper">
+        <div class="max-w-4xl mx-auto text-center">
+            <a href="https://buy.stripe.com/fZu14m99igVZ0Kf3whg7e00" data-cta="final-cta" class="inline-flex items-center justify-center bg-paper text-obsidian px-12 py-5 font-bold uppercase text-base tracking-widest hover:bg-stone-200 transition-all">
+                Commencer le programme
+            </a>
+            <div class="mt-4 text-stone-300 text-sm space-y-1">
+                <p>Accès immédiat</p>
+                <p>Paiement unique : 39 €</p>
+                <p>Tu peux arrêter les emails à tout moment.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-14 px-6 bg-stone/30 border-b border-ink-10">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-2xl md:text-3xl font-serif mb-4 text-obsidian">Inspiré des travaux de :</h2>
+            <div class="space-y-1 text-stone-700 text-sm md:text-base">
+                <p>Anna Lembke — <span class="italic">Dopamine Nation</span></p>
+                <p>Charles Duhigg — <span class="italic">The Power of Habit</span></p>
+                <p>recherches en sciences du comportement</p>
             </div>
         </div>
     </section>
@@ -513,5 +605,3 @@
     </script>
 </body>
 </html>
-
-
