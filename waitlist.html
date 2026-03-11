@@ -22,7 +22,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap"></noscript>
     <script>
         tailwind.config = {
             theme: {
@@ -69,7 +71,7 @@
 
     <main class="min-h-screen flex items-center justify-center px-6 relative z-10">
         <div class="max-w-2xl w-full text-center border border-ink-10 bg-paper/90 p-10 md:p-14">
-            <img src="Assets/NOSTOS_logo-removebg.png" alt="Nostos logo" class="w-20 h-auto mx-auto mb-6">
+            <img src="Assets/NOSTOS_logo-removebg.png" alt="Nostos logo" class="w-20 h-auto mx-auto mb-6" decoding="async" fetchpriority="high">
             <span class="inline-block py-1 px-3 border border-cobalt/20 text-cobalt text-[10px] uppercase tracking-[0.2em] mb-4 rounded-sm bg-cobalt/5">
                 Liste d’attente
             </span>
