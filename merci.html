@@ -54,8 +54,10 @@
         const purchaseDetails = document.getElementById('purchaseDetails');
         let purchaseTracked = false;
         let metaPixelLoaded = false;
+        let gaLoaded = false;
         const META_PIXEL_ID = '1837727546891540';
         const GTM_ID = 'GTM-TX27DHHX';
+        const GA_MEASUREMENT_ID = 'G-KRLJ69613G';
         const FORCE_ALL_COOKIES = true;
         let gtmLoaded = false;
 
@@ -100,12 +102,27 @@
             gtmLoaded = true;
         }
 
+        function ensureGaLoaded() {
+            if (gaLoaded) return;
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+            document.head.appendChild(script);
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+            window.gtag('js', new Date());
+            window.gtag('config', GA_MEASUREMENT_ID);
+            gaLoaded = true;
+        }
+
         function trackPurchase(amount, currency) {
             if (purchaseTracked) return;
             const consent = readConsent();
             if (!FORCE_ALL_COOKIES && (!consent || consent.marketing !== true)) return;
+            const transactionId = sessionId || `nostos-${Date.now()}`;
             ensureGTMLoaded();
             ensureMetaPixelLoaded();
+            ensureGaLoaded();
 
             if (typeof window.fbq === 'function') {
                 window.fbq('track', 'Purchase', {
@@ -118,8 +135,18 @@
             window.dataLayer.push({
                 event: 'purchase',
                 value: amount,
-                currency: currency || 'EUR'
+                currency: currency || 'EUR',
+                transaction_id: transactionId
             });
+
+            // Fallback direct to GA4 if GTM purchase tag is missing/misconfigured.
+            if (typeof window.gtag === 'function') {
+                window.gtag('event', 'purchase', {
+                    value: amount,
+                    currency: currency || 'EUR',
+                    transaction_id: transactionId
+                });
+            }
             purchaseTracked = true;
         }
 

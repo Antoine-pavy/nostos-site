@@ -47,7 +47,8 @@
         }
     </script>
     <style>
-        body { background-color: #F9F7F2; color: #1A1A1B; }
+        html, body { overflow-x: hidden; }
+        body { background-color: #F9F7F2; color: #1A1A1B; overflow-x: hidden; }
         .noise {
             background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
             opacity: 0.4;
@@ -132,9 +133,9 @@
                     <div class="p-5 md:p-6 bg-paper">
                         <p class="text-[10px] uppercase tracking-[0.2em] text-stone-500 mb-5">Après Nostos</p>
                         <ul class="space-y-3 text-obsidian text-base md:text-lg leading-snug font-normal">
+                             <li class="flex items-start gap-3"><span class="text-green-700">✓</span><span>Énergie et temps retrouvé pour ce qui compte</span></li>                           
                             <li class="flex items-start gap-3"><span class="text-green-700">✓</span><span>Une attention stable et plus claire</span></li>
                             <li class="flex items-start gap-3"><span class="text-green-700">✓</span><span>Capacité de se plonger dans le "Deep Work"</span></li>
-                            <li class="flex items-start gap-3"><span class="text-green-700">✓</span><span>Énergie et temps retrouvé pour ce qui compte</span></li>
                         </ul>
                     </div>
                 </div>
@@ -193,8 +194,8 @@
                 </p>
             </div>
             <div class="pt-4 space-y-3">
-                <a href="https://buy.stripe.com/fZu14m99igVZ0Kf3whg7e00" data-cta="program-cta" class="inline-flex items-center justify-center bg-obsidian text-paper px-8 py-4 font-bold uppercase text-sm tracking-widest hover:bg-stone-800 transition-all">
-                    Commencer
+                <a href="offre.html" data-cta="program-cta" class="inline-flex items-center justify-center bg-obsidian text-paper px-8 py-4 font-bold uppercase text-sm tracking-widest hover:bg-stone-800 transition-all">
+                    Voir le contenu
                 </a>
                 <p class="text-stone-500 text-[10px] font-mono uppercase tracking-widest">Paiement sécurisé • accès immédiat • 30 emails sur 30 jours</p>
             </div>
@@ -254,29 +255,6 @@
         </div>
     </section>
 
-    <section class="py-24 px-6 border-y border-ink-10 bg-stone/30">
-        <div class="max-w-4xl mx-auto">
-            <div class="border border-ink-10 bg-paper p-8 md:p-10">
-                <h2 class="text-4xl md:text-5xl font-serif mb-10 text-obsidian text-center">Contenu du programme</h2>
-                <div class="space-y-3 text-stone-700">
-                    <p>📌 Le protocole Nostos sur 30 jours, structuré étape par étape.</p>
-                    <p>📌 Une carte simple pour suivre ta progression et rester engagé.</p>
-                    <p>📌 Un guide anti-rechute pour reprendre rapidement le contrôle.</p>
-                    <p>📌 Une sélection d’outils pratiques pour réduire les distractions.</p>
-                    <p>📌 Des explications scientifiques accessibles et applicables.</p>
-                    <p>📌 Un plan de continuité pour maintenir les bénéfices après 30 jours.</p>
-                </div>
-            </div>
-            <div class="mt-8 text-center">
-                <p class="text-obsidian text-lg md:text-xl mb-5">Tout ce dont tu as besoin pour reprendre le contrôle de ton attention.</p>
-                <a href="https://buy.stripe.com/fZu14m99igVZ0Kf3whg7e00" data-cta="mid-cta" class="inline-flex items-center justify-center bg-obsidian text-paper px-8 py-4 font-bold uppercase text-sm tracking-widest hover:bg-stone-800 transition-all">
-                    Commencer le programme
-                </a>
-                <p class="mt-3 text-stone-500 text-[10px] font-mono uppercase tracking-widest">Paiement sécurisé • accès immédiat • 30 emails sur 30 jours</span></p>
-            </div>
-        </div>
-    </section>
-
     <section class="pt-16 pb-24 px-6 bg-obsidian text-paper">
         <div class="max-w-4xl mx-auto text-center p-10 md:p-14 relative overflow-hidden">
             <div class="absolute -top-10 -right-10 w-40 h-40 border border-white/10 rounded-full"></div>
@@ -297,13 +275,13 @@
 
     <section class="py-24 px-6 border-b border-ink-10">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-serif mb-10 text-center text-obsidian">Au jour 31 tu pourras :</h2>
+            <h2 class="text-4xl md:text-5xl font-serif mb-10 text-center text-obsidian">au jour 31 tu pourras :</h2>
             <div class="grid md:grid-cols-2 gap-5 text-stone-700">
                 <article class="group border border-ink-10 bg-paper p-6 rounded-2xl hover:shadow-sm hover:-translate-y-0.5 transition-all">
-                    <p class="flex items-start gap-3 text-base md:text-lg"><span class="w-6 h-6 rounded-full bg-stone/70 text-obsidian flex items-center justify-center text-sm mt-0.5">✓</span><span>te concentrer plus longtemps sans distraction</span></p>
+                    <p class="flex items-start gap-3 text-base md:text-lg"><span class="w-6 h-6 rounded-full bg-stone/70 text-obsidian flex items-center justify-center text-sm mt-0.5">✓</span><span>réduire fortement le scroll automatique</span></p>
                 </article>
                 <article class="group border border-ink-10 bg-paper p-6 rounded-2xl hover:shadow-sm hover:-translate-y-0.5 transition-all">
-                    <p class="flex items-start gap-3 text-base md:text-lg"><span class="w-6 h-6 rounded-full bg-stone/70 text-obsidian flex items-center justify-center text-sm mt-0.5">✓</span><span>réduire fortement le scroll automatique</span></p>
+                    <p class="flex items-start gap-3 text-base md:text-lg"><span class="w-6 h-6 rounded-full bg-stone/70 text-obsidian flex items-center justify-center text-sm mt-0.5">✓</span><span>te concentrer plus longtemps sans distraction</span></p>
                 </article>
                 <article class="group border border-ink-10 bg-paper p-6 rounded-2xl hover:shadow-sm hover:-translate-y-0.5 transition-all">
                     <p class="flex items-start gap-3 text-base md:text-lg"><span class="w-6 h-6 rounded-full bg-stone/70 text-obsidian flex items-center justify-center text-sm mt-0.5">✓</span><span>retrouver du temps pour tes projets</span></p>
@@ -317,8 +295,8 @@
 
     <section class="py-20 px-6 bg-obsidian text-paper">
         <div class="max-w-4xl mx-auto text-center">
-            <a href="https://buy.stripe.com/fZu14m99igVZ0Kf3whg7e00" data-cta="final-cta" class="inline-flex items-center justify-center bg-paper text-obsidian px-12 py-5 font-bold uppercase text-base tracking-widest hover:bg-stone-200 transition-all">
-                Commencer le programme
+            <a href="offre.html" data-cta="final-cta" class="inline-flex items-center justify-center bg-paper text-obsidian px-12 py-5 font-bold uppercase text-base tracking-widest hover:bg-stone-200 transition-all">
+                Voir le contenu
             </a>
             <div class="mt-4 text-stone-300 text-sm space-y-1">
                 <p>Accès immédiat</p>
