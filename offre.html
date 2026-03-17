@@ -34,7 +34,12 @@
     <style>
         html, body { overflow-x: hidden; }
         body { background-color: #F9F7F2; color: #1A1A1B; overflow-x: hidden; }
-        .noise { background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png"); opacity: 0.35; pointer-events: none; }
+        .noise {
+            background-image: radial-gradient(rgba(26, 26, 27, 0.04) 0.6px, transparent 0.6px);
+            background-size: 3px 3px;
+            opacity: 0.8;
+            pointer-events: none;
+        }
         .border-ink-10 { border-color: rgba(26, 26, 27, 0.1); }
         .temoin-stage { position: relative; width: min(100%, 760px); height: 300px; margin: 0 auto; overflow: visible; }
         .temoin-card {
@@ -61,7 +66,7 @@
     <header class="relative z-10 pt-8 px-6">
         <div class="max-w-6xl mx-auto flex items-center justify-between">
             <a href="index.html" class="inline-flex items-center gap-3">
-                <img src="Assets/NOSTOS_logo-removebg.png" alt="Nostos logo" class="w-16 h-auto" decoding="async" fetchpriority="high">
+                <img src="Assets/NOSTOS_logo-removebg.png" alt="Nostos logo" class="w-16 h-auto" width="500" height="500" decoding="async" fetchpriority="high">
             </a>
             <a href="index.html" class="text-[10px] uppercase tracking-[0.2em] text-stone-500 hover:text-obsidian transition-colors">Retour</a>
         </div>
@@ -145,6 +150,7 @@
     <script>
         const GTM_ID = 'GTM-TX27DHHX';
         let gtmLoaded = false;
+        let marketingLoadScheduled = false;
 
         function loadGTM() {
             if (gtmLoaded) return;
@@ -157,9 +163,18 @@
             gtmLoaded = true;
         }
 
-        loadGTM();
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({ event: 'view_offer_page', page: 'offre' });
+        function scheduleMarketingLoad() {
+            if (marketingLoadScheduled) return;
+            marketingLoadScheduled = true;
+            if ('requestIdleCallback' in window) {
+                window.requestIdleCallback(loadGTM, { timeout: 1200 });
+                return;
+            }
+            window.setTimeout(loadGTM, 500);
+        }
+        scheduleMarketingLoad();
 
         document.querySelectorAll('[data-cta]').forEach((el) => {
             el.addEventListener('click', () => {
