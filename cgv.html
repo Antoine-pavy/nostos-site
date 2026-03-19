@@ -19,29 +19,12 @@
     <meta name="twitter:title" content="Nostos | CGV">
     <meta name="twitter:description" content="Conditions générales de vente du programme Nostos.">
     <meta name="twitter:image" content="https://nostosprogram.com/Assets/NOSTOS_logo-removebg.png">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="Assets/tailwind.generated.css">
+    <link rel="stylesheet" href="Assets/Tailwind.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        obsidian: '#1A1A1B',
-                        paper: '#F9F7F2',
-                        stone: '#F0EEE6',
-                        cobalt: '#2563EB'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
+<style>
         body { background-color: #F9F7F2; color: #1A1A1B; }
         .noise { background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png"); opacity: 0.4; pointer-events: none; }
         .border-ink-10 { border-color: rgba(26, 26, 27, 0.1); }
@@ -165,6 +148,7 @@
         const FORCE_ALL_COOKIES = true;
         let consentState = null;
         let gtmLoaded = false;
+        let marketingLoadScheduled = false;
 
         function readConsent() {
             if (FORCE_ALL_COOKIES) {
@@ -184,14 +168,14 @@
                 const forced = { necessary: true, marketing: true, timestamp: new Date().toISOString(), version: CONSENT_VERSION };
                 localStorage.setItem(CONSENT_KEY, JSON.stringify(forced));
                 consentState = forced;
-                loadGTM();
+                scheduleMarketingLoad();
                 hideBanner();
                 return;
             }
             const consent = { necessary: true, marketing: marketing, timestamp: new Date().toISOString(), version: CONSENT_VERSION };
             localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
             consentState = consent;
-            if (consentState.marketing) loadGTM();
+            if (consentState.marketing) scheduleMarketingLoad();
             hideBanner();
         }
 
@@ -204,6 +188,23 @@
             tag.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
             document.head.appendChild(tag);
             gtmLoaded = true;
+        }
+
+        function scheduleMarketingLoad() {
+            if (marketingLoadScheduled) return;
+            marketingLoadScheduled = true;
+            const runAfterVisualLoad = () => {
+                if ('requestIdleCallback' in window) {
+                    window.requestIdleCallback(loadGTM, { timeout: 1200 });
+                    return;
+                }
+                window.setTimeout(loadGTM, 500);
+            };
+            if (document.readyState === 'complete') {
+                runAfterVisualLoad();
+                return;
+            }
+            window.addEventListener('load', runAfterVisualLoad, { once: true });
         }
 
         function showBanner(customize) {
@@ -228,16 +229,21 @@
 
         consentState = readConsent();
         if (FORCE_ALL_COOKIES) {
-            loadGTM();
+            scheduleMarketingLoad();
             showBanner(false);
         } else if (!consentState) showBanner(false);
         else {
             document.getElementById('marketingToggle').checked = !!consentState.marketing;
-            if (consentState.marketing) loadGTM();
+            if (consentState.marketing) scheduleMarketingLoad();
         }
     </script>
 </body>
 </html>
+
+
+
+
+
 
 
 
