@@ -28,8 +28,9 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap"></noscript>
     <link rel="stylesheet" href="Assets/Tailwind.css">
 <style>
+        :root { --top-nav-h: 74px; }
         html, body { overflow-x: hidden; }
-        body { background-color: #F9F7F2; color: #1A1A1B; overflow-x: hidden; }
+        body { background-color: #F9F7F2; color: #1A1A1B; overflow-x: hidden; padding-top: var(--top-nav-h); }
         .noise {
             background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
             opacity: 0.4;
@@ -83,51 +84,115 @@
             box-shadow: 0 14px 24px rgba(0, 0, 0, 0.08);
             border-color: rgba(26, 26, 27, 0.22);
         }
+        .top-sticky-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            background: rgba(249, 247, 242, 0.96);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(26, 26, 27, 0.1);
+        }
+        .top-sticky-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 9px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .top-sticky-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0;
+            text-decoration: none;
+            color: #1A1A1B;
+            line-height: 1;
+        }
+        .top-sticky-logo img {
+            width: 66px;
+            height: auto;
+            display: block;
+        }
+        .top-sticky-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 18px;
+            border-radius: 9999px;
+            border: 1px solid rgba(43, 90, 216, 0.45);
+            color: #2b5ad8;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 180ms ease;
+        }
+        .top-sticky-cta:hover {
+            background: #2b5ad8;
+            color: #fff;
+            border-color: #2b5ad8;
+        }
         @media (max-width: 640px) {
             .preview-stage { width: min(100%, 340px); height: 450px; }
+            .top-sticky-inner { padding: 8px 10px; }
+            .top-sticky-logo img { width: 54px; }
+            .top-sticky-cta { padding: 9px 14px; font-size: 10px; letter-spacing: 0.08em; }
+            :root { --top-nav-h: 68px; }
         }
     </style>
 </head>
 <body class="antialiased selection:bg-cobalt selection:text-white">
     <div class="fixed inset-0 noise z-50"></div>
 
-    <div class="absolute top-6 left-8 z-40">
-        <img src="Assets/NOSTOS_logo-removebg.png" alt="Nostos logo" class="w-20 h-auto" width="500" height="500" decoding="async" fetchpriority="high">
+    <div class="top-sticky-nav">
+        <div class="top-sticky-inner">
+            <a href="index.html" class="top-sticky-logo">
+                <img src="Assets/NOSTOS_logo-removebg.png" alt="Nostos logo" width="500" height="500" decoding="async" fetchpriority="high">
+            </a>
+            <a href="offre.html" data-cta="sticky-top-cta" class="top-sticky-cta">Voir le contenu →</a>
+        </div>
     </div>
 
-    <section class="relative pt-32 pb-20 px-6 overflow-hidden">
+    <section class="relative pb-20 px-6 overflow-hidden" style="padding-top: 5rem;">
         <div class="max-w-4xl mx-auto text-center relative z-10">
             <span class="inline-block py-1 px-3 border border-cobalt/20 text-cobalt text-[10px] uppercase tracking-[0.2em] mb-6 rounded-sm bg-cobalt/5">
                 Fondé sur les mécanismes de l’attention et du comportement
             </span>
-            <h1 class="hero-enter font-serif text-5xl md:text-7xl mb-8 leading-tight text-obsidian" style="animation-delay: 0.1s;">
-                Échange le scroll pour ce qui compte <br> <span class="italic text-stone-400"> vraiment.</span>
+            <h1 class="hero-enter font-serif text-4xl md:text-6xl mb-5 leading-[1.08] text-obsidian max-w-4xl mx-auto" style="animation-delay: 0.1s;">
+                Passe moins de temps sur ton téléphone —
+                <span class="italic text-cobalt">sans forcer</span>.
             </h1>
-            <p class="hero-enter text-lg md:text-xl text-stone-600 mb-10 max-w-2xl mx-auto leading-relaxed" style="animation-delay: 0.25s;">
-                Protocole de 30 jours pour reprendre le contrôle de ton attention dans un monde conçu pour la capturer.
+            <p class="hero-enter text-base md:text-lg text-stone-600 mb-10 max-w-xl mx-auto leading-relaxed" style="animation-delay: 0.25s;">
+                30 jours pour y arriver, une action quotidienne.
             </p>
             <div class="hero-enter flex flex-col gap-3 justify-center items-center" style="animation-delay: 0.4s;">
-                <a href="#about-nostos" class="w-full md:w-auto bg-obsidian text-paper px-8 py-4 font-sans font-bold uppercase text-sm hover:bg-stone-800 transition-all glow-hover">
+                <a href="#protocol" class="w-full md:w-auto bg-obsidian text-paper px-8 py-4 font-sans font-bold uppercase text-sm hover:bg-stone-800 transition-all glow-hover">
                     Découvrir NOSTOS
                 </a>
                 <span class="text-stone-400 text-[10px] font-mono uppercase tracking-widest text-center">Paiement sécurisé • accès immédiat • 30 emails sur 30 jours</span>
             </div>
-            <div class="max-w-4xl mx-auto mt-8 border border-ink-10 rounded-2xl overflow-hidden text-left">
+            <div class="max-w-4xl mx-auto mt-8 border border-ink-10 rounded-2xl overflow-hidden text-left shadow-[0_10px_24px_rgba(0,0,0,0.04)]">
                 <div class="grid md:grid-cols-2">
-                    <div class="p-5 md:p-6 border-b md:border-b-0 md:border-r border-ink-10 bg-stone/35">
-                        <p class="text-[10px] uppercase tracking-[0.2em] text-stone-500 mb-5">Aujourd’hui</p>
-                        <ul class="space-y-3 text-stone-700 text-base md:text-lg leading-snug font-normal">
-                            <li class="flex items-start gap-3"><span class="text-red-400">✕</span><span>Une attention fragmentée par le scroll</span></li>
-                            <li class="flex items-start gap-3"><span class="text-red-400">✕</span><span>Difficulté à se concentrer longtemps</span></li>
-                            <li class="flex items-start gap-3"><span class="text-red-400">✕</span><span>Projets constamment remis à plus tard</span></li>
+                    <div class="p-5 md:p-6 border-b md:border-b-0 md:border-r border-ink-10" style="background:#ece8df;">
+                        <p class="text-[10px] uppercase tracking-[0.22em] text-stone-600 mb-5 font-semibold">Aujourd’hui</p>
+                        <ul class="space-y-3 text-stone-800 text-base md:text-lg leading-snug font-normal">
+                            <li class="flex items-start gap-3"><span class="text-red-500 font-semibold">✕</span><span>L'impression de perdre du temps chaque soir</span></li>
+                            <li class="flex items-start gap-3"><span class="text-red-500 font-semibold">✕</span><span>Une attention fragmentée par le scroll</span></li>
+                            <li class="flex items-start gap-3"><span class="text-red-500 font-semibold">✕</span><span>Projets remis à plus tard, encore</span></li>
                         </ul>
                     </div>
-                    <div class="p-5 md:p-6 bg-paper">
-                        <p class="text-[10px] uppercase tracking-[0.2em] text-stone-500 mb-5">Après Nostos</p>
+                    <div class="p-5 md:p-6" style="background:#fdfcf8;">
+                        <p class="text-[10px] uppercase tracking-[0.22em] text-cobalt mb-5 font-semibold">Après Nostos</p>
                         <ul class="space-y-3 text-obsidian text-base md:text-lg leading-snug font-normal">
-                             <li class="flex items-start gap-3"><span class="text-green-700">✓</span><span>Énergie et temps retrouvé pour ce qui compte pour toi</span></li>                           
-                            <li class="flex items-start gap-3"><span class="text-green-700">✓</span><span>Une attention stable et plus claire</span></li>
-                            <li class="flex items-start gap-3"><span class="text-green-700">✓</span><span>Capacité de se plonger dans le "Deep Work"</span></li>
+                             <li class="flex items-start gap-3"><span class="text-green-700 font-semibold">✓</span><span>Temps retrouvé pour ce qui compte vraiment pour toi</span></li>                           
+                            <li class="flex items-start gap-3"><span class="text-green-700 font-semibold">✓</span><span>Une attention stable et plus claire</span></li>
+                            <li class="flex items-start gap-3"><span class="text-green-700 font-semibold">✓</span><span>Capacité de "deep work"</span></li>
+                            <li class="flex items-start gap-3"><span class="text-green-700 font-semibold">✓</span><span>Un rapport différent, durable, à ton téléphone</span></li>
                         </ul>
                     </div>
                 </div>
@@ -135,7 +200,7 @@
         </div>
     </section>
 
-    <section class="py-24 border-y border-ink-10 bg-stone/30">
+    <section class="pt-16 pb-24 border-y border-ink-10 bg-stone/30">
         <div class="max-w-6xl mx-auto px-6">
             <p class="text-center text-stone-600 mb-10 text-sm md:text-base">Si tu es ici, c’est probablement que cette sensation te parle déjà.</p>
             <div class="grid md:grid-cols-3 gap-12 text-obsidian">
@@ -159,20 +224,31 @@
     </section>
 
     <section class="py-24 px-6 bg-obsidian text-paper">
-        <div class="max-w-3xl mx-auto text-center space-y-8">
-            <h2 class="font-serif text-3xl italic">Le problème n’est pas ta volonté</h2>
-            <p class="text-stone-300 text-sm md:text-base font-sans">Ces mécanismes sont aujourd’hui largement documentés par les sciences du comportement et de l’attention.</p>
-            <div class="space-y-4 text-stone-400 font-light text-lg">
-                <p>Ce n’est pas un manque de discipline.</p>
-                <p>Ce n’est pas un défaut de caractère.</p>
-                <p class="text-white border-y border-white/10 py-4">Nos environnements numériques sont conçus pour capter l’attention.</p>
-                <p>À force de stimulations constantes, le cerveau s’habitue, la motivation s’érode, et les projets deviennent flous.</p>
-                <p class="pt-8 font-serif text-2xl italic text-white">Pas parce qu’ils ont perdu leur valeur. Mais parce que ton attention est ailleurs.</p>
+        <div class="max-w-4xl mx-auto text-center space-y-12 md:space-y-14">
+            <h2 class="font-serif text-3xl md:text-4xl leading-tight">
+                Nos environnements numériques sont conçus pour
+                <span class="italic text-cobalt">capter l'attention.</span>
+            </h2>
+            <p class="text-stone-300 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+                Ce n'est pas un défaut de caractère. Ce n'est pas un manque de discipline.
+            </p>
+            <p class="text-stone-400 text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
+                À force de stimulations constantes, le cerveau s'habitue, la motivation s'érode, et les projets deviennent flous.<br><br>
+                Pas parce qu'ils ont perdu leur valeur, mais parce que ton attention est ailleurs.
+            </p>
+            <p class="text-white text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-semibold">Nostos est un protocole de 30 jours pour changer ça, progressivement, sans brutalité.</p>
+            <div class="space-y-2">
+                <p class="text-stone-400 text-[10px] uppercase tracking-[0.16em]">Inspiré des travaux de :</p>
+                <div class="flex flex-wrap justify-center gap-2.5 text-[10px] uppercase tracking-[0.14em]">
+                    <span class="px-4 py-2 rounded-full bg-black/30 border border-white/10 text-stone-200">Anna Lembke — Dopamine Nation</span>
+                    <span class="px-4 py-2 rounded-full bg-black/30 border border-white/10 text-stone-200">Charles Duhigg — The Power of Habit</span>
+                    <span class="px-4 py-2 rounded-full bg-black/30 border border-white/10 text-stone-200">Sciences du comportement</span>
+                </div>
             </div>
         </div>
     </section>
     
-    <section id="about-nostos" class="py-24 border-y border-ink-10 bg-stone/30">
+    <section id="about-nostos" class="hidden py-24 border-y border-ink-10 bg-stone/30">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-8">
             <img src="Assets/NOSTOS_logo-removebg.png" alt="Nostos logo" class="w-20 h-auto mx-auto" width="500" height="500" loading="lazy" decoding="async">
             <div class="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-stone-500 font-semibold">
@@ -196,14 +272,14 @@
 
     <section id="protocol" class="py-24 px-6">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-serif mb-6 text-center text-obsidian">Ce que tu vas vivre pendant 30 jours</h2>
-            <p class="text-center text-stone-500 text-sm uppercase tracking-[0.2em] mb-12">Tu recevras 1 email/jour avec :</p>
+            <h2 class="text-3xl font-serif mb-6 text-center text-obsidian">Ce que tu vas vivre</h2>
+            <p class="text-center text-stone-500 text-sm uppercase tracking-[0.2em] mb-12">30 jours. 1 email par jour. 5 minutes.</p>
             <div class="space-y-12">
                 <div class="group flex gap-8 border-l border-stone-300 pl-8 relative py-2 transition-all">
                     <div class="absolute -left-[4.5px] top-0 w-2 h-2 bg-cobalt rounded-none"></div>
                     <div>
                         <span class="text-[10px] font-mono text-stone-400 uppercase tracking-widest">La pratique</span>
-                        <h4 class="text-xl font-semibold mb-2 text-obsidian">Des challenges progressifs</h4>
+                        <h4 class="text-xl font-semibold mb-2 text-obsidian">Des actions progressives</h4>
                         <p class="text-stone-600 text-sm italic">Espacés dans le temps et rapides à réaliser pour réduire le temps d'écran sans brutalité.</p>
                     </div>
                 </div>
@@ -212,7 +288,7 @@
                     <div>
                         <span class="text-[10px] font-mono text-stone-400 uppercase tracking-widest">Le pourquoi</span>
                         <h4 class="text-xl font-semibold mb-2 text-obsidian">Des explications accessibles</h4>
-                        <p class="text-stone-600 text-sm italic">Sur les mécanismes de l’attention, de la dopamine et de la motivation.</p>
+                        <p class="text-stone-600 text-sm italic">Pour comprendre tes réactions et pourquoi tu passes tant de temps sur ton téléphone. (neurosciences, dopamine, habitudes ...)</p>
                     </div>
                 </div>
                 <div class="group flex gap-8 border-l border-stone-300 pl-8 relative py-2">
@@ -247,20 +323,23 @@
         </div>
     </section>
 
-    <section class="pt-16 pb-24 px-6 bg-obsidian text-paper">
-        <div class="max-w-4xl mx-auto text-center p-10 md:p-14 relative overflow-hidden">
-            <div class="absolute -top-10 -right-10 w-40 h-40 border border-white/10 rounded-full"></div>
-            <div class="absolute -bottom-12 -left-12 w-56 h-56 border border-white/10 rounded-full"></div>
-            <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-10">Pourquoi maintenant ?</h2>
-            <div class="space-y-4 text-stone-200 text-lg md:text-xl leading-relaxed">
-                <p>Parce que la motivation ne revient pas par hasard.</p>
-                <p>Elle revient quand l’environnement change.</p>
-                <p><span class="font-semibold">Nostos</span> te donne un cadre,</p>
-                <p>un rythme,</p>
-                <p>et un chemin clair.</p>
-                <p class="text-white border-y border-white/10 py-4">Chaque semaine passée à scroller sans t’en rendre compte est une semaine de moins consacrée à ce qui compte vraiment pour toi.</p>
-                <p class="mt-4 text-stone-300 text-lg md:text-xl font-serif italic border-t border-white/10 pt-6">Tu peux continuer à scroller en attendant que “l’envie revienne”.</p>
-                <p class="text-white text-2xl md:text-3xl font-serif">Ou décider de redonner de l'attention à ce qui compte vraiment.</p>
+    <section class="py-20 px-6 bg-obsidian text-paper border-y border-white/10">
+        <div class="max-w-6xl mx-auto">
+            <p class="text-center text-stone-400 text-[10px] uppercase tracking-[0.2em] mb-5">Ils l'ont fait</p>
+            <h2 class="text-center font-serif text-3xl md:text-4xl mb-10">Ce qu'ils en pensent</h2>
+            <div class="grid md:grid-cols-3 gap-5">
+                <article class="rounded-2xl border border-white/15 bg-white/[0.03] p-6">
+                    <p class="text-stone-200 leading-relaxed">"J'ai récupéré mes soirées. Je lis à nouveau, sans me battre contre l'envie de scroller."</p>
+                    <p class="mt-5 text-stone-300 text-sm font-semibold">Marie L. · 34 ans</p>
+                </article>
+                <article class="rounded-2xl border border-white/15 bg-white/[0.03] p-6">
+                    <p class="text-stone-200 leading-relaxed">"Au bout de 2 semaines, je ne déverrouillais plus mon téléphone par réflexe. C'est doux mais réel."</p>
+                    <p class="mt-5 text-stone-300 text-sm font-semibold">Simon R. · 28 ans</p>
+                </article>
+                <article class="rounded-2xl border border-white/15 bg-white/[0.03] p-6">
+                    <p class="text-stone-200 leading-relaxed">"C'est progressif, sans culpabilité. Le changement s'installe et tient dans le temps."</p>
+                    <p class="mt-5 text-stone-300 text-sm font-semibold">Alice C. · 41 ans</p>
+                </article>
             </div>
         </div>
     </section>
@@ -285,30 +364,22 @@
         </div>
     </section>
 
-    <section class="py-20 px-6 bg-obsidian text-paper">
-        <div class="max-w-4xl mx-auto text-center">
-            <a href="offre.html" data-cta="final-cta" class="inline-flex items-center justify-center bg-paper text-obsidian px-12 py-5 font-bold uppercase text-base tracking-widest hover:bg-stone-200 transition-all">
-                Voir le contenu
+    <section class="py-24 px-6 bg-obsidian text-paper border-t border-white/10">
+        <div class="max-w-4xl mx-auto text-center p-8 md:p-12">
+            <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-6">Chaque semaine passée à scroller est une semaine de moins pour ce qui compte.</h2>
+            <p class="text-stone-300 text-lg md:text-xl leading-relaxed mb-8">
+                Tu peux continuer à attendre que l'envie de changer revienne.<br>
+                Ou décider de lui redonner un cadre.
+            </p>
+            <div class="text-5xl md:text-6xl text-white mt-16 mb-2 font-semibold tracking-tight">39€</div>
+            <p class="text-stone-300 text-xs md:text-sm uppercase tracking-[0.16em] mb-8">Paiement unique · Accès immédiat</p>
+            <a href="offre.html" data-cta="final-cta" class="inline-flex items-center justify-center bg-paper text-obsidian border border-white/25 px-12 py-5 font-semibold uppercase text-sm tracking-[0.14em] hover:bg-stone-200 transition-all rounded-full">
+                Commencer les 30 jours →
             </a>
-            <div class="mt-4 text-stone-300 text-sm space-y-1">
-                <p>Accès immédiat</p>
-                <p>Paiement unique : 39 €</p>
-                <p>Tu peux arrêter les emails à tout moment.</p>
-            </div>
+            <p class="mt-5 text-sm" style="color:#22c55e;">✓ Satisfait ou remboursé pendant 30 jours</p>
         </div>
     </section>
 
-    <section class="py-14 px-6 bg-stone/30 border-b border-ink-10">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-2xl md:text-3xl font-serif mb-4 text-obsidian">Inspiré des travaux de :</h2>
-            <div class="space-y-1 text-stone-700 text-sm md:text-base">
-                <p>Anna Lembke — <span class="italic">Dopamine Nation</span></p>
-                <p>Charles Duhigg — <span class="italic">The Power of Habit</span></p>
-                <p>recherches en sciences du comportement</p>
-            </div>
-        </div>
-    </section>
-    
             <footer class="py-12 border-t border-ink-10 text-center text-stone-400">
         <div class="max-w-5xl mx-auto px-6 space-y-4">
             <div class="text-[9px] uppercase tracking-[0.4em] font-bold">

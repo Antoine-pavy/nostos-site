@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="Assets/Tailwind.css">
 <style>
         html, body { overflow-x: hidden; }
-        body { background-color: #F9F7F2; color: #1A1A1B; overflow-x: hidden; }
+        body { background-color: #F9F7F2; color: #1A1A1B; overflow-x: hidden; padding-bottom: 120px; }
         .noise {
             background-image: radial-gradient(rgba(26, 26, 27, 0.04) 0.6px, transparent 0.6px);
             background-size: 3px 3px;
@@ -24,6 +24,31 @@
             pointer-events: none;
         }
         .border-ink-10 { border-color: rgba(26, 26, 27, 0.1); }
+        .offer-page-tag {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #2563eb;
+            margin-bottom: 0.9rem;
+        }
+        .offer-page-title {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            line-height: 1.15;
+            color: #1A1A1B;
+            margin-bottom: 0.9rem;
+        }
+        .offer-page-title em {
+            font-style: italic;
+            color: #2563eb;
+        }
+        .offer-page-sub {
+            font-size: 1rem;
+            color: #57534e;
+            line-height: 1.7;
+            max-width: 560px;
+        }
         .temoin-stage { position: relative; width: min(100%, 760px); height: 300px; margin: 0 auto; overflow: visible; }
         .temoin-card {
             position: absolute;
@@ -38,8 +63,145 @@
             transition: transform 280ms ease, box-shadow 280ms ease, opacity 280ms ease;
         }
         .temoin-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .offer-items {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        .offer-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            border: 1px solid rgba(26, 26, 27, 0.09);
+            background: #f8f5ef;
+            padding: 16px 18px;
+            border-radius: 12px;
+            transition: border-color 180ms ease, transform 180ms ease;
+        }
+        .offer-item:hover {
+            border-color: rgba(26, 26, 27, 0.28);
+            transform: translateY(-1px);
+        }
+        .offer-item-pin {
+            width: auto;
+            height: auto;
+            flex-shrink: 0;
+            display: inline-block;
+            font-size: 15px;
+            line-height: 1.1;
+            margin-top: 2px;
+        }
+        .offer-item-text {
+            color: #44403c;
+            line-height: 1.55;
+            font-size: 0.98rem;
+        }
+        .offer-item-title {
+            font-weight: 600;
+            color: #1f1f1f;
+            margin-bottom: 2px;
+            font-size: 0.98rem;
+            line-height: 1.35;
+        }
+        .offer-item-desc {
+            color: #57534e;
+            font-size: 0.9rem;
+            line-height: 1.55;
+        }
+        .faq-list {
+            border: 1px solid rgba(26, 26, 27, 0.1);
+            border-radius: 14px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .faq-row {
+            border-bottom: 1px solid rgba(26, 26, 27, 0.1);
+            padding: 0;
+        }
+        .faq-row:last-child {
+            border-bottom: 0;
+        }
+        .faq-question {
+            cursor: pointer;
+            list-style: none;
+            padding: 16px 18px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1f1f1f;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .faq-question::-webkit-details-marker {
+            display: none;
+        }
+        .faq-question::after {
+            content: "+";
+            color: #78716c;
+            font-weight: 500;
+            font-size: 1rem;
+            line-height: 1;
+        }
+        details[open] .faq-question::after {
+            content: "−";
+        }
+        .faq-answer {
+            padding: 0 18px 16px;
+            color: #57534e;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+        .offer-mobile-cta {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 120;
+            background: #1A1A1B;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+            background-blend-mode: multiply;
+            border-top: 1px solid rgba(249, 247, 242, 0.12);
+            padding: 16px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: space-between;
+        }
+        .offer-mobile-cta-price {
+            font-family: "Inter", sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: #F9F7F2;
+            white-space: nowrap;
+        }
+        .offer-mobile-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            background: #F9F7F2;
+            color: #1A1A1B;
+            padding: 12px 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: 1px solid #F9F7F2;
+            border-radius: 9999px;
+            transition: all 180ms ease;
+        }
+        .offer-mobile-cta-btn:hover {
+            background: #e7e5e4;
+            color: #1A1A1B;
+            border-color: #e7e5e4;
+        }
         @media (max-width: 640px) {
             .temoin-stage { width: min(100%, 360px); height: 230px; }
+            .offer-item { padding: 14px 14px; }
+            .offer-item-text { font-size: 0.92rem; }
         }
     </style>
 </head>
@@ -55,35 +217,90 @@
         </div>
     </header>
 
-    <main class="relative z-10 px-6 pb-20 pt-10">
-        <section class="max-w-4xl mx-auto text-center mb-14">
-            <h1 class="font-serif text-4xl md:text-5xl text-obsidian mb-4">Avant de commencer</h1>
-            <p class="text-stone-600 text-lg">Voici exactement ce que tu reçois en démarrant Nostos.</p>
+    <main class="relative z-10 px-6 pb-44 pt-10">
+        <section class="max-w-5xl mx-auto mb-14">
+            <p class="offer-page-tag">Programme 30 jours</p>
+            <h1 class="offer-page-title">Tout ce que tu reçois<br>avec <em>Nostos.</em></h1>
+            <p class="offer-page-sub">Un protocole progressif, fondé sur les sciences du comportement, pour réduire ta dépendance au scroll sans effort brutal.</p>
         </section>
 
-        <section class="max-w-4xl mx-auto border border-ink-10 bg-paper p-8 md:p-10 mb-12">
-            <h2 class="text-3xl md:text-4xl font-serif mb-6 text-obsidian text-center">Dans 30 jours :</h2>
-            <div class="space-y-3 text-stone-700 text-base md:text-lg leading-relaxed">
-                <p>&bull; Tu passes moins de temps sur ton téléphone, sans te forcer</p>
-                <p>&bull; Tu retrouves ta capacité à te concentrer profondément</p>
-                <p>&bull; Tu récupères du temps pour ce qui compte vraiment pour toi</p>
-                <p>&bull; Tu te sens plus calme, avec plus de clarté, plus en contrôle</p>
-            </div>
-            <p class="text-stone-700 mt-6 text-base md:text-lg">Ce n'est pas un effort constant.</p>
-            <p class="text-stone-700 text-base md:text-lg">C'est un système qui change progressivement ton comportement.</p>
-        </section>
-
-        <section class="max-w-4xl mx-auto border border-ink-10 bg-paper p-8 md:p-10 mb-12">
+        <section class="max-w-5xl mx-auto px-1 md:px-0 mb-12">
             <h2 class="text-3xl md:text-4xl font-serif mb-8 text-obsidian text-center">Contenu du programme</h2>
-            <div class="space-y-3 text-stone-700">
-                <p>&#128204; Le protocole Nostos sur 30 jours, structuré étape par étape</p>
-                <p>&#128204; Une carte simple pour suivre ta progression et rester engagé</p>
-                <p>&#128204; Un guide anti-rechute pour reprendre rapidement le contrôle</p>
-                <p>&#128204; Une sélection d'outils pratiques pour réduire les distractions.</p>
-                <p>&#128204; Des explications scientifiques simples pour comprendre ce qui change</p>
-                <p>&#128204; Un plan de continuité pour maintenir les bénéfices après 30 jours</p>
+            <div class="offer-items">
+                <article class="offer-item">
+                    <span class="offer-item-pin">📌</span>
+                    <div class="offer-item-text">
+                        <p class="offer-item-title">Le protocole Nostos sur 30 jours</p>
+                        <p class="offer-item-desc">1 email/ jour, une progression claire, structurée étape par étape.</p>
+                    </div>
+                </article>
+                <article class="offer-item">
+                    <span class="offer-item-pin">📌</span>
+                    <div class="offer-item-text">
+                        <p class="offer-item-title">La carte de progression</p>
+                        <p class="offer-item-desc">Pour suivre ton avancée et rester engagé sur la durée.</p>
+                    </div>
+                </article>
+                <article class="offer-item">
+                    <span class="offer-item-pin">📌</span>
+                    <div class="offer-item-text">
+                        <p class="offer-item-title">Notre guide anti-rechute</p>
+                        <p class="offer-item-desc">Pour reprendre rapidement le contrôle si tu décroches.</p>
+                    </div>
+                </article>
+                <article class="offer-item">
+                    <span class="offer-item-pin">📌</span>
+                    <div class="offer-item-text">
+                        <p class="offer-item-title">Des outils pratiques</p>
+                        <p class="offer-item-desc">Une sélection pour réduire les distractions au quotidien.</p>
+                    </div>
+                </article>
+                <article class="offer-item">
+                    <span class="offer-item-pin">📌</span>
+                    <div class="offer-item-text">
+                        <p class="offer-item-title">Des explications scientifiques simples</p>
+                        <p class="offer-item-desc">Pour comprendre les mécaniques addictives et les réactions de ton cerveau.</p>
+                    </div>
+                </article>
+                <article class="offer-item">
+                    <span class="offer-item-pin">📌</span>
+                    <div class="offer-item-text">
+                        <p class="offer-item-title">Un plan de continuité</p>
+                        <p class="offer-item-desc">Pour maintenir les bénéfices après les 30 jours.</p>
+                    </div>
+                </article>
             </div>
             <p class="text-stone-600 mt-6 text-center">Tout est conçu pour être simple, progressif et applicable dès le premier jour.</p>
+        </section>
+
+        <section class="max-w-5xl mx-auto px-1 md:px-0 mb-12">
+            <h2 class="text-3xl font-serif text-center mb-8 text-obsidian">Ce programme est fait pour toi si…</h2>
+            <div class="grid md:grid-cols-2 gap-3">
+                <article class="offer-item">
+                    <span class="offer-item-pin">✓</span>
+                    <div class="offer-item-text">
+                        <p class="offer-item-desc">Tu sens que tu perds du temps mais tu ne changes rien</p>
+                    </div>
+                </article>
+                <article class="offer-item">
+                    <span class="offer-item-pin">✓</span>
+                    <div class="offer-item-text">
+                        <p class="offer-item-desc">Tu veux retrouver plus de concentration dans ton travail.</p>
+                    </div>
+                </article>
+                <article class="offer-item">
+                    <span class="offer-item-pin">✓</span>
+                    <div class="offer-item-text">
+                        <p class="offer-item-desc">Tu aspires à une vie remplie d’autre chose que de scroll.</p>
+                    </div>
+                </article>
+                <article class="offer-item">
+                    <span class="offer-item-pin">✓</span>
+                    <div class="offer-item-text">
+                        <p class="offer-item-desc">Tu veux un cadre simple, progressif, et applicable dans la vraie vie.</p>
+                    </div>
+                </article>
+            </div>
         </section>
 
         <section class="max-w-5xl mx-auto mb-12">
@@ -112,36 +329,34 @@
             <p class="text-stone-700 text-base md:text-lg leading-relaxed">Un achat unique pour 30 jours guidés, avec un système clair que tu peux garder bien après le programme.</p>
         </section>
 
-        <section class="max-w-4xl mx-auto mb-8 text-center">
-            <p class="font-serif text-3xl md:text-4xl text-obsidian">Prix : 39 &euro;</p>
-            <p class="mt-2 text-stone-600 text-sm md:text-base">Paiement unique &bull; Garantie satisfait ou remboursé</p>
-        </section>
-
-        <section class="max-w-4xl mx-auto text-center border border-ink-10 bg-obsidian text-paper p-8 md:p-10 mb-12">
-            <a href="https://buy.stripe.com/fZu14m99igVZ0Kf3whg7e00" data-cta="offer-cta" class="inline-flex items-center justify-center bg-cobalt text-white px-14 py-5 font-bold uppercase text-base tracking-widest shadow-lg shadow-cobalt/30 hover:bg-blue-700 transition-all">
-                Commencer les 30 jours
-            </a>
-        </section>
-
-        <section class="max-w-4xl mx-auto mb-12">
-            <h2 class="text-3xl font-serif text-center mb-8">FAQ</h2>
-            <div class="space-y-3">
-                <details class="border border-ink-10 bg-paper p-5">
-                    <summary class="cursor-pointer font-semibold">Combien de temps faut-il par jour ?</summary>
-                    <p class="mt-3 text-stone-600 text-sm">Environ 5 minutes de lecture + 1 action simple à appliquer dans ta journée.</p>
+        <section class="max-w-4xl mx-auto mb-12" style="margin-top: 7rem;">
+            <h2 class="text-3xl font-serif text-center mb-8">Questions fréquentes</h2>
+            <div class="faq-list">
+                <details class="faq-row">
+                    <summary class="faq-question">Combien de temps faut-il par jour ?</summary>
+                    <p class="faq-answer">Environ 5 minutes de lecture + 1 action simple à appliquer dans ta journée.</p>
                 </details>
-                <details class="border border-ink-10 bg-paper p-5">
-                    <summary class="cursor-pointer font-semibold">Est-ce adapté si je travaille déjà beaucoup ?</summary>
-                    <p class="mt-3 text-stone-600 text-sm">Oui, le protocole est conçu pour s'intégrer à un quotidien chargé, sans surcharge.</p>
+                <details class="faq-row">
+                    <summary class="faq-question">Est-ce adapté si je travaille déjà beaucoup ?</summary>
+                    <p class="faq-answer">Oui, le protocole est conçu pour s'intégrer à un quotidien chargé, sans surcharge.</p>
                 </details>
-                <details class="border border-ink-10 bg-paper p-5">
-                    <summary class="cursor-pointer font-semibold">Paiement unique ou abonnement ?</summary>
-                    <p class="mt-3 text-stone-600 text-sm">Paiement unique de 39 &euro;, accès immédiat, satisfait ou remboursé.</p>
+                <details class="faq-row">
+                    <summary class="faq-question">Paiement unique ou abonnement ?</summary>
+                    <p class="faq-answer">Paiement unique de 39 &euro;, accès immédiat, satisfait ou remboursé.</p>
                 </details>
             </div>
             <p class="text-center text-stone-600 mt-6 text-sm">Si tu as une question, envoie-nous un mail à <a href="mailto:bonjour@nostosprogram.com" class="underline decoration-stone-400 underline-offset-2 hover:text-obsidian">bonjour@nostosprogram.com</a>.</p>
         </section>
     </main>
+
+    <section class="max-w-4xl mx-auto mb-8 text-center">
+            <p class="mt-2 text-stone-600 text-sm md:text-base">Paiement unique &bull; Garantie satisfait ou remboursé</p>
+     </section>
+
+    <div class="offer-mobile-cta">
+        <div class="offer-mobile-cta-price">39,00 €</div>
+        <a href="https://buy.stripe.com/fZu14m99igVZ0Kf3whg7e00" data-cta="offer-sticky-cta" class="offer-mobile-cta-btn">Commencer les 30 jours →</a>
+    </div>
 
     <script>
         const GTM_ID = 'GTM-TX27DHHX';
