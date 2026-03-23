@@ -162,10 +162,10 @@
             background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
             background-blend-mode: multiply;
             border-top: 1px solid rgba(249, 247, 242, 0.12);
-            padding: 16px 16px;
+            padding: 14px 12px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             justify-content: space-between;
         }
         .offer-mobile-cta-price {
@@ -176,22 +176,33 @@
             color: #F9F7F2;
             white-space: nowrap;
         }
+        .offer-mobile-cta-old {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(249, 247, 242, 0.72);
+            margin-bottom: 2px;
+            line-height: 1.1;
+        }
         .offer-mobile-cta-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             flex: 1;
+            min-width: 0;
             background: #F9F7F2;
             color: #1A1A1B;
-            padding: 12px 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-size: 0.78rem;
-            font-weight: 700;
+            padding: 10px 10px;
+            text-transform: none;
+            letter-spacing: 0.02em;
+            font-size: 0.82rem;
+            font-weight: 600;
             text-decoration: none;
             border: 1px solid #F9F7F2;
             border-radius: 9999px;
             transition: all 180ms ease;
+            white-space: nowrap;
         }
         .offer-mobile-cta-btn:hover {
             background: #e7e5e4;
@@ -202,6 +213,31 @@
             .temoin-stage { width: min(100%, 360px); height: 230px; }
             .offer-item { padding: 14px 14px; }
             .offer-item-text { font-size: 0.92rem; }
+        }
+        @media (min-width: 768px) {
+            .offer-mobile-cta {
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                width: min(680px, calc(100% - 24px));
+                border: 1px solid rgba(249, 247, 242, 0.12);
+                border-bottom: 0;
+                border-top-left-radius: 14px;
+                border-top-right-radius: 14px;
+                justify-content: center;
+                gap: 14px;
+            }
+            .offer-mobile-cta-btn {
+                flex: 0 0 auto;
+                min-width: 260px;
+                padding: 10px 18px;
+                font-size: 0.85rem;
+            }
+        }
+        @media (max-width: 390px) {
+            .offer-mobile-cta-price { font-size: 1.2rem; }
+            .offer-mobile-cta-old { font-size: 0.62rem; }
+            .offer-mobile-cta-btn { font-size: 0.74rem; padding: 9px 8px; }
         }
     </style>
 </head>
@@ -342,7 +378,7 @@
                 </details>
                 <details class="faq-row">
                     <summary class="faq-question">Paiement unique ou abonnement ?</summary>
-                    <p class="faq-answer">Paiement unique de 39 &euro;, accès immédiat, satisfait ou remboursé.</p>
+                    <p class="faq-answer">Offre de lancement : <span class="line-through">59 &euro;</span>, aujourd'hui 39 &euro; en paiement unique, accès immédiat, satisfait ou remboursé.</p>
                 </details>
             </div>
             <p class="text-center text-stone-600 mt-6 text-sm">Si tu as une question, envoie-nous un mail à <a href="mailto:bonjour@nostosprogram.com" class="underline decoration-stone-400 underline-offset-2 hover:text-obsidian">bonjour@nostosprogram.com</a>.</p>
@@ -350,11 +386,13 @@
     </main>
 
     <section class="max-w-4xl mx-auto mb-8 text-center">
+            <p class="text-stone-500 text-xs md:text-sm uppercase tracking-[0.12em] mb-1"><span class="text-xl md:text-2xl" style="text-decoration: line-through; text-decoration-thickness: 2px;">59 &euro;</span> &bull; Offre de lancement</p>
+            <p class="text-3xl md:text-4xl font-semibold tracking-tight text-obsidian">Prix : 39 &euro;</p>
             <p class="mt-2 text-stone-600 text-sm md:text-base">Paiement unique &bull; Garantie satisfait ou remboursé</p>
      </section>
 
     <div class="offer-mobile-cta">
-        <div class="offer-mobile-cta-price">39,00 €</div>
+        <div class="offer-mobile-cta-price"><span class="offer-mobile-cta-old"><span style="text-decoration:line-through;">59,00 €</span> · Offre de lancement</span>39,00 €</div>
         <a href="https://buy.stripe.com/fZu14m99igVZ0Kf3whg7e00" data-cta="offer-sticky-cta" class="offer-mobile-cta-btn">Commencer les 30 jours →</a>
     </div>
 
