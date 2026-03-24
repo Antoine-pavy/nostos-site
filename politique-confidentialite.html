@@ -158,6 +158,7 @@
         const CONSENT_VERSION = 1;
         const GTM_ID = 'GTM-TX27DHHX';
         const FORCE_ALL_COOKIES = true;
+        const COOKIE_BANNER_SUSPENDED = true;
         let consentState = null;
         let gtmLoaded = false;
         let marketingLoadScheduled = false;
@@ -220,6 +221,7 @@
         }
 
         function showBanner(customize) {
+            if (COOKIE_BANNER_SUSPENDED) return;
             const panel = document.getElementById('cookieCustomizePanel');
             const saveBtn = document.getElementById('saveCookies');
             if (customize) { panel.classList.remove('cookie-hidden'); saveBtn.classList.remove('cookie-hidden'); }
@@ -233,11 +235,16 @@
         document.getElementById('rejectAllCookies').addEventListener('click', () => saveConsent(false));
         document.getElementById('customizeCookies').addEventListener('click', () => showBanner(true));
         document.getElementById('saveCookies').addEventListener('click', () => saveConsent(document.getElementById('marketingToggle').checked));
-        document.getElementById('openCookieSettings').addEventListener('click', () => {
-            const current = readConsent();
-            document.getElementById('marketingToggle').checked = !!(current && current.marketing);
-            showBanner(true);
-        });
+        const openCookieBtn = document.getElementById('openCookieSettings');
+        if (COOKIE_BANNER_SUSPENDED) {
+            openCookieBtn.style.display = 'none';
+        } else {
+            openCookieBtn.addEventListener('click', () => {
+                const current = readConsent();
+                document.getElementById('marketingToggle').checked = !!(current && current.marketing);
+                showBanner(true);
+            });
+        }
 
         consentState = readConsent();
         if (FORCE_ALL_COOKIES) {

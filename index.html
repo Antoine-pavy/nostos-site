@@ -154,7 +154,7 @@
             <a href="index.html" class="top-sticky-logo">
                 <img src="Assets/NOSTOS_logo-removebg.png" alt="Nostos logo" width="500" height="500" decoding="async" fetchpriority="high">
             </a>
-            <a href="offre.html" data-cta="sticky-top-cta" class="top-sticky-cta">Voir le contenu →</a>
+            <a href="offre.html" data-cta="sticky-top-cta" class="top-sticky-cta">Voir ce que contient Nostos →</a>
         </div>
     </div>
 
@@ -263,7 +263,7 @@
             </div>
             <div class="pt-4 space-y-3">
                 <a href="offre.html" data-cta="program-cta" class="inline-flex items-center justify-center bg-obsidian text-paper px-8 py-4 font-bold uppercase text-sm tracking-widest hover:bg-stone-800 transition-all">
-                    Voir le contenu
+                    Voir ce que contient Nostos →
                 </a>
                 <p class="text-stone-500 text-[10px] font-mono uppercase tracking-widest">Paiement sécurisé • accès immédiat • 30 emails sur 30 jours</p>
             </div>
@@ -371,11 +371,8 @@
                 Tu peux continuer à attendre que l'envie de changer revienne.<br>
                 Ou décider de lui redonner un cadre.
             </p>
-            <p class="text-stone-300 text-base md:text-lg uppercase tracking-[0.08em] mt-16 mb-1"><span class="text-xl md:text-2xl" style="text-decoration: line-through; text-decoration-thickness: 2px;">59 €</span> · Offre de lancement</p>
-            <div class="text-4xl md:text-5xl text-white mb-2 font-semibold tracking-tight">39 €</div>
-            <p class="text-stone-300 text-xs md:text-sm uppercase tracking-[0.16em] mb-8">Paiement unique · Accès immédiat</p>
-            <a href="offre.html" data-cta="final-cta" class="inline-flex items-center justify-center bg-paper text-obsidian border border-white/25 px-12 py-5 font-semibold uppercase text-sm tracking-[0.14em] hover:bg-stone-200 transition-all rounded-full">
-                Commencer les 30 jours →
+            <a href="offre.html" data-cta="final-cta" class="inline-flex w-full max-w-[22rem] sm:w-auto sm:max-w-none items-center justify-center border px-6 sm:px-10 md:px-12 py-4 md:py-5 font-semibold uppercase text-[12px] sm:text-sm tracking-[0.10em] sm:tracking-[0.14em] leading-tight whitespace-normal sm:whitespace-nowrap text-center hover:opacity-90 transition-all rounded-full" style="background:#2563eb;color:#F9F7F2;border-color:#2563eb;">
+                Voir ce que contient Nostos →
             </a>
             <p class="mt-5 text-sm" style="color:#22c55e;">✓ Satisfait ou remboursé pendant 30 jours</p>
         </div>
@@ -435,6 +432,7 @@
         const META_PIXEL_ID = '1837727546891540';
         const FORCE_META_PIXEL_DEBUG = false;
         const FORCE_ALL_COOKIES = true;
+        const COOKIE_BANNER_SUSPENDED = true;
         let consentState = null;
         let gtmLoaded = false;
         let metaPixelLoaded = false;
@@ -536,6 +534,7 @@
         }
 
         function showBanner(customize) {
+            if (COOKIE_BANNER_SUSPENDED) return;
             const banner = document.getElementById('cookieBanner');
             const panel = document.getElementById('cookieCustomizePanel');
             const saveBtn = document.getElementById('saveCookies');
@@ -565,11 +564,16 @@
             const marketing = document.getElementById('marketingToggle').checked;
             saveConsent(marketing);
         });
-        document.getElementById('openCookieSettings').addEventListener('click', () => {
-            const current = readConsent();
-            document.getElementById('marketingToggle').checked = !!(current && current.marketing);
-            showBanner(true);
-        });
+        const openCookieBtn = document.getElementById('openCookieSettings');
+        if (COOKIE_BANNER_SUSPENDED) {
+            openCookieBtn.style.display = 'none';
+        } else {
+            openCookieBtn.addEventListener('click', () => {
+                const current = readConsent();
+                document.getElementById('marketingToggle').checked = !!(current && current.marketing);
+                showBanner(true);
+            });
+        }
 
         consentState = readConsent();
         if (FORCE_ALL_COOKIES) {
