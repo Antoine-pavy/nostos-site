@@ -20,6 +20,13 @@
     <meta name="twitter:description" content="Programme de 30 jours pour se détacher des écrans et retrouver l’élan d’agir.">
     <meta name="twitter:image" content="https://nostosprogram.com/Assets/NOSTOS_logo-removebg.png">
     <meta name="facebook-domain-verification" content="0c60bi53pwbqn6sfgg3luyo6s7t7n2" />
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "w8xvas3f1l");
+    </script>
     <link rel="stylesheet" href="Assets/tailwind.generated.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +37,7 @@
 <style>
         :root { --top-nav-h: 74px; }
         html, body { overflow-x: hidden; }
-        body { background-color: #F9F7F2; color: #1A1A1B; overflow-x: hidden; padding-top: var(--top-nav-h); }
+        body { margin: 0; background-color: #F9F7F2; color: #1A1A1B; overflow-x: hidden; padding-top: var(--top-nav-h); }
         .noise {
             background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
             opacity: 0.4;
@@ -76,6 +83,140 @@
         }
         .preview-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .preview-card:focus-visible { outline: 2px solid #2563EB; outline-offset: 4px; }
+        .temoin-stage { position: relative; width: min(100%, 760px); height: 300px; margin: 0 auto; overflow: visible; }
+        .temoin-card {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(26, 26, 27, 0.16);
+            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.26), 0 0 24px rgba(148, 163, 184, 0.16);
+            background: linear-gradient(180deg, #ffffff 0%, #f7f6f3 100%);
+            cursor: pointer;
+            transition: transform 280ms ease, box-shadow 280ms ease, opacity 280ms ease, filter 220ms ease;
+        }
+        .temoin-card:hover { box-shadow: 0 24px 44px rgba(0, 0, 0, 0.32), 0 0 30px rgba(148, 163, 184, 0.22); }
+        .temoin-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: saturate(1.02) contrast(1.01);
+        }
+        .temoin-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: rgba(15, 15, 16, 0.92);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .temoin-lightbox.is-open { display: flex; }
+        .temoin-lightbox-inner {
+            position: relative;
+            width: min(96vw, 980px);
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .temoin-lightbox-media {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 28px 50px rgba(0, 0, 0, 0.4);
+            touch-action: pan-y;
+            transform: translateX(0);
+            transition: transform 180ms ease;
+        }
+        .temoin-lightbox-media img {
+            width: 100%;
+            height: auto;
+            max-height: 78vh;
+            object-fit: contain;
+            display: block;
+            background: #0f0f10;
+        }
+        .temoin-lightbox-close {
+            position: absolute;
+            top: -8px;
+            right: -2px;
+            width: 38px;
+            height: 38px;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(15, 15, 16, 0.8);
+            color: #fff;
+            font-size: 24px;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .temoin-lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            background: rgba(15, 15, 16, 0.7);
+            color: #fff;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .temoin-lightbox-prev { left: -56px; }
+        .temoin-lightbox-next { right: -56px; }
+        .temoin-lightbox-hint {
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 12px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .faq-list-dark {
+            border: 1px solid rgba(26, 26, 27, 0.12);
+            border-radius: 14px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .faq-row-dark {
+            border-bottom: 1px solid rgba(26, 26, 27, 0.1);
+            padding: 0;
+        }
+        .faq-row-dark:last-child { border-bottom: 0; }
+        .faq-question-dark {
+            cursor: pointer;
+            list-style: none;
+            padding: 16px 18px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1f1f1f;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .faq-question-dark::-webkit-details-marker { display: none; }
+        .faq-question-dark::after {
+            content: "+";
+            color: #78716c;
+            font-weight: 500;
+            font-size: 1rem;
+            line-height: 1;
+        }
+        details[open] .faq-question-dark::after { content: "−"; }
+        .faq-answer-dark {
+            padding: 0 18px 16px;
+            color: #57534e;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
         .protocol-card {
             transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
         }
@@ -83,6 +224,108 @@
             transform: translateY(-4px);
             box-shadow: 0 14px 24px rgba(0, 0, 0, 0.08);
             border-color: rgba(26, 26, 27, 0.22);
+        }
+        .impact-card {
+            padding: 1.5rem 1.4rem;
+            border-radius: 1.35rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
+            transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+        }
+        .impact-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
+            border-color: rgba(96, 165, 250, 0.35);
+        }
+        .impact-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.74rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #60a5fa;
+            margin-bottom: 0.85rem;
+        }
+        .impact-title {
+            color: #fff;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(1.55rem, 2.35vw, 1.95rem);
+            line-height: 1.18;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+        .impact-copy {
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+        .attention-title {
+            font-family: "Playfair Display", serif;
+            font-weight: 500;
+            font-size: clamp(2.5rem, 8.2vw, 4.3rem);
+            line-height: 1.04;
+            letter-spacing: -0.01em;
+            max-width: 760px;
+        }
+        .attention-sub {
+            color: rgba(255, 255, 255, 0.78);
+            font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+            line-height: 1.55;
+            max-width: 760px;
+        }
+        .attention-cost {
+            max-width: 760px;
+            border-left: 4px solid #2563eb;
+            padding-left: 1.4rem;
+        }
+        .attention-cost-title {
+            font-family: "Playfair Display", serif;
+            font-weight: 500;
+            font-size: clamp(1.9rem, 5vw, 2.5rem);
+            line-height: 1.12;
+            margin-bottom: 0.7rem;
+        }
+        .attention-cost-quote {
+            color: rgba(255, 255, 255, 0.76);
+            font-size: clamp(1.08rem, 3vw, 1.35rem);
+            font-style: italic;
+            line-height: 1.55;
+        }
+        .about-title-match {
+            font-family: "Playfair Display", serif;
+            font-weight: 500;
+            font-size: clamp(1.9rem, 5vw, 2.5rem);
+            line-height: 1.12;
+            margin-bottom: 0.7rem;
+            color: #1A1A1B;
+        }
+        .offer-page-tag {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #2563eb;
+            margin-bottom: 0.9rem;
+        }
+        .offer-page-title {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            line-height: 1.15;
+            color: #1A1A1B;
+            margin-bottom: 0.9rem;
+        }
+        .offer-page-title em {
+            font-style: italic;
+            color: #2563eb;
+        }
+        .offer-page-sub {
+            font-size: 1rem;
+            color: #57534e;
+            line-height: 1.7;
+            max-width: 560px;
         }
         .top-sticky-nav {
             position: fixed;
@@ -137,244 +380,388 @@
             color: #fff;
             border-color: #2b5ad8;
         }
+        .cta-blue-anim {
+            animation: ctaShake 3s ease-in-out infinite;
+            will-change: transform;
+        }
+        .cta-blue-anim:hover {
+            filter: brightness(0.92);
+            box-shadow: 0 10px 24px rgba(37, 99, 235, 0.28);
+        }
+        @keyframes ctaShake {
+            0%, 88%, 100% { transform: translateX(0) rotate(0deg); }
+            90% { transform: translateX(-1px) rotate(-0.4deg); }
+            92% { transform: translateX(1px) rotate(0.4deg); }
+            94% { transform: translateX(-1px) rotate(-0.3deg); }
+            96% { transform: translateX(1px) rotate(0.3deg); }
+            98% { transform: translateX(0) rotate(0deg); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .cta-blue-anim { animation: none; }
+        }
+        .full-bleed {
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+        }
+        .hero-section { padding-top: 3.75rem; }
+        .situations-section { padding-top: 5rem; padding-bottom: 5rem; }
+        .cost-section { padding-top: 6rem; padding-bottom: 6rem; }
+        .faq-final-section { padding-top: 6rem; padding-bottom: 6rem; }
+        .final-product-shot {
+            width: min(56vw, 255px);
+        }
+        .vsl-sound-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 3;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 14px;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(15, 15, 16, 0.72);
+            color: #fff;
+            font-size: 11px;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            backdrop-filter: blur(4px);
+            transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
+        }
+        .vsl-sound-btn:hover {
+            background: rgba(15, 15, 16, 0.86);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-1px);
+        }
+        .hero-vsl-frame {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 106%;
+            height: 106%;
+            transform: translate(-50%, -50%);
+            border: 0;
+        }
         @media (max-width: 640px) {
             .preview-stage { width: min(100%, 340px); height: 450px; }
+            .temoin-stage { width: min(100%, 360px); height: 230px; }
+            .temoin-lightbox-nav { display: none; }
+            .temoin-lightbox-close { top: -6px; right: 0; }
             .top-sticky-inner { padding: 8px 10px; }
             .top-sticky-logo img { width: 54px; }
             .top-sticky-cta { padding: 9px 14px; font-size: 10px; letter-spacing: 0.08em; }
             :root { --top-nav-h: 68px; }
+            .hero-section { padding-top: 2.35rem; }
+            .hero-section { padding-bottom: 2.9rem; }
+            .situations-section { padding-top: 2.9rem; padding-bottom: 3.8rem; }
+            .cost-section { padding-top: 4.8rem; padding-bottom: 5.5rem; }
+            .testimonials-section { padding-top: 3.8rem; padding-bottom: 4.4rem; }
+            .faq-final-section { padding-top: 4.2rem; padding-bottom: 5.5rem; }
+            .final-product-shot {
+                width: min(72vw, 240px);
+            }
+            .vsl-sound-btn {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 10px;
+                letter-spacing: 0.08em;
+                gap: 6px;
+            }
+            .hero-vsl-frame {
+                width: 110%;
+                height: 110%;
+            }
+            .hero-vsl-wrap {
+                width: calc(100% + 1.25rem);
+                margin-left: -0.625rem;
+                margin-right: -0.625rem;
+            }
         }
     </style>
 </head>
 <body class="antialiased selection:bg-cobalt selection:text-white">
-    <div class="fixed inset-0 noise z-50"></div>
+    <div class="fixed inset-0 noise z-0"></div>
+    <div class="relative z-10">
 
     <div class="top-sticky-nav">
         <div class="top-sticky-inner">
             <a href="index.html" class="top-sticky-logo">
                 <img src="Assets/NOSTOS_logo-removebg.png" alt="Nostos logo" width="500" height="500" decoding="async" fetchpriority="high">
             </a>
-            <a href="offre.html" data-cta="sticky-top-cta" class="top-sticky-cta">Voir ce que contient Nostos →</a>
+            <a href="https://buy.stripe.com/fZu14m99igVZ0Kf3whg7e00" data-cta="sticky-top-cta" class="top-sticky-cta">Commencer Nostos →</a>
         </div>
     </div>
 
-    <section class="relative pb-20 px-6 overflow-hidden" style="padding-top: 5rem;">
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <span class="inline-block py-1 px-3 border border-cobalt/20 text-cobalt text-[10px] uppercase tracking-[0.2em] mb-6 rounded-sm bg-cobalt/5">
-                Fondé sur les mécanismes de l’attention et du comportement
-            </span>
-            <h1 class="hero-enter font-serif text-4xl md:text-6xl mb-5 leading-[1.08] text-obsidian max-w-4xl mx-auto" style="animation-delay: 0.1s;">
+    <section class="hero-section relative pb-20 px-6 overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <h1 class="hero-enter font-serif text-4xl md:text-6xl mb-5 leading-[1.08] text-obsidian max-w-4xl mx-auto text-center" style="animation-delay: 0.1s;">
                 Passe moins de temps sur ton téléphone —
                 <span class="italic text-cobalt">sans forcer</span>.
             </h1>
             <p class="hero-enter text-base md:text-lg text-stone-600 mb-10 max-w-xl mx-auto leading-relaxed" style="animation-delay: 0.25s;">
-                30 jours pour y arriver, une action quotidienne.
+                Retrouve ta motivation, ta concentration, ta créativité, ton bonheur
             </p>
+            <div class="hero-enter hero-vsl-wrap w-full max-w-5xl mx-auto mb-8" style="animation-delay: 0.32s;">
+                <div class="w-full overflow-hidden rounded-2xl border border-ink-10 shadow-[0_10px_24px_rgba(0,0,0,0.06)] bg-black" style="position:relative;aspect-ratio:16/9;">
+                    <iframe
+                        id="heroVslIframe"
+                        src="https://www.youtube.com/embed/6RmZloVslWo?rel=0&modestbranding=1&playsinline=1&autoplay=1&mute=1&controls=1&enablejsapi=1&origin=https://nostosprogram.com"
+                        title="Nostos VSL"
+                        loading="eager"
+                        class="hero-vsl-frame"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                    <button type="button" id="heroVslTapUnmute" aria-label="Activer le son de la vidéo" style="position:absolute;inset:0;z-index:2;background:transparent;border:0;cursor:pointer;"></button>
+                    <button type="button" id="heroVslUnmuteBtn" class="vsl-sound-btn" aria-label="Activer le son de la vidéo">
+                        <span aria-hidden="true" style="font-size:15px;line-height:1;">🔇</span>
+                        Activer le son
+                    </button>
+                </div>
+            </div>
             <div class="hero-enter flex flex-col gap-3 justify-center items-center" style="animation-delay: 0.4s;">
-                <a href="#protocol" class="w-full md:w-auto bg-obsidian text-paper px-8 py-4 font-sans font-bold uppercase text-sm hover:bg-stone-800 transition-all glow-hover">
+                <a href="https://buy.stripe.com/fZu14m99igVZ0Kf3whg7e00" class="w-full md:w-auto bg-obsidian text-paper px-8 py-4 font-sans font-bold uppercase text-sm hover:bg-stone-800 transition-all glow-hover">
                     Découvrir NOSTOS
                 </a>
                 <span class="text-stone-400 text-[10px] font-mono uppercase tracking-widest text-center">Paiement sécurisé • accès immédiat • 30 emails sur 30 jours</span>
             </div>
-            <div class="max-w-4xl mx-auto mt-8 border border-ink-10 rounded-2xl overflow-hidden text-left shadow-[0_10px_24px_rgba(0,0,0,0.04)]">
-                <div class="grid md:grid-cols-2">
-                    <div class="p-5 md:p-6 border-b md:border-b-0 md:border-r border-ink-10" style="background:#ece8df;">
-                        <p class="text-[10px] uppercase tracking-[0.22em] text-stone-600 mb-5 font-semibold">Aujourd’hui</p>
-                        <ul class="space-y-3 text-stone-800 text-base md:text-lg leading-snug font-normal">
-                            <li class="flex items-start gap-3"><span class="text-red-500 font-semibold">✕</span><span>L'impression de perdre du temps chaque soir</span></li>
-                            <li class="flex items-start gap-3"><span class="text-red-500 font-semibold">✕</span><span>Une attention fragmentée par le scroll</span></li>
-                            <li class="flex items-start gap-3"><span class="text-red-500 font-semibold">✕</span><span>Projets remis à plus tard, encore</span></li>
-                        </ul>
-                    </div>
-                    <div class="p-5 md:p-6" style="background:#fdfcf8;">
-                        <p class="text-[10px] uppercase tracking-[0.22em] text-cobalt mb-5 font-semibold">Après Nostos</p>
-                        <ul class="space-y-3 text-obsidian text-base md:text-lg leading-snug font-normal">
-                             <li class="flex items-start gap-3"><span class="text-green-700 font-semibold">✓</span><span>Temps retrouvé pour ce qui compte vraiment pour toi</span></li>                           
-                            <li class="flex items-start gap-3"><span class="text-green-700 font-semibold">✓</span><span>Une attention stable et plus claire</span></li>
-                            <li class="flex items-start gap-3"><span class="text-green-700 font-semibold">✓</span><span>Capacité de "deep work"</span></li>
-                            <li class="flex items-start gap-3"><span class="text-green-700 font-semibold">✓</span><span>Un rapport différent, durable, à ton téléphone</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <section class="pt-16 pb-24 border-y border-ink-10 bg-stone/30">
+    <section class="situations-section border-y border-ink-10 bg-stone/30">
         <div class="max-w-6xl mx-auto px-6">
-            <p class="text-center text-stone-600 mb-10 text-sm md:text-base">Si tu es ici, c’est probablement que cette sensation te parle déjà.</p>
-            <div class="grid md:grid-cols-3 gap-12 text-obsidian">
-                <div class="space-y-4">
-                    <div class="text-cobalt font-mono text-[10px] uppercase tracking-widest font-bold">01. LA BOUCLE</div>
-                    <h3 class="text-xl font-serif italic">Scroll réflexe</h3>
-                    <p class="text-stone-600 text-sm leading-relaxed">Tu ressens une tension, un stress, de l'ennui ou une fatigue mentale. Sans y penser, tu prends ton téléphone. Sur le moment, ça soulage. Puis vient la sensation d’avoir encore perdu du temps.</p>
+            <h2 class="font-serif text-3xl md:text-4xl text-obsidian mb-10 text-center">Tu te reconnais dans une de ces situations ?</h2>
+            <div>
+                <div class="flex gap-4 md:gap-5 py-5 border-b border-ink-10 text-stone-700 text-base md:text-[1.75rem] leading-relaxed">
+                    <span class="text-obsidian mt-0.5">→ </span>
+                    <p>Tu prends ton téléphone "juste une seconde" et tu ressors 20 minutes plus tard sans savoir ce que tu voulais faire</p>
                 </div>
-                <div class="space-y-4">
-                    <div class="text-cobalt font-mono text-[10px] uppercase tracking-widest font-bold">02. LE FLOU</div>
-                    <h3 class="text-xl font-serif italic">Attention morcelée</h3>
-                    <p class="text-stone-600 text-sm leading-relaxed">Même loin de ton téléphone, ton esprit reste dispersé. Te concentrer vraiment devient difficile. Aller au fond des choses te demande un effort inhabituel.</p>
+                <div class="flex gap-4 md:gap-5 py-5 border-b border-ink-10 text-stone-700 text-base md:text-[1.75rem] leading-relaxed">
+                    <span class="text-obsidian mt-0.5">→</span>
+                    <p>Tu te sens moins vif, moins créatif qu'avant, sans vraiment comprendre ce qui a changé </p>
                 </div>
-                <div class="space-y-4">
-                    <div class="text-cobalt font-mono text-[10px] uppercase tracking-widest font-bold">03. LA FUITE</div>
-                    <h3 class="text-xl font-serif italic">Temps qui s’effrite</h3>
-                    <p class="text-stone-600 text-sm leading-relaxed">“Juste cinq minutes” deviennent une heure. Puis une soirée. À la fin de la semaine, tu réalises que tu as cédé une part précieuse de ton temps à des contenus qui ne te nourrissent pas.</p>
+                <div class="flex gap-4 md:gap-5 py-5 border-b border-ink-10 text-stone-700 text-base md:text-[1.75rem] leading-relaxed">
+                    <span class="text-obsidian mt-0.5">→</span>
+                    <p>Tu as une liste de projets, livres, et passions que tu "n'as jamais le temps" de faire </p>
+                </div>
+                <div class="flex gap-4 md:gap-5 py-5 text-stone-700 text-base md:text-[1.75rem] leading-relaxed">
+                    <span class="text-obsidian mt-0.5">→</span>
+                    <p>Tu es physiquement là, mais mentalement ailleurs, ton téléphone  est toujours entre toi et les autres</p>
+                </div>
+                <div class="flex gap-4 md:gap-5 py-5 text-stone-700 text-base md:text-[1.75rem] leading-relaxed">
+                    <span class="text-obsidian mt-0.5">→</span>
+                    <p>Tu scrolles sans vraiment regarder, sans vraiment choisir</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 px-6 bg-obsidian text-paper">
-        <div class="max-w-4xl mx-auto text-center space-y-12 md:space-y-14">
-            <h2 class="font-serif text-3xl md:text-4xl leading-tight">
-                Nos environnements numériques sont conçus pour
-                <span class="italic text-cobalt">capter l'attention.</span>
+    <section class="cost-section px-6 bg-obsidian text-paper">
+        <div class="max-w-4xl mx-auto text-left space-y-12 md:space-y-14">
+            <h2 class="attention-title">
+                Ton téléphone est conçu pour <span class="text-cobalt">voler ton attention.</span>
             </h2>
-            <p class="text-stone-300 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
-                Ce n'est pas un défaut de caractère. Ce n'est pas un manque de discipline.
+            <p class="attention-sub">
+                Ce n'est pas un défaut de caractère ni un manque de discipline.
             </p>
-            <p class="text-stone-400 text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
-                À force de stimulations constantes, le cerveau s'habitue, la motivation s'érode, et les projets deviennent flous.<br><br>
-                Pas parce qu'ils ont perdu leur valeur, mais parce que ton attention est ailleurs.
+            <div class="attention-cost py-1">
+                <h2 class="attention-cost-title">Ce que ça te coûte vraiment :</h2>
+                <p class="attention-cost-quote">"Ce n'est pas le temps. C'est la version de toi qui aurait pu exister."</p>
+            </div>
+            <div class="max-w-5xl mx-auto text-left grid md:grid-cols-2 gap-2.5 md:gap-3">
+                <article class="impact-card">
+                    <p class="impact-label"><span aria-hidden="true">🧠</span><span>Cognitif</span></p>
+                    <h3 class="impact-title">Tes capacités au ralenti</h3>
+                    <p class="impact-copy">Concentration, mémoire de travail, pensée créative. Tout s’érode sous l’effet de la <strong class="text-white">fragmentation constante</strong> de l’attention.</p>
+                </article>
+                <article class="impact-card">
+                    <p class="impact-label"><span aria-hidden="true">🧪</span><span>Neurochimie</span></p>
+                    <h3 class="impact-title">Ta chimie intérieure déréglée</h3>
+                    <p class="impact-copy">Les <strong class="text-white">pics de dopamine facile</strong> désensibilisent tes récepteurs. La vraie vie devient moins satisfaisante. Tu as besoin de plus pour ressentir la même chose.</p>
+                </article>
+                <article class="impact-card">
+                    <p class="impact-label"><span aria-hidden="true">🧭</span><span>Autonomie</span></p>
+                    <h3 class="impact-title">Tes désirs formatés</h3>
+                    <p class="impact-copy">Ce que tu consommes sur les réseaux formate tes envies, tes opinions, tes références. Tu ne sais plus si tes désirs sont <strong class="text-white">vraiment les tiens</strong>.</p>
+                </article>
+                <article class="impact-card">
+                    <p class="impact-label"><span aria-hidden="true">🧾</span><span>Mémoire</span></p>
+                    <h3 class="impact-title">Une vie sans souvenirs</h3>
+                    <p class="impact-copy">Le cerveau n’encode pas le scroll. Les heures passent, mais il ne reste ni trace claire, ni sensation d’avoir <strong class="text-white">vraiment vécu</strong> ta journée.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-nostos" class="pb-16 px-6 border-y border-ink-10 bg-stone/20" style="padding-top: 2.7rem; scroll-margin-top: calc(var(--top-nav-h) + 28px);">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="about-title-match" style="margin-top:0; margin-bottom:0.25rem;">
+                En 30 jours, tu reprends le contrôle de ton attention avec <em style="color:#2563eb;font-style:normal;">Nostos.</em>
+            </h2>
+            <p class="offer-page-sub" style="margin:0.85rem 0 0 0;">
+                <span class="block">Les 30 prochains jours, tu reçois <strong>un email de 5 minutes</strong> : une explication claire sur les mécaniques addictives du téléphone, et <strong>une action concrète</strong> à mettre en place dans ta journée.</span>
+                <span class="block mt-2 font-semibold text-obsidian">Sans effort brutal. Sans culpabilité.</span>
+                <span class="block mt-1">Juste un système qui te fais avancer pas à pas.</span>
+                <span class="block mt-2 italic">Pour retrouver tes capacités cognitives, ta créativité et ta motivation.</span>
             </p>
-            <p class="text-white text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-semibold">Nostos est un protocole de 30 jours pour changer ça, progressivement, sans brutalité.</p>
-            <div class="space-y-2">
-                <p class="text-stone-400 text-[10px] uppercase tracking-[0.16em]">Inspiré des travaux de :</p>
+
+            <div class="pt-10 md:pt-12 mt-4">
+                <div>
+                    <article class="py-5 border-b border-ink-10 flex items-start gap-4">
+                        <span class="w-2.5 h-2.5 rounded-full bg-cobalt mt-2.5 flex-shrink-0"></span>
+                        <div>
+                            <h3 class="text-xl font-semibold text-obsidian mb-2"><span style="text-decoration: underline; text-decoration-color:#2563eb; text-underline-offset:2px;">Pr</span>ogression logique</h3>
+                            <p class="text-stone-600 text-sm italic leading-relaxed">Des actions simples, basées sur les neurosciences (dopamine, habitudes, réflexes), qui transforment le quotidien une fois mises en place.</p>
+                        </div>
+                    </article>
+                    <article class="py-5 border-b border-ink-10 flex items-start gap-4">
+                        <span class="w-2.5 h-2.5 rounded-full bg-cobalt mt-2.5 flex-shrink-0"></span>
+                        <div>
+                            <h3 class="text-xl font-semibold text-obsidian mb-2"><span style="text-decoration: underline; text-decoration-color:#2563eb; text-underline-offset:2px;">Ré</span>sultats concrets</h3>
+                            <p class="text-stone-600 text-sm italic leading-relaxed">Reprogramme tes habitudes : ton téléphone ne sera plus ton premier réflexe. Retrouve ta motivation, ton énergie.</p>
+                        </div>
+                    </article>
+                    <article class="py-5 flex items-start gap-4">
+                        <span class="w-2.5 h-2.5 rounded-full bg-cobalt mt-2.5 flex-shrink-0"></span>
+                        <div>
+                            <h3 class="text-xl font-semibold text-obsidian mb-2"><span style="text-decoration: underline; text-decoration-color:#2563eb; text-underline-offset:2px;">Co</span>mprendre pour ne plus subir</h3>
+                            <p class="text-stone-600 text-sm italic leading-relaxed">La pédagogie est au coeur du programme : tu comprends ce que ton cerveau cherche, et tu reprends la main durablement.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div class="mt-8 mb-8">
+                <p class="text-center text-stone-500 text-[10px] uppercase tracking-[0.16em] mb-2">Inspiré des travaux de :</p>
                 <div class="flex flex-wrap justify-center gap-2.5 text-[10px] uppercase tracking-[0.14em]">
-                    <span class="px-4 py-2 rounded-full bg-black/30 border border-white/10 text-stone-200">Anna Lembke — Dopamine Nation</span>
-                    <span class="px-4 py-2 rounded-full bg-black/30 border border-white/10 text-stone-200">Charles Duhigg — The Power of Habit</span>
-                    <span class="px-4 py-2 rounded-full bg-black/30 border border-white/10 text-stone-200">Sciences du comportement</span>
+                    <span class="px-4 py-2 rounded-full bg-obsidian border border-white/15 text-white shadow-[0_2px_8px_rgba(0,0,0,0.16)]" style="background-image:url('https://www.transparenttextures.com/patterns/natural-paper.png'); background-size:240px auto;">Anna Lembke — Dopamine Nation</span>
+                    <span class="px-4 py-2 rounded-full bg-obsidian border border-white/15 text-white shadow-[0_2px_8px_rgba(0,0,0,0.16)]" style="background-image:url('https://www.transparenttextures.com/patterns/natural-paper.png'); background-size:240px auto;">Charles Duhigg — The Power of Habit</span>
+                    <span class="px-4 py-2 rounded-full bg-obsidian border border-white/15 text-white shadow-[0_2px_8px_rgba(0,0,0,0.16)]" style="background-image:url('https://www.transparenttextures.com/patterns/natural-paper.png'); background-size:240px auto;">Sciences du comportement</span>
+                </div>
+                <div class="text-center" style="margin-top: 3.5rem;">
+                    <a href="https://buy.stripe.com/fZu14m99igVZ0Kf3whg7e00" data-cta="sources-direct-checkout" class="cta-blue-anim inline-flex items-center justify-center px-8 py-4 font-bold uppercase text-sm tracking-[0.14em] transition-all rounded-full" style="background:#2563eb;color:#F9F7F2;border:1px solid #2563eb;">
+                        Démarrer le programme
+                    </a>
+                    <p class="mt-3 text-[10px] uppercase tracking-[0.16em] text-stone-500">Paiement unique • satisfait ou remboursé</p>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <section id="about-nostos" class="hidden py-24 border-y border-ink-10 bg-stone/30">
-        <div class="max-w-4xl mx-auto px-6 text-center space-y-8">
-            <img src="Assets/NOSTOS_logo-removebg.png" alt="Nostos logo" class="w-20 h-auto mx-auto" width="500" height="500" loading="lazy" decoding="async">
-            <div class="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-stone-500 font-semibold">
-            </div>
-            <div class="space-y-6 leading-relaxed">
-                <p class="text-obsidian text-2xl md:text-3xl font-serif font-medium">
-                    Nostos est un protocole de <span class="inline-block text-3xl md:text-4xl leading-none font-semibold">30 jours</span> pour <span class="underline decoration-cobalt/70 underline-offset-4">reprendre le contrôle de ton attention</span>.
-                </p>
-                <p class="text-stone-600 text-lg md:text-xl border-t border-stone-300 pt-6">
-                    Fondé sur des principes concrets issus des sciences du comportement et de l’attention, <span class="italic">il propose un cadre pour que les écrans redeviennent des outils, et non des refuges.</span>
-                </p>
-            </div>
-            <div class="pt-4 space-y-3">
-                <a href="offre.html" data-cta="program-cta" class="inline-flex items-center justify-center bg-obsidian text-paper px-8 py-4 font-bold uppercase text-sm tracking-widest hover:bg-stone-800 transition-all">
-                    Voir ce que contient Nostos →
-                </a>
-                <p class="text-stone-500 text-[10px] font-mono uppercase tracking-widest">Paiement sécurisé • accès immédiat • 30 emails sur 30 jours</p>
-            </div>
-        </div>
-    </section>
 
-    <section id="protocol" class="py-24 px-6">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-serif mb-6 text-center text-obsidian">Ce que tu vas vivre</h2>
-            <p class="text-center text-stone-500 text-sm uppercase tracking-[0.2em] mb-12">30 jours. 1 email par jour. 5 minutes.</p>
-            <div class="space-y-12">
-                <div class="group flex gap-8 border-l border-stone-300 pl-8 relative py-2 transition-all">
-                    <div class="absolute -left-[4.5px] top-0 w-2 h-2 bg-cobalt rounded-none"></div>
-                    <div>
-                        <span class="text-[10px] font-mono text-stone-400 uppercase tracking-widest">La pratique</span>
-                        <h4 class="text-xl font-semibold mb-2 text-obsidian">Des actions progressives</h4>
-                        <p class="text-stone-600 text-sm italic">Espacés dans le temps et rapides à réaliser pour réduire le temps d'écran sans brutalité.</p>
-                    </div>
-                </div>
-                <div class="group flex gap-8 border-l border-stone-300 pl-8 relative py-2">
-                    <div class="absolute -left-[4.5px] top-0 w-2 h-2 bg-stone-300 rounded-none group-hover:bg-cobalt transition-colors"></div>
-                    <div>
-                        <span class="text-[10px] font-mono text-stone-400 uppercase tracking-widest">Le pourquoi</span>
-                        <h4 class="text-xl font-semibold mb-2 text-obsidian">Des explications accessibles</h4>
-                        <p class="text-stone-600 text-sm italic">Pour comprendre tes réactions et pourquoi tu passes tant de temps sur ton téléphone. (neurosciences, dopamine, habitudes ...)</p>
-                    </div>
-                </div>
-                <div class="group flex gap-8 border-l border-stone-300 pl-8 relative py-2">
-                    <div class="absolute -left-[4.5px] top-0 w-2 h-2 bg-stone-300 rounded-none group-hover:bg-cobalt transition-colors"></div>
-                    <div>
-                        <span class="text-[10px] font-mono text-stone-400 uppercase tracking-widest">L'objectif</span>
-                        <h4 class="text-xl font-semibold mb-2 text-obsidian">Pour une reconstruction d’habitudes</h4>
-                        <p class="text-stone-600 text-sm italic">Saines, durables, adaptées à la vraie vie.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="pb-24 px-6">
-        <div class="max-w-5xl mx-auto text-center">
-            <p class="text-stone-500 text-xs uppercase tracking-[0.2em] mb-6">Aperçu des emails (clique pour défiler)</p>
-            <div class="preview-stage" id="previewStage">
-                <button type="button" class="preview-card" data-preview-card aria-label="Aperçu email 1">
-                    <img src="Assets/prev_mail1.png" alt="Aperçu email Nostos 1" loading="lazy" decoding="async" fetchpriority="low">
+    <section class="testimonials-section full-bleed py-20 bg-obsidian text-paper border-y border-white/10">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-3xl font-serif text-center mb-3">Ils et elles en parlent</h2>
+            <p class="text-center text-stone-400 text-xs uppercase tracking-[0.2em] mb-6">(clique pour défiler)</p>
+            <div class="temoin-stage" id="temoinStage">
+                <button type="button" class="temoin-card" data-temoin-card aria-label="Témoignage 1">
+                    <img src="Assets/temoin1.png" alt="Témoignage client 1" loading="lazy" decoding="async" fetchpriority="low">
                 </button>
-                <button type="button" class="preview-card" data-preview-card aria-label="Aperçu email 2">
-                    <img src="Assets/prev_mail2.png" alt="Aperçu email Nostos 2" loading="lazy" decoding="async" fetchpriority="low">
+                <button type="button" class="temoin-card" data-temoin-card aria-label="Témoignage 2">
+                    <img src="Assets/temoin2.png" alt="Témoignage client 2" loading="lazy" decoding="async" fetchpriority="low">
                 </button>
-                <button type="button" class="preview-card" data-preview-card aria-label="Aperçu email 3">
-                    <img src="Assets/prev_mail3.png" alt="Aperçu email Nostos 3" loading="lazy" decoding="async" fetchpriority="low">
+                <button type="button" class="temoin-card" data-temoin-card aria-label="Témoignage 3">
+                    <img src="Assets/temoin3.png" alt="Témoignage client 3" loading="lazy" decoding="async" fetchpriority="low">
                 </button>
-                <button type="button" class="preview-card" data-preview-card aria-label="Aperçu email 4">
-                    <img src="Assets/prev_mail4.png" alt="Aperçu email Nostos 4" loading="lazy" decoding="async" fetchpriority="low">
+                <button type="button" class="temoin-card" data-temoin-card aria-label="Témoignage 4">
+                    <img src="Assets/temoin4.png" alt="Témoignage client 4" loading="lazy" decoding="async" fetchpriority="low">
+                </button>
+                <button type="button" class="temoin-card" data-temoin-card aria-label="Témoignage 5">
+                    <img src="Assets/temoin5.png" alt="Témoignage client 5" loading="lazy" decoding="async" fetchpriority="low">
                 </button>
             </div>
         </div>
     </section>
 
-    <section class="py-20 px-6 bg-obsidian text-paper border-y border-white/10">
+    <section class="py-16 px-6 border-b border-ink-10 bg-paper">
         <div class="max-w-6xl mx-auto">
-            <p class="text-center text-stone-400 text-[10px] uppercase tracking-[0.2em] mb-5">Ils l'ont fait</p>
-            <h2 class="text-center font-serif text-3xl md:text-4xl mb-10">Ce qu'ils en pensent</h2>
-            <div class="grid md:grid-cols-3 gap-5">
-                <article class="rounded-2xl border border-white/15 bg-white/[0.03] p-6">
-                    <p class="text-stone-200 leading-relaxed">"J'ai récupéré mes soirées. Je lis à nouveau, sans me battre contre l'envie de scroller."</p>
-                    <p class="mt-5 text-stone-300 text-sm font-semibold">Marie L. · 34 ans</p>
+            <h2 class="text-[11px] md:text-xs font-mono uppercase tracking-[0.22em] mb-3" style="color:#1f7a50;">Nostos est pour toi si</h2>
+            <div>
+                <article class="flex items-start gap-2.5 py-4 text-stone-700 text-[15px] md:text-[1.3rem] leading-relaxed">
+                    <span class="mt-0.5 w-4 text-center" style="color:#1f7a50;">✓</span>
+                    <p>Tu passes plus de 2h par jour sur ton téléphone de façon non intentionnelle</p>
                 </article>
-                <article class="rounded-2xl border border-white/15 bg-white/[0.03] p-6">
-                    <p class="text-stone-200 leading-relaxed">"Au bout de 2 semaines, je ne déverrouillais plus mon téléphone par réflexe. C'est doux mais réel."</p>
-                    <p class="mt-5 text-stone-300 text-sm font-semibold">Simon R. · 28 ans</p>
+                <article class="flex items-start gap-2.5 py-4 border-t border-ink-10 text-stone-700 text-[15px] md:text-[1.3rem] leading-relaxed">
+                    <span class="mt-0.5 w-4 text-center" style="color:#1f7a50;">✓</span>
+                    <p>Tu as déjà essayé de réduire ton usage sans succès durable</p>
                 </article>
-                <article class="rounded-2xl border border-white/15 bg-white/[0.03] p-6">
-                    <p class="text-stone-200 leading-relaxed">"C'est progressif, sans culpabilité. Le changement s'installe et tient dans le temps."</p>
-                    <p class="mt-5 text-stone-300 text-sm font-semibold">Alice C. · 41 ans</p>
+                <article class="flex items-start gap-2.5 py-4 border-t border-ink-10 text-stone-700 text-[15px] md:text-[1.3rem] leading-relaxed">
+                    <span class="mt-0.5 w-4 text-center" style="color:#1f7a50;">✓</span>
+                    <p>Tu veux comprendre le mécanisme, pas seulement le combattre</p>
+                </article>
+                <article class="flex items-start gap-2.5 py-4 border-t border-ink-10 text-stone-700 text-[15px] md:text-[1.3rem] leading-relaxed">
+                    <span class="mt-0.5 w-4 text-center" style="color:#1f7a50;">✓</span>
+                    <p>Tu souhaites récupérer ta concentration, ta créativité, ta présence</p>
+                </article>
+                <article class="flex items-start gap-2.5 py-4 border-t border-ink-10 text-stone-700 text-[15px] md:text-[1.3rem] leading-relaxed">
+                    <span class="mt-0.5 w-4 text-center" style="color:#1f7a50;">✓</span>
+                    <p>Tu attends une progression douce, applicable dans une vie chargée</p>
+                </article>
+            </div>
+
+            <h2 class="text-[11px] md:text-xs font-mono uppercase tracking-[0.22em] mt-6 mb-3" style="color:#78716c;">Ce n'est pas pour toi si</h2>
+            <div>
+                <article class="flex items-start gap-2.5 py-4 text-stone-700 text-[15px] md:text-[1.3rem] leading-relaxed">
+                    <span class="text-stone-400 mt-0.5 w-4 text-center">—</span>
+                    <p>Tu cherches un résultat immédiat sans progression graduelle</p>
+                </article>
+                <article class="flex items-start gap-2.5 py-4 border-t border-ink-10 text-stone-700 text-[15px] md:text-[1.3rem] leading-relaxed">
+                    <span class="text-stone-400 mt-0.5 w-4 text-center">—</span>
+                    <p>Tu veux arrêter complètement toute forme d'usage numérique</p>
+                </article>
+                <article class="flex items-start gap-2.5 py-4 border-t border-ink-10 text-stone-700 text-[15px] md:text-[1.3rem] leading-relaxed">
+                    <span class="text-stone-400 mt-0.5 w-4 text-center">—</span>
+                    <p>Tu n'es pas prêt à consacrer 5 minutes par jour à ta progression</p>
                 </article>
             </div>
         </div>
     </section>
 
-    <section class="py-24 px-6 border-b border-ink-10">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-serif mb-10 text-center text-obsidian">au jour 31 tu pourras :</h2>
-            <div class="grid md:grid-cols-2 gap-5 text-stone-700">
-                <article class="group border border-ink-10 bg-paper p-6 rounded-2xl hover:shadow-sm hover:-translate-y-0.5 transition-all">
-                    <p class="flex items-start gap-3 text-base md:text-lg"><span class="w-6 h-6 rounded-full bg-stone/70 text-obsidian flex items-center justify-center text-sm mt-0.5">✓</span><span>réduire fortement le scroll automatique</span></p>
-                </article>
-                <article class="group border border-ink-10 bg-paper p-6 rounded-2xl hover:shadow-sm hover:-translate-y-0.5 transition-all">
-                    <p class="flex items-start gap-3 text-base md:text-lg"><span class="w-6 h-6 rounded-full bg-stone/70 text-obsidian flex items-center justify-center text-sm mt-0.5">✓</span><span>te concentrer plus longtemps sans distraction</span></p>
-                </article>
-                <article class="group border border-ink-10 bg-paper p-6 rounded-2xl hover:shadow-sm hover:-translate-y-0.5 transition-all">
-                    <p class="flex items-start gap-3 text-base md:text-lg"><span class="w-6 h-6 rounded-full bg-stone/70 text-obsidian flex items-center justify-center text-sm mt-0.5">✓</span><span>retrouver du temps pour tes projets</span></p>
-                </article>
-                <article class="group border border-ink-10 bg-paper p-6 rounded-2xl hover:shadow-sm hover:-translate-y-0.5 transition-all">
-                    <p class="flex items-start gap-3 text-base md:text-lg"><span class="w-6 h-6 rounded-full bg-stone/70 text-obsidian flex items-center justify-center text-sm mt-0.5">✓</span><span>ressentir plus de clarté mentale</span></p>
-                </article>
+    <section class="faq-final-section full-bleed py-24 bg-obsidian text-paper border-t border-white/10">
+        <div class="max-w-4xl mx-auto px-6 mb-10">
+            <h2 class="text-3xl font-serif text-center mb-8">Tu te demandes peut-être</h2>
+            <div class="faq-list-dark">
+                <details class="faq-row-dark">
+                    <summary class="faq-question-dark">Et si ça ne me correspond pas ?</summary>
+                    <p class="faq-answer-dark">Garantie satisfait ou remboursé à la fin des 30 jours. Un email à bonjour@nostosprogram.com suffit, remboursement dans les 48h.</p>
+                </details>
+                <details class="faq-row-dark">
+                    <summary class="faq-question-dark">Est-ce que ça demande de supprimer ses applications ?</summary>
+                    <p class="faq-answer-dark">Non. L'objectif est de reprendre un rapport intentionnel au téléphone pas de l'éliminer. Le programme travaille sur les mécaniques comportementales, pas sur des interdictions. Tu utiliseras ton téléphone mais tu choisiras comment.</p>
+                </details>
+                <details class="faq-row-dark">
+                    <summary class="faq-question-dark">J'ai déjà essayé de réduire mon usage sans succès. Pourquoi ça marcherait cette fois ?</summary>
+                    <p class="faq-answer-dark">Nostos repose sur la compréhension des mécanismes et la modification des déclencheurs environnementaux. Les détails qui changent tout. Quand tu comprends pourquoi ton cerveau agit ainsi, tu n'as plus besoin de te battre contre lui.</p>
+                </details>
+                <details class="faq-row-dark">
+                    <summary class="faq-question-dark">Combien de temps faut-il par jour ?</summary>
+                    <p class="faq-answer-dark">Environ 5 minutes de lecture + 1 action simple à appliquer dans ta journée.</p>
+                </details>
             </div>
         </div>
-    </section>
-
-    <section class="py-24 px-6 bg-obsidian text-paper border-t border-white/10">
-        <div class="max-w-4xl mx-auto text-center p-8 md:p-12">
-            <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-6">Chaque semaine passée à scroller est une semaine de moins pour ce qui compte.</h2>
-            <p class="text-stone-300 text-lg md:text-xl leading-relaxed mb-8">
+        <div class="max-w-4xl mx-auto text-center px-6 p-8 md:p-12 mt-4 md:mt-6">
+            <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-6 text-center">Dans 30 jours, tu te remercieras d'avoir <span class="text-cobalt">commencé</span>.</h2>
+            <p class="text-stone-300 text-lg md:text-xl leading-relaxed mb-8 italic">
                 Tu peux continuer à attendre que l'envie de changer revienne.<br>
-                Ou décider de lui redonner un cadre.
+                Ou décider de lui donner un cadre.
             </p>
-            <a href="offre.html" data-cta="final-cta" class="inline-flex w-full max-w-[22rem] sm:w-auto sm:max-w-none items-center justify-center border px-6 sm:px-10 md:px-12 py-4 md:py-5 font-semibold uppercase text-[12px] sm:text-sm tracking-[0.10em] sm:tracking-[0.14em] leading-tight whitespace-normal sm:whitespace-nowrap text-center hover:opacity-90 transition-all rounded-full" style="background:#2563eb;color:#F9F7F2;border-color:#2563eb;">
-                Voir ce que contient Nostos →
+            <figure class="final-product-shot mx-auto mb-4" style="position:relative; z-index:120;">
+                <div class="overflow-hidden rounded-2xl border border-white/15 bg-obsidian" style="position:relative; z-index:120;">
+                    <img src="Assets/nostos-produit.png" alt="Photo produit Nostos" class="w-full h-auto block" loading="lazy" decoding="async" style="position:relative; z-index:120; filter:none; mix-blend-mode:normal;">
+                </div>
+            </figure>
+            <div class="mx-auto mb-10 max-w-xl text-center">
+                <div class="inline-block text-left space-y-2.5" style="color:rgba(255,255,255,0.6);">
+                    <p class="flex items-start text-sm md:text-[0.92rem] leading-snug"><span class="mr-2.5" style="color:#22c55e;">✓</span><span>30 emails quotidiens — programme complet</span></p>
+                    <p class="flex items-start text-sm md:text-[0.92rem] leading-snug"><span class="mr-2.5" style="color:#22c55e;">✓</span><span>Explications scientifiques accessibles</span></p>
+                    <p class="flex items-start text-sm md:text-[0.92rem] leading-snug"><span class="mr-2.5" style="color:#22c55e;">✓</span><span>Carte de progression + guide anti-rechute</span></p>
+                    <p class="flex items-start text-sm md:text-[0.92rem] leading-snug"><span class="mr-2.5" style="color:#22c55e;">✓</span><span>Plan de continuité au-delà de 30 jours</span></p>
+                </div>
+            </div>
+            <a href="https://buy.stripe.com/fZu14m99igVZ0Kf3whg7e00" data-cta="final-cta" class="cta-blue-anim inline-flex w-full max-w-[22rem] sm:w-auto sm:max-w-none items-center justify-center border px-6 sm:px-10 md:px-12 py-4 md:py-5 font-semibold uppercase text-[12px] sm:text-sm tracking-[0.10em] sm:tracking-[0.14em] leading-tight whitespace-normal sm:whitespace-nowrap text-center transition-all rounded-full" style="background:#2563eb;color:#F9F7F2;border-color:#2563eb;">
+                Commencer les 30 jours
             </a>
-            <p class="mt-5 text-sm" style="color:#22c55e;">✓ Satisfait ou remboursé pendant 30 jours</p>
+            <p class="mt-3 text-[10px] uppercase tracking-[0.16em] text-stone-400">Paiement unique • satisfait ou remboursé</p>
+            <p class="mt-2 text-sm text-stone-300">bonjour@nostosprogram.com</p>
         </div>
     </section>
 
@@ -425,6 +812,19 @@
         </div>
     </div>
 
+    <div id="temoinLightbox" class="temoin-lightbox" aria-hidden="true">
+        <div class="temoin-lightbox-inner">
+            <button type="button" class="temoin-lightbox-close" id="temoinLightboxClose" aria-label="Fermer">×</button>
+            <button type="button" class="temoin-lightbox-nav temoin-lightbox-prev" id="temoinLightboxPrev" aria-label="Témoignage précédent">‹</button>
+            <button type="button" class="temoin-lightbox-nav temoin-lightbox-next" id="temoinLightboxNext" aria-label="Témoignage suivant">›</button>
+            <div class="temoin-lightbox-media" id="temoinLightboxMedia">
+                <img id="temoinLightboxImg" src="" alt="">
+            </div>
+            <p class="temoin-lightbox-hint">Swipe gauche/droite pour changer · Swipe haut/bas pour revenir</p>
+        </div>
+    </div>
+
+    </div>
     <script>
         const CONSENT_KEY = 'nostos_cookie_consent';
         const CONSENT_VERSION = 1;
@@ -600,26 +1000,52 @@
             });
         });
 
-        // Preview cards reorder
-        const previewStage = document.getElementById('previewStage');
-        const previewCards = Array.from(document.querySelectorAll('[data-preview-card]'));
-        const previewLayoutsDesktop = [
-            { x: 0, y: -65, r: 0, w: 280, h: 400, z: 40, o: 1 },
-            { x: -86, y: 45, r: -10, w: 195, h: 295, z: 20, o: 0.95 },
-            { x: 95, y: 22, r: 8, w: 175, h: 275, z: 15, o: 0.92 },
-            { x: 0, y: 220, r: 0, w: 265, h: 125, z: 10, o: 0.9 }
+        // Hero VSL mute toggle (simple and reliable)
+        const heroVslIframe = document.getElementById('heroVslIframe');
+        const heroVslUnmuteBtn = document.getElementById('heroVslUnmuteBtn');
+        const heroVslTapUnmute = document.getElementById('heroVslTapUnmute');
+        const HERO_VSL_MUTED = 'https://www.youtube.com/embed/6RmZloVslWo?rel=0&modestbranding=1&playsinline=1&autoplay=1&mute=1&controls=1&enablejsapi=1&origin=https://nostosprogram.com';
+        const HERO_VSL_UNMUTED = 'https://www.youtube.com/embed/6RmZloVslWo?rel=0&modestbranding=1&playsinline=1&autoplay=1&mute=0&controls=1&enablejsapi=1&origin=https://nostosprogram.com';
+        let heroVslSoundEnabled = false;
+
+        function enableHeroVslSound() {
+            if (heroVslSoundEnabled) return;
+            heroVslSoundEnabled = true;
+            if (heroVslIframe) {
+                heroVslIframe.src = HERO_VSL_UNMUTED;
+            }
+            if (heroVslUnmuteBtn) heroVslUnmuteBtn.style.display = 'none';
+            if (heroVslTapUnmute) heroVslTapUnmute.style.display = 'none';
+        }
+
+        if (heroVslIframe && heroVslIframe.src !== HERO_VSL_MUTED) {
+            heroVslIframe.src = HERO_VSL_MUTED;
+        }
+        if (heroVslUnmuteBtn) heroVslUnmuteBtn.addEventListener('click', enableHeroVslSound);
+        if (heroVslTapUnmute) heroVslTapUnmute.addEventListener('click', enableHeroVslSound);
+
+        const temoinStage = document.getElementById('temoinStage');
+        const temoinCards = Array.from(document.querySelectorAll('[data-temoin-card]'));
+        const temoinDesktop = [
+            { x: 0, y: 0, r: 0, w: 430, h: 250, z: 50, o: 1 },
+            { x: -150, y: 12, r: -5, w: 340, h: 200, z: 35, o: 0.92 },
+            { x: 155, y: 14, r: 5, w: 340, h: 200, z: 34, o: 0.92 },
+            { x: -245, y: 26, r: -8, w: 300, h: 175, z: 22, o: 0.82 },
+            { x: 250, y: 28, r: 8, w: 300, h: 175, z: 21, o: 0.82 }
         ];
-        const previewLayoutsMobile = [
-            { x: 0, y: -55, r: 0, w: 240, h: 340, z: 40, o: 1 },
-            { x: -72, y: 35, r: -10, w: 165, h: 245, z: 20, o: 0.95 },
-            { x: 76, y: 20, r: 8, w: 150, h: 225, z: 15, o: 0.92 },
-            { x: 0, y: 182, r: 0, w: 220, h: 105, z: 10, o: 0.9 }
+        const temoinMobile = [
+            { x: 0, y: -4, r: 0, w: 270, h: 165, z: 50, o: 1 },
+            { x: -58, y: 14, r: -5, w: 220, h: 135, z: 35, o: 0.9 },
+            { x: 58, y: 14, r: 5, w: 220, h: 135, z: 34, o: 0.9 },
+            { x: -88, y: 28, r: -8, w: 190, h: 115, z: 22, o: 0.78 },
+            { x: 88, y: 28, r: 8, w: 190, h: 115, z: 21, o: 0.78 }
         ];
 
-        function applyPreviewLayout() {
+        function applyTemoinLayout() {
+            if (!temoinStage || temoinCards.length === 0) return;
             const isMobile = window.matchMedia('(max-width: 640px)').matches;
-            const layouts = isMobile ? previewLayoutsMobile : previewLayoutsDesktop;
-            previewCards.forEach((card, index) => {
+            const layouts = isMobile ? temoinMobile : temoinDesktop;
+            temoinCards.forEach((card, index) => {
                 const layout = layouts[index];
                 card.style.width = `${layout.w}px`;
                 card.style.height = `${layout.h}px`;
@@ -629,16 +1055,103 @@
             });
         }
 
-        previewStage.addEventListener('click', (event) => {
-            const clickedCard = event.target.closest('[data-preview-card]');
-            if (!clickedCard) return;
-            if (clickedCard !== previewCards[0]) return;
-            const first = previewCards.shift();
-            previewCards.push(first);
-            applyPreviewLayout();
-        });
-        applyPreviewLayout();
-        window.addEventListener('resize', applyPreviewLayout);
+        if (temoinStage && temoinCards.length) {
+            const lightbox = document.getElementById('temoinLightbox');
+            const lightboxImg = document.getElementById('temoinLightboxImg');
+            const lightboxMedia = document.getElementById('temoinLightboxMedia');
+            const btnClose = document.getElementById('temoinLightboxClose');
+            const btnPrev = document.getElementById('temoinLightboxPrev');
+            const btnNext = document.getElementById('temoinLightboxNext');
+            const temoinItems = temoinCards.map((card) => {
+                const img = card.querySelector('img');
+                return { src: img ? img.src : '', alt: img ? img.alt : '' };
+            });
+            let currentTemoinIndex = 0;
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let touchDX = 0;
+            let touchDY = 0;
+
+            function showTemoinAt(index) {
+                const total = temoinItems.length;
+                currentTemoinIndex = (index + total) % total;
+                const item = temoinItems[currentTemoinIndex];
+                lightboxImg.src = item.src;
+                lightboxImg.alt = item.alt;
+            }
+
+            function openTemoinLightbox(index) {
+                showTemoinAt(index);
+                lightbox.classList.add('is-open');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeTemoinLightbox() {
+                lightbox.classList.remove('is-open');
+                lightbox.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                lightboxMedia.style.transform = 'translateX(0)';
+            }
+
+            function goPrevTemoin() { showTemoinAt(currentTemoinIndex - 1); }
+            function goNextTemoin() { showTemoinAt(currentTemoinIndex + 1); }
+
+            temoinCards.forEach((card, index) => {
+                card.addEventListener('click', () => openTemoinLightbox(index));
+            });
+
+            btnClose.addEventListener('click', closeTemoinLightbox);
+            btnPrev.addEventListener('click', goPrevTemoin);
+            btnNext.addEventListener('click', goNextTemoin);
+
+            lightbox.addEventListener('click', (event) => {
+                if (event.target === lightbox) closeTemoinLightbox();
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (!lightbox.classList.contains('is-open')) return;
+                if (event.key === 'Escape') closeTemoinLightbox();
+                if (event.key === 'ArrowLeft') goPrevTemoin();
+                if (event.key === 'ArrowRight') goNextTemoin();
+            });
+
+            lightboxMedia.addEventListener('touchstart', (event) => {
+                const touch = event.changedTouches[0];
+                touchStartX = touch.clientX;
+                touchStartY = touch.clientY;
+                touchDX = 0;
+                touchDY = 0;
+            }, { passive: true });
+
+            lightboxMedia.addEventListener('touchmove', (event) => {
+                const touch = event.changedTouches[0];
+                touchDX = touch.clientX - touchStartX;
+                touchDY = touch.clientY - touchStartY;
+                if (Math.abs(touchDX) > Math.abs(touchDY)) {
+                    event.preventDefault();
+                    const clamped = Math.max(-80, Math.min(80, touchDX));
+                    lightboxMedia.style.transform = `translateX(${clamped}px)`;
+                }
+            }, { passive: false });
+
+            lightboxMedia.addEventListener('touchend', () => {
+                const absX = Math.abs(touchDX);
+                const absY = Math.abs(touchDY);
+                if (absX > 60 && absX > absY) {
+                    if (touchDX > 0) goPrevTemoin();
+                    else goNextTemoin();
+                } else if (absY > 90 && absY > absX) {
+                    closeTemoinLightbox();
+                }
+                lightboxMedia.style.transform = 'translateX(0)';
+                touchDX = 0;
+                touchDY = 0;
+            }, { passive: true });
+
+            applyTemoinLayout();
+            window.addEventListener('resize', applyTemoinLayout);
+        }
         
         // Purchase Mockup
         function handlePurchase() {
@@ -660,6 +1173,7 @@
     </script>
 </body>
 </html>
+
 
 
 
