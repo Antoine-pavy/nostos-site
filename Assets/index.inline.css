@@ -789,6 +789,112 @@
         .cost-section { padding-top: var(--section-space); padding-bottom: var(--section-space); }
         .testimonials-section { padding-top: var(--section-space); padding-bottom: var(--section-space); }
         .faq-final-section { padding-top: var(--section-space); padding-bottom: var(--section-space); }
+        .founder-section {
+            position: relative;
+            padding-top: var(--section-space);
+            padding-bottom: var(--section-space);
+            overflow: hidden;
+        }
+        .founder-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.42;
+            background-image:
+                radial-gradient(circle at 14% 18%, rgba(37, 99, 235, 0.06), transparent 28%),
+                radial-gradient(circle at 84% 16%, rgba(15, 23, 42, 0.04), transparent 24%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.06));
+        }
+        .founder-shell {
+            position: relative;
+            z-index: 1;
+        }
+        .founder-head {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .founder-kicker {
+            margin: 0;
+            color: #2563eb;
+            font-size: 0.92rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .founder-kicker-mark {
+            font-size: 1rem;
+            line-height: 1;
+        }
+        .founder-title {
+            margin: 1rem 0 0;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(2.4rem, 6vw, 4.1rem);
+            font-weight: 500;
+            line-height: 1.02;
+            letter-spacing: -0.03em;
+            color: #111827;
+        }
+        .founder-title-rule {
+            display: block;
+            width: 108px;
+            height: 2px;
+            border-radius: 9999px;
+            background: #2563eb;
+            margin: 1.3rem auto 0;
+        }
+        .founder-copy {
+            margin: 2.1rem auto 0;
+            max-width: 860px;
+            color: #2f3640;
+            font-size: clamp(1.18rem, 2.2vw, 1.5rem);
+            line-height: 1.52;
+            letter-spacing: -0.012em;
+        }
+        .founder-copy p {
+            margin: 0;
+        }
+        .founder-copy p + p {
+            margin-top: 0.35rem;
+        }
+        .founder-emphasis {
+            color: #0f172a;
+            font-weight: 600;
+        }
+        .founder-emphasis-strong {
+            color: #2563eb;
+            font-weight: 700;
+        }
+        .founder-quote-wrap {
+            margin: 1.9rem auto 0;
+            max-width: 700px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .founder-quote-wrap span {
+            height: 1px;
+            flex: 1 1 auto;
+            background: rgba(26, 26, 27, 0.16);
+        }
+        .founder-quote-mark {
+            color: #2563eb;
+            font-family: "Playfair Display", serif;
+            font-size: 2.4rem;
+            line-height: 1;
+        }
+        .founder-quote {
+            margin: 0.6rem 0 0;
+            text-align: center;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(1.6rem, 3.2vw, 2.15rem);
+            font-style: italic;
+            line-height: 1.25;
+            color: #1A1A1B;
+        }
         .final-product-shot {
             width: min(52vw, 240px);
         }
@@ -1006,6 +1112,32 @@
             .cost-section { padding-top: 4.3rem; padding-bottom: 4.8rem; }
             .testimonials-section { padding-top: 4.1rem; padding-bottom: 4.4rem; }
             .faq-final-section { padding-top: 4.3rem; padding-bottom: 4.8rem; }
+            .founder-section { padding-top: 4.3rem; padding-bottom: 4.8rem; }
+            .founder-kicker {
+                font-size: 0.88rem;
+                letter-spacing: 0.03em;
+            }
+            .founder-title {
+                margin-top: 0.85rem;
+                font-size: clamp(2.3rem, 10vw, 3.4rem);
+            }
+            .founder-title-rule {
+                width: 76px;
+                margin-top: 1rem;
+            }
+            .founder-copy {
+                margin-top: 1.55rem;
+                font-size: clamp(1.08rem, 4.8vw, 1.34rem);
+                line-height: 1.56;
+            }
+            .founder-quote-wrap {
+                margin-top: 1.55rem;
+                gap: 0.7rem;
+            }
+            .founder-quote {
+                margin-top: 0.45rem;
+                font-size: clamp(1.35rem, 6.2vw, 1.8rem);
+            }
             .final-product-shot {
                 width: min(68vw, 220px);
             }

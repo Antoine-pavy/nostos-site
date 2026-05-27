@@ -365,15 +365,17 @@
     </main>
 
     <div class="offer-mobile-cta">
-        <a href="#" data-cta="offer-sticky-cta" data-checkout-cta="true" class="offer-mobile-cta-btn">Commencer les 30 jours →</a>
+        <a href="#" data-cta="offer-sticky-cta" data-checkout-cta="true" data-initiate-checkout="true" class="offer-mobile-cta-btn">Commencer les 30 jours →</a>
     </div>
 
     <script>
         const GTM_ID = 'GTM-TX27DHHX';
+        const META_PIXEL_ID = '1837727546891540';
         const CHECKOUT_URL_A = 'https://buy.stripe.com/fZu14m99igVZ0Kf3whg7e00';
         const CHECKOUT_URL_B = 'https://buy.stripe.com/3cIeVc1GQdJN9gL8QBg7e02';
         const VARIANT_STORAGE_KEY = 'nostos_checkout_variant';
         let gtmLoaded = false;
+        let metaPixelLoaded = false;
         let marketingLoadScheduled = false;
 
         function loadGTM() {
@@ -387,6 +389,27 @@
             gtmLoaded = true;
         }
 
+        function loadMetaPixel() {
+            if (metaPixelLoaded) return;
+            !(function(f,b,e,v,n,t,s){
+                if(f.fbq)return;
+                n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                if(!f._fbq)f._fbq=n;
+                n.push=n;
+                n.loaded=!0;
+                n.version='2.0';
+                n.queue=[];
+                t=b.createElement(e);
+                t.async=!0;
+                t.src=v;
+                s=b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t,s);
+            })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+            window.fbq('init', META_PIXEL_ID);
+            window.fbq('track', 'PageView');
+            metaPixelLoaded = true;
+        }
+
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({ event: 'view_offer_page', page: 'offre' });
         function scheduleMarketingLoad() {
@@ -394,10 +417,16 @@
             marketingLoadScheduled = true;
             const runAfterVisualLoad = () => {
                 if ('requestIdleCallback' in window) {
-                    window.requestIdleCallback(loadGTM, { timeout: 1200 });
+                    window.requestIdleCallback(() => {
+                        loadGTM();
+                        loadMetaPixel();
+                    }, { timeout: 1200 });
                     return;
                 }
-                window.setTimeout(loadGTM, 500);
+                window.setTimeout(() => {
+                    loadGTM();
+                    loadMetaPixel();
+                }, 500);
             };
             if (document.readyState === 'complete') {
                 runAfterVisualLoad();
@@ -430,6 +459,33 @@
                 const id = el.id || null;
                 window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({ event: 'cta_click', label, id, cta: el.getAttribute('data-cta') });
+            });
+        });
+
+        document.querySelectorAll('[data-initiate-checkout="true"]').forEach((el) => {
+            el.addEventListener('click', () => {
+                const label = el.getAttribute('data-cta-label') || el.textContent.trim();
+                const id = el.id || null;
+                const value = Number(el.getAttribute('data-checkout-value') || '39');
+                const currency = el.getAttribute('data-checkout-currency') || 'EUR';
+                loadMetaPixel();
+                if (typeof window.fbq === 'function') {
+                    window.fbq('track', 'InitiateCheckout', {
+                        value,
+                        currency,
+                        content_name: 'Nostos 30 jours'
+                    });
+                }
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: 'initiate_checkout',
+                    label,
+                    id,
+                    cta: el.getAttribute('data-cta'),
+                    value,
+                    currency,
+                    variant: el.getAttribute('data-variant') || checkoutVariant
+                });
             });
         });
 
