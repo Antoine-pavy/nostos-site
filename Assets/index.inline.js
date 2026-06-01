@@ -280,7 +280,8 @@
             ...setupRevealGroup('.about-kpi-item', 85),
             ...setupRevealGroup('.impact-card', 95),
             ...setupRevealGroup('.faq-row-dark', 80),
-            ...setupRevealGroup('.final-product-shot, .final-cta-title, [data-cta=\"final-cta\"]', 110)
+            ...setupRevealGroup('.final-product-shot, .final-cta-title, [data-cta=\"final-cta\"]', 110),
+            ...setupRevealGroup('.founder-reveal', 120)
         ];
         if (revealNodes.length) {
             if ('IntersectionObserver' in window && !reduceMotionQuery.matches) {

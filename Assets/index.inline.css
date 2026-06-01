@@ -700,6 +700,10 @@
             opacity: 1;
             transform: translateY(0);
         }
+        .js-enhanced .founder-reveal.reveal-on-scroll {
+            transform: translateY(16px);
+            transition-duration: 620ms;
+        }
         .hero-section {
             padding-top: var(--section-space-tight);
             padding-bottom: var(--section-space-tight);
