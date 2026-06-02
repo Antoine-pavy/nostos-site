@@ -388,7 +388,12 @@
             btnNext.addEventListener('click', goNextTemoin);
 
             lightbox.addEventListener('click', (event) => {
-                if (event.target === lightbox) closeTemoinLightbox();
+                if (!lightbox.classList.contains('is-open')) return;
+                const clickedInsideMedia = event.target.closest('#temoinLightboxMedia');
+                const clickedControl = event.target.closest('#temoinLightboxClose, #temoinLightboxPrev, #temoinLightboxNext');
+                if (!clickedInsideMedia && !clickedControl) {
+                    closeTemoinLightbox();
+                }
             });
 
             document.addEventListener('keydown', (event) => {
@@ -430,6 +435,19 @@
                 touchDX = 0;
                 touchDY = 0;
             }, { passive: true });
+
+            lightboxMedia.addEventListener('click', (event) => {
+                if (!lightbox.classList.contains('is-open')) return;
+                if (Math.abs(touchDX) > 12 || Math.abs(touchDY) > 12) return;
+                const bounds = lightboxMedia.getBoundingClientRect();
+                const clickX = event.clientX - bounds.left;
+                const midpoint = bounds.width / 2;
+                if (clickX < midpoint) {
+                    goPrevTemoin();
+                } else {
+                    goNextTemoin();
+                }
+            });
 
             applyTemoinLayout();
             window.addEventListener('resize', () => {
