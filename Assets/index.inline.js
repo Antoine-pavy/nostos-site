@@ -224,6 +224,7 @@
         const heroVslPlayer = document.getElementById('heroVslPlayer');
         const heroVslLaunchBtn = document.getElementById('heroVslLaunchBtn');
         const heroVslFrameSlot = document.getElementById('heroVslFrameSlot');
+        const heroLaunchCta = document.getElementById('heroLaunchCta');
         const HERO_VSL_UNMUTED = heroVslPlayer ? heroVslPlayer.dataset.videoUnmuted : '';
         let heroVslLoaded = false;
 
@@ -241,6 +242,7 @@
         }
 
         if (heroVslLaunchBtn) heroVslLaunchBtn.addEventListener('click', launchHeroVsl);
+        if (heroLaunchCta) heroLaunchCta.addEventListener('click', launchHeroVsl);
 
         const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
