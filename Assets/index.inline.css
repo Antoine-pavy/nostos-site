@@ -735,6 +735,26 @@
             line-height: 1.06;
             letter-spacing: -0.025em;
         }
+        .hero-hand-underline {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.16em;
+        }
+        .hero-hand-underline::after {
+            content: "";
+            position: absolute;
+            left: 0.02em;
+            right: -0.03em;
+            bottom: 0.02em;
+            height: 0.09em;
+            border-radius: 999px;
+            background:
+                radial-gradient(circle at 4% 50%, rgba(37, 99, 235, 0.95) 0 10%, transparent 11%),
+                radial-gradient(circle at 92% 52%, rgba(37, 99, 235, 0.92) 0 8%, transparent 9%),
+                linear-gradient(180deg, rgba(59, 130, 246, 0.92) 0%, rgba(37, 99, 235, 0.98) 100%);
+            transform: rotate(-1.2deg);
+            opacity: 0.95;
+        }
         .hero-subtitle {
             font-size: var(--body-lg-size);
             line-height: 1.6;
