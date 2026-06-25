@@ -223,26 +223,91 @@
         // Hero VSL lazy player
         const heroVslPlayer = document.getElementById('heroVslPlayer');
         const heroVslLaunchBtn = document.getElementById('heroVslLaunchBtn');
+        const heroVslPreview = document.getElementById('heroVslPreview');
         const heroVslFrameSlot = document.getElementById('heroVslFrameSlot');
         const heroLaunchCta = document.getElementById('heroLaunchCta');
+        const aboutNostosSection = document.getElementById('about-nostos');
         const HERO_VSL_UNMUTED = heroVslPlayer ? heroVslPlayer.dataset.videoUnmuted : '';
         let heroVslLoaded = false;
+        let heroVslObserver = null;
+
+        function playHeroVslPreview() {
+            if (!heroVslPreview || heroVslLoaded || document.hidden) return;
+            const previewPromise = heroVslPreview.play();
+            if (previewPromise && typeof previewPromise.catch === 'function') {
+                previewPromise.catch(() => {});
+            }
+        }
+
+        function pauseHeroVslPreview() {
+            if (!heroVslPreview || heroVslLoaded) return;
+            heroVslPreview.pause();
+        }
 
         function mountHeroVsl(src) {
             if (!heroVslFrameSlot || !src) return;
+            pauseHeroVslPreview();
             heroVslFrameSlot.hidden = false;
             heroVslFrameSlot.innerHTML = '<iframe id="heroVslIframe" src="' + src + '" title="Nostos VSL" loading="eager" class="hero-vsl-frame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
             heroVslLoaded = true;
+            if (heroVslObserver) {
+                heroVslObserver.disconnect();
+                heroVslObserver = null;
+            }
         }
 
         function launchHeroVsl() {
             if (heroVslLoaded) return;
+            if (heroVslPlayer) {
+                heroVslPlayer.classList.add('is-playing');
+            }
+            if (heroVslLaunchBtn) {
+                heroVslLaunchBtn.hidden = true;
+                heroVslLaunchBtn.style.display = 'none';
+            }
             mountHeroVsl(HERO_VSL_UNMUTED);
-            if (heroVslLaunchBtn) heroVslLaunchBtn.hidden = true;
+        }
+
+        function handleHeroLaunchCta() {
+            const vslAlreadyPlaying = heroVslLoaded || (heroVslPlayer && heroVslPlayer.classList.contains('is-playing'));
+            if (!vslAlreadyPlaying) {
+                launchHeroVsl();
+                return;
+            }
+            if (aboutNostosSection) {
+                aboutNostosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
 
         if (heroVslLaunchBtn) heroVslLaunchBtn.addEventListener('click', launchHeroVsl);
-        if (heroLaunchCta) heroLaunchCta.addEventListener('click', launchHeroVsl);
+        if (heroLaunchCta) heroLaunchCta.addEventListener('click', handleHeroLaunchCta);
+        if (heroVslPreview) {
+            heroVslPreview.muted = true;
+            heroVslPreview.defaultMuted = true;
+            heroVslPreview.playsInline = true;
+            playHeroVslPreview();
+
+            if ('IntersectionObserver' in window && heroVslPlayer) {
+                heroVslObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            playHeroVslPreview();
+                        } else {
+                            pauseHeroVslPreview();
+                        }
+                    });
+                }, { threshold: 0.35 });
+                heroVslObserver.observe(heroVslPlayer);
+            }
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    pauseHeroVslPreview();
+                } else {
+                    playHeroVslPreview();
+                }
+            });
+        }
 
         const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 

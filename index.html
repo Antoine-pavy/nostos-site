@@ -57,26 +57,41 @@
                         id="heroVslPlayer"
                         class="hero-vsl-shell"
                         data-video-unmuted="https://www.youtube.com/embed/lfItRoTofwY?rel=0&modestbranding=1&playsinline=1&autoplay=1&mute=0&controls=1&enablejsapi=1&origin=https://nostosprogram.com">
-                        <button type="button" id="heroVslLaunchBtn" class="hero-vsl-launch" aria-label="Lancer la vidéo de présentation">
-                            <img
-                                src="Assets/hero-vsl-960.webp"
-                                srcset="Assets/hero-vsl-640.webp 640w, Assets/hero-vsl-960.webp 960w, Assets/hero-vsl.webp 1280w"
-                                sizes="(max-width: 767px) 100vw, (max-width: 1280px) 960px, 1280px"
-                                alt="Miniature de la vidéo Nostos"
-                                class="hero-vsl-poster"
+                        <button type="button" id="heroVslLaunchBtn" class="hero-vsl-launch" aria-label="Activer le son et lancer la vidéo de présentation">
+                            <video
+                                id="heroVslPreview"
+                                class="hero-vsl-preview"
+                                autoplay
+                                muted
+                                loop
+                                playsinline
+                                preload="metadata"
+                                poster="Assets/hero-vsl-960.webp"
                                 width="1280"
-                                height="720"
-                                fetchpriority="high">
+                                height="720">
+                                <source src="Assets/hero-vsl-preview.mp4(1).mp4" type="video/mp4">
+                            </video>
+                            <span class="hero-vsl-play-btn" aria-hidden="true">
+                                <span class="hero-vsl-play-triangle"></span>
+                            </span>
+                            <span class="vsl-sound-btn" aria-hidden="true">
+                                <span class="vsl-sound-bars" aria-hidden="true">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                                Activer le son
+                            </span>
                         </button>
                         <div id="heroVslFrameSlot" class="hero-vsl-frame-slot" hidden></div>
                     </div>
                 </div>
             </div>
             <div class="hero-enter flex flex-col gap-3 justify-center items-center" style="animation-delay: 0.4s;">
-                <button type="button" id="heroLaunchCta" class="hero-launch-cta w-full md:w-auto bg-obsidian text-paper px-8 py-4 font-sans font-bold uppercase text-sm hover:bg-stone-800 transition-all glow-hover rounded-full">
-                    Voir la présentation
+                <button type="button" id="heroLaunchCta" class="hero-launch-cta w-auto min-w-[13rem] bg-obsidian text-paper px-6 py-3 font-sans font-bold uppercase text-[11px] hover:bg-stone-800 transition-all glow-hover rounded-full">
+                    Voir la vidéo
                 </button>
-                <span class="safe-text text-stone-400 uppercase text-center">Pour comprendre Nostos</span>
+                <span class="safe-text text-stone-400 text-center">Pourquoi tu retournes toujours sur ton téléphone. (2 min)</span>
             </div>
         </div>
     </section>
@@ -125,7 +140,7 @@
                     <span class="about-nostos-title-main">Reprends le contrôle </span>
                     <span class="about-nostos-title-sub">En 30 jours, avec <span class="about-nostos-title-brand">Nostos.</span></span>
                 </h2>
-                <p class="about-nostos-sub">Un programme simple, basé sur les neurosciences, pour <strong>transformer ton rapport à ton téléphone.</strong></p>
+                <p class="about-nostos-sub">Un plan d'action simple, basé sur les neurosciences, pour <strong>utiliser ton téléphone sans être utilisé(e) par lui.</strong></p>
             </div>
 
             <div class="about-how-header">
@@ -146,7 +161,7 @@
                     <span class="about-step-num">2</span>
                     <div class="about-step-body">
                         <h3>Tu comprends pour ne plus subir</h3>
-                        <p>La pédagogie est au coeur du programme, le fonctionnement de ton cerveau, des applications</p>
+                        <p>La pédagogie est au coeur du programme, tu découvres pourquoi ton téléphone attire constamment ton attention.</p>
                     </div>
                 </article>
                 <article class="about-how-item">
@@ -198,7 +213,24 @@
                 <a href="https://buy.stripe.com/fZu14m99igVZ0Kf3whg7e00" data-cta="sources-direct-checkout" data-initiate-checkout="true" class="cta-blue-anim inline-flex items-center justify-center px-8 py-4 font-bold uppercase text-sm tracking-[0.14em] transition-all rounded-full" style="background:#2563eb;color:#F9F7F2;border:1px solid #2563eb;">
                     Démarrer le programme - 39 €
                 </a>
-                <p class="safe-text mt-3 mb-5 md:mb-6 uppercase text-stone-500">Paiement unique | satisfait ou rembourse</p>
+                <p class="safe-text mt-3 mb-14 uppercase text-stone-500">Paiement unique | satisfait ou rembourse</p>
+                <div class="about-summary" data-program-summary>
+                    <p class="about-summary-title">Sommaire des e-mails</p>
+                    <div class="about-summary-panel" id="programSummaryPanel">
+                        <div class="about-summary-card">
+                            <p>Jour 0 - Présentation et mise en place</p>
+                            <p>Jour 1 - <strong>1 ère action (conscience sur un moment de la journée)</strong></p>
+                            <p>Jours 2,3 - Pourquoi le matin est important</p>
+                            <p>Jour 4 - Présentation concrète de la dopamine</p>
+                            <p>Jour 5 - <strong>2 ème action (bouffée d’air frais)</strong></p>
+                            <p>Jour 6 - Explication de l’ennui</p>
+                            <p>Jour 7 - <strong>3 ème action (prise de contrôle)</strong></p>
+                            <p>Jours 8,9,10 - Comment on pirate ton cerveau</p>
+                            <p>Jour 11 - <strong>4 ème action (reconstruction)</strong></p>
+                            <p><strong>Reste des jours :</strong> Les habitudes, les réactions du corps, les solutions, le soulagement.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -230,34 +262,31 @@
     <section class="cost-section px-6 bg-paper border-y border-ink-10">
         <div class="max-w-4xl mx-auto text-left space-y-12 md:space-y-14">
             <div class="attention-intro attention-intro-light">
-                <h2 class="attention-intro-title"><span class="attention-intro-quote" aria-hidden="true">&ldquo;</span>Ce n’est pas uniquement <span class="attention-intro-emphasis">ton temps</span> que tu perds, c’est <span class="attention-intro-emphasis">la version de toi</span> qui pourrait exister.<span class="attention-intro-quote attention-intro-quote-end" aria-hidden="true">&rdquo;</span></h2>
-            </div>
-            <div class="attention-cost py-1">
-                <h2 class="attention-cost-title">Les impacts :</h2>
+                <h2 class="attention-intro-title"><span class="attention-intro-quote" aria-hidden="true">&ldquo;</span>Dans <span class="attention-intro-emphasis">30 jours</span>, tu ne ressentiras plus le besoin de <span class="attention-intro-emphasis">scroller</span>.<span class="attention-intro-quote attention-intro-quote-end" aria-hidden="true">&rdquo;</span></h2>
             </div>
             <div class="max-w-5xl mx-auto text-left grid md:grid-cols-2 gap-2.5 md:gap-3">
                 <article class="impact-card">
                     <p class="impact-label"><span aria-hidden="true" class="impact-label-icon"></span><span>Cognitif</span></p>
-                    <h3 class="impact-title">Réduction de tes capacités</h3>
-                    <p class="impact-copy">Concentration, volonté, créativité, s’érodent avec la <strong class="text-obsidian">fragmentation constante</strong> de l’attention.</p>
+                    <h3 class="impact-title">Retrouve tes capacités</h3>
+                    <p class="impact-copy">Concentration, volonté, créativité, ne sont plus impactés par la <strong class="text-obsidian">fragmentation constante</strong> de l’attention.</p>
                 </article>
                 <article class="impact-card">
                     <p class="impact-label"><span aria-hidden="true" class="impact-label-icon"></span><span>Neurochimie</span></p>
-                    <h3 class="impact-title">Ton bonheur amoindri</h3>
-                    <p class="impact-copy">Les <strong class="text-obsidian">pics de dopamine rapides</strong> désensibilisent tes récepteurs.</p>
+                    <h3 class="impact-title">+ de satisfaction au quotidien</h3>
+                    <p class="impact-copy">Les plaisirs simples redeviennent <strong class="text-obsidian">naturellement</strong> plus agréables.</p>
                 </article>
                 <article class="impact-card">
                     <p class="impact-label"><span aria-hidden="true" class="impact-label-icon"></span><span>Autonomie</span></p>
-                    <h3 class="impact-title">Tes désirs formatés</h3>
-                    <p class="impact-copy">Les algorithmes <strong class="text-obsidian">suppriment tes choix</strong>, formatent tes références, tes envies, tes opinions.</p>
+                    <h3 class="impact-title">+ de liberté</h3>
+                    <p class="impact-copy">Décide davantage de ce qui <strong class="text-obsidian">mérite ton attention</strong>, plutôt que de laisser les algorithmes choisir à ta place.</p>
                 </article>
                 <article class="impact-card">
                     <p class="impact-label"><span aria-hidden="true" class="impact-label-icon"></span><span>Mémoire</span></p>
-                    <h3 class="impact-title">Une vie sans souvenirs</h3>
-                    <p class="impact-copy">Le cerveau <strong class="text-obsidian">ne retient pas le scroll</strong>, ce temps qui passe ne laisse que peu de traces.</p>
+                    <h3 class="impact-title">+ de moments qui comptent</h3>
+                    <p class="impact-copy">Le cerveau <strong class="text-obsidian">ne retient pas le scroll</strong>, mais les experiences enrichissantes oui.</p>
                 </article>
             </div>
-            <p class="attention-outro">Nostos te partage les clés et solutions à mettre en place pour ne plus être happé(e) par ton téléphone.</p>
+            <p class="attention-outro">Nostos te partage des solutions à mettre en place pour ne plus être happé(e) par ton téléphone.</p>
         </div>
     </section>
 
@@ -291,7 +320,7 @@
             <h2 class="final-cta-title font-serif mb-6 text-center">Échange le scroll pour ce qui compte <span class="text-cobalt">vraiment</span> pour toi</h2>
             <figure class="final-product-shot mx-auto mb-4" style="position:relative; z-index:120;">
                 <div class="overflow-hidden rounded-2xl border border-white/15 bg-obsidian" style="position:relative; z-index:120;">
-                    <img src="Assets/nostos-produit.jpg" alt="Photo produit Nostos" class="w-full h-auto block" loading="lazy" decoding="async" width="900" height="900" style="position:relative; z-index:120; filter:none; mix-blend-mode:normal;">
+                    <img src="Assets/Photo_produit_light_480.webp" srcset="Assets/Photo_produit_light_320.webp 320w, Assets/Photo_produit_light_480.webp 480w" sizes="(max-width: 640px) 68vw, 240px" alt="Photo produit Nostos" class="w-full h-auto block" loading="lazy" decoding="async" width="480" height="480" style="position:relative; z-index:120; filter:none; mix-blend-mode:normal;">
                 </div>
             </figure>
             <div class="mx-auto mb-10 max-w-xl text-center">
