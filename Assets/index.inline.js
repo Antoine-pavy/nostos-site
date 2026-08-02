@@ -226,7 +226,7 @@
         const heroVslPreview = document.getElementById('heroVslPreview');
         const heroVslFrameSlot = document.getElementById('heroVslFrameSlot');
         const heroLaunchCta = document.getElementById('heroLaunchCta');
-        const aboutNostosSection = document.getElementById('about-nostos');
+        const finalCtaSection = document.getElementById('final-cta-section');
         const HERO_VSL_UNMUTED = heroVslPlayer ? heroVslPlayer.dataset.videoUnmuted : '';
         let heroVslLoaded = false;
         let heroVslObserver = null;
@@ -274,8 +274,8 @@
                 launchHeroVsl();
                 return;
             }
-            if (aboutNostosSection) {
-                aboutNostosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (finalCtaSection) {
+                finalCtaSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
 
