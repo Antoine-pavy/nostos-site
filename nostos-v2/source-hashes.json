@@ -1,0 +1,22 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "6147474216D62C9E1FC33340B9B53336EC9157D3ED4E524538C40F397CED184F",
+    "Path": "C:\\Users\\anton\\Desktop\\Business\\Détox\\site web NOSTOS\\index.html"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "68A96E239C348499568D8331D6E7AEB4F6CF63F36B99F0B77FCC192888FBBD38",
+    "Path": "C:\\Users\\anton\\Desktop\\Business\\Détox\\site web NOSTOS\\offre.html"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "B293EEFB2403D3C425F5CBBCB391AA6E425584B42609E5F3BF05E34E447AF6E6",
+    "Path": "C:\\Users\\anton\\Desktop\\Business\\Détox\\site web NOSTOS\\Assets\\index.inline.css"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "6D481F075230B59E0CC42994858F86809F813B6902A45C965885B1A2181D97D3",
+    "Path": "C:\\Users\\anton\\Desktop\\Business\\Détox\\site web NOSTOS\\Assets\\index.inline.js"
+  }
+]
