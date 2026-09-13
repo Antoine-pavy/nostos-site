@@ -3,7 +3,7 @@ const path = require('node:path');
 const zlib = require('node:zlib');
 const root = __dirname;
 const destination = path.join(root, 'dist');
-const production = process.env.CONTEXT === 'production' || process.argv.includes('--production');
+const production = process.env.NOSTOS_PREVIEW !== 'true' && (process.env.CONTEXT === 'production' || process.argv.includes('--production'));
 const pages = ['index.html','mentions-legales.html','cgv.html','politique-confidentialite.html','merci.html','annulation.html','checkout.html','404.html'];
 const scripts = ['script.js','tracking.js','purchase.js'];
 const styles = ['style.css','tracking.css','fonts.css'];

@@ -22,6 +22,8 @@ Configurer les variables listées dans `.env.example` dans Netlify, sans les com
 
 Documentation : https://docs.netlify.com/build/configure-builds/file-based-configuration/
 
+Sur le second projet de test, ajouter la variable `NOSTOS_PREVIEW=true` pour tous les contextes de build. Son déploiement principal reste ainsi non indexé et sans tracking, même si Netlify le nomme « production ». Ne pas activer cette variable sur le futur site public.
+
 ## Avant ouverture au public
 
 Consulter `PRODUCTION-READINESS.md` et `TRACKING-VALIDATION.md`. Les tests automatisés simulent les fournisseurs ; ils ne prouvent pas la livraison réelle d’un email ni la réception d’un événement par Meta.
