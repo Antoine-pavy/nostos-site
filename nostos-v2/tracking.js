@@ -79,7 +79,7 @@
   };
   const panel = document.createElement('section');
   panel.className = 'consent-panel'; panel.hidden = !!consent; panel.setAttribute('aria-label', 'Préférences cookies');
-  panel.innerHTML = '<p>Avec ton accord, nous utilisons Meta Pixel, Google et Clarity pour mesurer les visites et nos publicités. <a href="politique-confidentialite.html">En savoir plus</a></p><div><button type="button" data-consent="yes">Accepter</button><button type="button" data-consent="no">Refuser</button></div>';
+  panel.innerHTML = '<p><strong>Tu nous aides à améliorer Nostos ?</strong>Avec ton accord, nous mesurons les visites et l’efficacité de nos publicités, et analysons la navigation pour améliorer le site. Tu peux changer d’avis à tout moment. <a href="politique-confidentialite.html">En savoir plus</a></p><div><button type="button" data-consent="yes">Accepter</button><button type="button" data-consent="no">Refuser</button></div>';
   document.body.appendChild(panel);
   function choose(marketing) {
     const revoke = loaded && !marketing;
