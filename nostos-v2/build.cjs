@@ -10,6 +10,14 @@ const styles = ['style.css','tracking.css','fonts.css'];
 const assets = ['logo-officiel.png','NOSTOS_logo-removebg-64.webp','NOSTOS_logo-removebg-128.webp','tailwind.generated.css','carte-voyage.webp','carte-officielle.png','prev_mail1.png','prev_mail2.png','prev_mail4.png','temoin1.jpg','temoin2.jpg','temoin3.jpg','temoin4.jpg','temoin5.jpg','vsl-carte-640.webp','vsl-preview.mp4'];
 assets.push('inter-OFL.txt', 'playfairdisplay-OFL.txt');
 for(const match of fs.readFileSync(path.join(root,'fonts.css'),'utf8').matchAll(/url\(assets\/([^)]+)\)/g)) assets.push(match[1]);
+// Rebuild generated output from scratch: previous deploys may leave extra files.
+// Never follow a symlink/junction or delete outside this project's dist directory.
+if (path.dirname(destination) !== root || path.basename(destination) !== 'dist') throw new Error('Unsafe output directory');
+if (fs.existsSync(destination)) {
+  if (fs.lstatSync(destination).isSymbolicLink() || !fs.statSync(destination).isDirectory()) throw new Error('Output directory must be a real directory');
+  if (fs.realpathSync(destination) !== path.join(fs.realpathSync(root), 'dist')) throw new Error('Output directory resolves outside the project');
+  fs.rmSync(destination, { recursive: true });
+}
 fs.mkdirSync(destination,{recursive:true});
 fs.mkdirSync(path.join(destination,'assets'),{recursive:true});
 // Explicit allowlist: no PDF, source reports, backend credentials or source archives.
