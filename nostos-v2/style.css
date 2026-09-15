@@ -8,7 +8,7 @@
 @media(min-width:700px){.header{padding:20px 40px 0}.brand img{width:90px;height:90px}.hero{padding-top:38px;padding-bottom:40px;column-gap:55px}.hero-art{margin:45px 0}.hero-pawn{width:25px;height:60px}.hero-scroll.motion-journey{padding-bottom:70vh}.mail-original{padding:18px}.testimonial-deck{margin-top:50px}.hero-actions{margin-top:32px}.recognition h2{align-self:center}}
 @media(min-width:1100px){.hero{padding:50px 70px;column-gap:85px}.hero-art{min-height:420px}.header{padding-left:70px}.hero-scroll.motion-journey{padding-bottom:70vh}}
 @media(prefers-reduced-motion:reduce){.hero-scroll.motion-journey{padding-bottom:0}.motion-journey .hero{position:relative;top:0}}
-.hero-scroll.motion-journey{padding-bottom:0;height:calc(var(--hero-height,800px) + 65vh)}
+.hero-scroll.motion-journey{padding-bottom:0;height:calc(var(--hero-height,800px) + clamp(120px, 25vh, 220px))}
 @media(prefers-reduced-motion:reduce){.hero-scroll.motion-journey{height:auto}}
 .mail-mount{display:block;width:100%;padding:0;border:0;text-align:left;cursor:zoom-in}.testimonial-card[data-position="0"]{cursor:zoom-in}
 .vsl-poster video{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;display:block}
@@ -18,3 +18,7 @@
 
 /* A quiet disclosure surface instead of two horizontal rules. */
 .program-details{border:0;background:#f0ede6;border-radius:8px;padding:0 18px}.program-details>summary{min-height:60px;padding:16px 0;font-size:14px}.program-details>summary:hover{color:var(--blue)}.disclosure-chevron{width:20px;height:20px;flex-shrink:0;color:#777064;transition:transform .2s}.program-details[open] .disclosure-chevron{transform:rotate(180deg)}.program-details .syllabus{padding:4px 0 22px;gap:16px 35px}
+
+/* Make the scroll-led pawn easier to notice without prolonging the hero. */
+.hero-art .hero-pawn{width:24px;height:58px}
+@media(min-width:700px){.hero-art .hero-pawn{width:31px;height:75px}}
