@@ -27,7 +27,7 @@ for (const file of pages) {
   html = html.replace(/<meta name="robots"[^>]*>/g,'');
   const indexable = production && !['merci.html','annulation.html','checkout.html','404.html'].includes(file);
   if (file==='index.html') {
-    html = html.replace('</head>', '<link rel="canonical" href="https://nostosprogram.com/"><meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:title" content="Nostos — Programme 30 jours"><meta property="og:description" content="Un voyage guidé par email pour retrouver une relation choisie avec ton téléphone. 30 jours, 19 €."><meta property="og:url" content="https://nostosprogram.com/"><meta property="og:image" content="https://nostosprogram.com/assets/logo-officiel.png"></head>');
+    html = html.replace('</head>', '<link rel="canonical" href="https://nostosprogram.com/"><meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:title" content="Nostos — Programme 30 jours"><meta property="og:description" content="Un voyage guidé par email pour retrouver une relation choisie avec ton téléphone. 30 jours, 39 €."><meta property="og:url" content="https://nostosprogram.com/"><meta property="og:image" content="https://nostosprogram.com/assets/logo-officiel.png"></head>');
   }
   html=html.replace('</head>',`<meta name="robots" content="${indexable?'index, follow':'noindex, nofollow'}"><meta name="nostos-environment" content="${production?'production':'preview'}"></head>`);
   fs.writeFileSync(path.join(destination,file),html);

@@ -47,8 +47,8 @@
     load();
     const label = element.textContent.trim();
     window.dataLayer.push({ event: 'cta_click', label, id: element.id || null, cta: element.id || 'hero-checkout' });
-    window.fbq('track', 'InitiateCheckout', { value: 19, currency: 'EUR', content_name: 'Nostos 30 jours' });
-    window.dataLayer.push({ event: 'initiate_checkout', label, value: 19, currency: 'EUR', cta: element.id || 'hero-checkout' });
+    window.fbq('track', 'InitiateCheckout', { value: 39, currency: 'EUR', content_name: 'Nostos 30 jours' });
+    window.dataLayer.push({ event: 'initiate_checkout', label, value: 39, currency: 'EUR', cta: element.id || 'hero-checkout' });
   }
   function sendPurchase(order) {
     const purchaseKey = `nostos_purchase_${order.id}`;

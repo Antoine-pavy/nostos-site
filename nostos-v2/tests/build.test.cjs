@@ -32,3 +32,18 @@ test('rebuilding removes leftover public files while preserving source configura
     }
   }
 });
+
+test('production pages consistently advertise and link to the 39 EUR offer', () => {
+  const source = path.resolve(__dirname, '..');
+  const index = fs.readFileSync(path.join(source, 'index.html'), 'utf8');
+  const checkout = fs.readFileSync(path.join(source, 'checkout.html'), 'utf8');
+  const terms = fs.readFileSync(path.join(source, 'cgv.html'), 'utf8');
+  const cancellation = fs.readFileSync(path.join(source, 'annulation.html'), 'utf8');
+  const paymentLink = 'https://buy.stripe.com/fZu14m99igVZ0Kf3whg7e00';
+  assert.equal((index.match(new RegExp(paymentLink, 'g')) || []).length, 2);
+  assert.ok(cancellation.includes(paymentLink));
+  for (const page of [index, checkout, terms]) {
+    assert.ok(page.includes('39'));
+    assert.doesNotMatch(page, /19\s*€/);
+  }
+});

@@ -7,9 +7,9 @@ La V2 est préparée pour un déploiement de validation Netlify. Les contrôles 
 ## Corrections et préparation effectuées
 
 - Build autonome avec liste explicite des ressources publiées, configuration Netlify, routes de paiement, page 404, sitemap et règles d’indexation distinctes entre production et aperçu.
-- Pages légales autonomes, logos renvoyant à la V2, prix indicatif 19 EUR.
+- Pages légales autonomes, logos renvoyant à la V2, prix indicatif 39 EUR.
 - Polices locales WOFF2 et licences, sans appel Google Fonts ; images optimisées, dimensions réservées, contenus secondaires différés. Aperçu animé issu de Vsl_IA_short en vidéo muette en boucle ; YouTube chargé au clic. Aucun téléchargement vidéo observé au premier écran mobile.
-- Maintien du parcours de conversion : lien Stripe original, offre 19 EUR, témoignages et emails originaux, FAQ, accès à l’achat pendant la lecture. Aucune hausse de conversion ne peut être garantie sans mesure après lancement.
+- Maintien du parcours de conversion : lien Stripe existant, offre 39 EUR, témoignages et emails originaux, FAQ, accès à l’achat pendant la lecture. Aucune hausse de conversion ne peut être garantie sans mesure après lancement.
 - Tracking original repris avec consentement, aperçus silencieux, validation serveur des achats et déduplication.
 - Copie des fonctions serveur durcie : refus des sessions non payées, réponse sans email client, validation du prix du formulaire, signature webhook, paiements différés réussis pris en charge. Une erreur Kit retourne désormais une erreur réessayable à Stripe au lieu de valider faussement la livraison.
 - Aucun PDF du programme dans le dossier publié.
@@ -18,7 +18,7 @@ La V2 est préparée pour un déploiement de validation Netlify. Les contrôles 
 
 Sept tests automatisés passent : sessions Stripe valides/invalides, prix du checkout, signature/paiement/échec Kit du webhook, consentement et tags, silence en aperçu, déduplication achat et confirmation de paiement. Fournisseurs simulés, sans transaction ni email réel.
 
-Résultat construit inspecté à 320, 390 et 1440 px : aucun débordement horizontal détecté, sélection des emails et accordéons fonctionnels, CGV à 19 EUR, page merci sans session ne confirmant aucun achat, console sans erreur lors des contrôles. Le HTML/CSS/JS du build représente environ 16,5 Ko gzip, hors images, polices et vidéos. Ce chiffre n’est pas le poids total de la page ni un score Lighthouse.
+Résultat construit inspecté à 320, 390 et 1440 px : aucun débordement horizontal détecté, sélection des emails et accordéons fonctionnels, CGV à 39 EUR, page merci sans session ne confirmant aucun achat, console sans erreur lors des contrôles. Le HTML/CSS/JS du build représente environ 16,5 Ko gzip, hors images, polices et vidéos. Ce chiffre n’est pas le poids total de la page ni un score Lighthouse.
 
 ## Conditions avant mise en production
 

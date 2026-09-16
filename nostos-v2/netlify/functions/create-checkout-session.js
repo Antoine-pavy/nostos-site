@@ -41,7 +41,7 @@ exports.handler = async (event) => {
 
     const stripe = new Stripe(stripeKey);
     const price = await stripe.prices.retrieve(priceId);
-    if (!price.active || price.currency !== 'eur' || price.unit_amount !== 1900 || price.type !== 'one_time') {
+    if (!price.active || price.currency !== 'eur' || price.unit_amount !== 3900 || price.type !== 'one_time') {
       return json(503, { error: 'Configuration du tarif indisponible. Contacte bonjour@nostosprogram.com.' });
     }
 

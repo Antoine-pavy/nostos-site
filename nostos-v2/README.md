@@ -18,7 +18,7 @@ npm run build
 
 Conserver le site actuel pendant les essais. Utiliser une branche séparée et un déploiement de prévisualisation, ou un second projet Netlify. Configurer le dossier de base sur `nostos-v2` et vérifier dans les logs que le fichier `nostos-v2/netlify.toml` est utilisé : commande `npm run build`, publication `dist`, fonctions `netlify/functions`. Le fichier de configuration de l’ancien site reste intact.
 
-Configurer les variables listées dans `.env.example` dans Netlify, sans les committer. `SITE_URL` doit correspondre à l’URL de destination. Les clés de test et de production doivent rester cohérentes avec les prix et le webhook Stripe. Le formulaire `/checkout` exige un prix actif de 19 EUR à paiement unique. Le bouton principal conserve le Payment Link du site original : son prix et sa redirection se règlent séparément dans Stripe.
+Configurer les variables listées dans `.env.example` dans Netlify, sans les committer. `SITE_URL` doit correspondre à l’URL de destination. Les clés de test et de production doivent rester cohérentes avec les prix et le webhook Stripe. Le formulaire `/checkout` exige un prix actif de 39 EUR à paiement unique. Les boutons principaux utilisent le Payment Link Stripe vérifié à 39 EUR le 16 septembre 2026.
 
 Documentation : https://docs.netlify.com/build/configure-builds/file-based-configuration/
 
