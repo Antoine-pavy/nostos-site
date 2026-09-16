@@ -2,7 +2,7 @@
 
 Identifiants repris du site original : Meta `1837727546891540`, GTM `GTM-TX27DHHX`, Clarity `w8xvas3f1l`, GA4 `G-KRLJ69613G`.
 
-Les scripts ne sont chargés qu’après consentement, après affichage initial. Refus, retrait et expiration du consentement sont gérés. Les aperçus et localhost n’envoient pas de tracking : il faut un build production sur nostosprogram.com ou www.nostosprogram.com pour activer les tags.
+Analytics et Clarity sont chargés après l’affichage initial comme outils de mesure d’audience obligatoires. Le pixel Meta est chargé uniquement après acceptation des cookies marketing. Le choix, son retrait et son expiration sont gérés. Les aperçus et localhost n’envoient pas de tracking : il faut un build production sur nostosprogram.com ou www.nostosprogram.com pour activer les tags.
 
 - Meta PageView unique ; InitiateCheckout au clic du lien d’achat, valeur 39 EUR.
 - DataLayer : cta_click et initiate_checkout.
@@ -15,9 +15,9 @@ Le conteneur consulté contient GA4 et cta_click, sans second pixel Meta identif
 
 ## Vérification réelle requise à la bascule
 
-Vérifier que le Payment Link redirige vers `https://nostosprogram.com/merci.html?session_id={CHECKOUT_SESSION_ID}`. Confirmer les variables serveur, le secret et l’URL du webhook Stripe ; vérifier un parcours autorisé de bout en bout jusqu’à l’inscription Kit et la réception du premier email. Contrôler PageView, InitiateCheckout et Purchase dans Meta Events Manager, Tag Assistant et GA4. Tester aussi refus et retrait du consentement. Aucun paiement réel ni envoi Kit n’a été réalisé pendant cet audit.
+Vérifier que le Payment Link redirige vers `https://nostosprogram.com/merci.html?session_id={CHECKOUT_SESSION_ID}`. Confirmer les variables serveur, le secret et l’URL du webhook Stripe ; vérifier un parcours autorisé de bout en bout jusqu’à l’inscription Kit et la réception du premier email. Contrôler PageView, InitiateCheckout et Purchase dans Meta Events Manager, Tag Assistant et GA4. Tester aussi l’enregistrement sans marketing et le retrait du consentement marketing. Aucun paiement réel ni envoi Kit n’a été réalisé pendant cet audit.
 
-Les événements sont côté navigateur et soumis au consentement et aux bloqueurs. Une couverture serveur via Meta Conversions API n’a pas été ajoutée et n’est pas présumée existante.
+Les événements Meta sont côté navigateur et soumis au consentement marketing et aux bloqueurs. Une couverture serveur via Meta Conversions API n’a pas été ajoutée et n’est pas présumée existante.
 
 ## Correction publiée le 14 septembre 2026
 
