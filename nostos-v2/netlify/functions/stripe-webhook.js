@@ -82,7 +82,6 @@ async function sendMetaPurchase(session, event, settings) {
     }],
     access_token: settings.token
   };
-  if (settings.testEventCode) payload.test_event_code = settings.testEventCode;
   const res = await fetch(`https://graph.facebook.com/${settings.graphVersion}/${settings.pixelId}/events`, {
     method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
   });
@@ -106,7 +105,6 @@ exports.handler = async (event) => {
     token: process.env.META_CONVERSIONS_API_TOKEN,
     pixelId: process.env.META_PIXEL_ID || '1837727546891540',
     graphVersion: process.env.META_GRAPH_API_VERSION || 'v22.0',
-    testEventCode: process.env.META_TEST_EVENT_CODE,
     siteUrl: (process.env.SITE_URL || 'https://nostosprogram.com').replace(/\/$/, '')
   };
 
