@@ -21,6 +21,8 @@ Les événements Meta restent soumis au consentement marketing. Lorsqu’il est 
 
 Configurer dans Netlify `META_CONVERSIONS_API_TOKEN`, `META_PIXEL_ID` et `META_GRAPH_API_VERSION` avant mise en production. Le token ne doit jamais être présent dans le code ou les fichiers publics. Stripe et Analytics restent les sources de référence pour les ventes lorsqu’un visiteur refuse le marketing ou utilise un bloqueur.
 
+Pour un test dans Meta Events Manager, ajouter temporairement `META_TEST_EVENT_CODE` avec le code affiché dans « Événements de test », réaliser un paiement de test avec consentement marketing, puis supprimer cette variable. Ne pas la laisser activée pour les achats réels.
+
 ## Correction publiée le 14 septembre 2026
 
 GTM-TX27DHHX, version 3 « Nostos V2 — achat GA4 sans doublon », publiée à 09:31 : nom purshase corrigé en purchase et balise GA4 - purchase mise en veille. Le script tracking.js servi sur le domaine officiel a été vérifié : il envoie déjà purchase directement à GA4 après vérification Stripe, avec transaction_id. Cette mise en veille supprime l’envoi redondant ; ne pas réactiver sans coordonner le code de la V2. Aucune autre balise modifiée. La version 2 reste disponible dans GTM pour retour arrière. La réception Meta reste à tester dans Events Manager.
