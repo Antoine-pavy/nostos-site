@@ -3,12 +3,13 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const vm=require('node:vm');
+const crypto=require('node:crypto');
 const root=path.join(__dirname,'..');
-function backend(name,{session={id:'cs_test_abc',payment_status:'paid',amount_total:3900,currency:'eur'},price={active:true,currency:'eur',unit_amount:3900,type:'one_time'},eventType='checkout.session.completed',kitStatus=200,badSignature=false}={}) {
- const calls=[];
+function backend(name,{session={id:'cs_test_abc',payment_status:'paid',amount_total:3900,currency:'eur'},price={active:true,currency:'eur',unit_amount:3900,type:'one_time'},eventType='checkout.session.completed',kitStatus=200,badSignature=false,metaToken=''}={}) {
+ const calls=[],fetchCalls=[];
  class Stripe {constructor(){this.checkout={sessions:{retrieve:async()=>session,create:async payload=>{calls.push(payload);return{id:'cs_test_abc',url:'https://checkout.stripe.com/example'};}}};this.prices={retrieve:async()=>price};this.webhooks={constructEvent:()=>{if(badSignature)throw Error('signature');return{type:eventType,data:{object:session}};}};}}
- const context={exports:{},require:()=>Stripe,process:{env:{STRIPE_SECRET_KEY:'test',STRIPE_PRICE_ID:'price_test',STRIPE_WEBHOOK_SECRET:'test',KIT_API_KEY:'test',KIT_TAG_ID:'1',SITE_URL:'https://nostosprogram.com'}},Buffer,console:{log(){},error(){}},fetch:async()=>({status:kitStatus,ok:kitStatus===200,text:async()=>kitStatus===200?'{}':'{"error":"unavailable"}'})};
- vm.runInNewContext(fs.readFileSync(path.join(root,'netlify/functions',name+'.js'),'utf8'),context);return{handler:context.exports.handler,calls};
+ const context={exports:{},require:id=>id==='stripe'?Stripe:id==='node:crypto'?crypto:null,process:{env:{STRIPE_SECRET_KEY:'test',STRIPE_PRICE_ID:'price_test',STRIPE_WEBHOOK_SECRET:'test',KIT_API_KEY:'test',KIT_TAG_ID:'1',SITE_URL:'https://nostosprogram.com',META_CONVERSIONS_API_TOKEN:metaToken}},Buffer,console:{log(){},error(){},warn(){}},fetch:async(url,options)=>{fetchCalls.push({url,options});return{status:kitStatus,ok:kitStatus===200,text:async()=>kitStatus===200?'{}':'{"error":"unavailable"}'};}};
+ vm.runInNewContext(fs.readFileSync(path.join(root,'netlify/functions',name+'.js'),'utf8'),context);return{handler:context.exports.handler,calls,fetchCalls};
 }
 test('verification refuses missing and unpaid sessions; paid response has no personal data',async()=>{
  let api=backend('verify-checkout-session');assert.equal((await api.handler({httpMethod:'GET',queryStringParameters:{}})).statusCode,400);
@@ -18,7 +19,14 @@ test('verification refuses missing and unpaid sessions; paid response has no per
 test('checkout blocks incorrect configured price and preserves success/cancel routes',async()=>{
  const request={httpMethod:'POST',body:JSON.stringify({email:'test@example.com',full_name:'Test'})};
  let api=backend('create-checkout-session',{price:{active:true,currency:'eur',unit_amount:1900,type:'one_time'}});assert.equal((await api.handler(request)).statusCode,503);assert.equal(api.calls.length,0);
- api=backend('create-checkout-session');assert.equal((await api.handler(request)).statusCode,200);assert.equal(api.calls[0].success_url,'https://nostosprogram.com/merci?session_id={CHECKOUT_SESSION_ID}');
+ api=backend('create-checkout-session');assert.equal((await api.handler(request)).statusCode,200);assert.equal(api.calls[0].success_url,'https://nostosprogram.com/merci?session_id={CHECKOUT_SESSION_ID}');assert.equal(api.calls[0].metadata.marketing_consent,'false');
+ api=backend('create-checkout-session');assert.equal((await api.handler({httpMethod:'POST',body:JSON.stringify({marketing_consent:true,fbp:'fb.1.1.123.456'})})).statusCode,200);assert.equal(api.calls[0].customer_creation,'always');assert.equal(api.calls[0].metadata.marketing_consent,'true');assert.equal(api.calls[0].metadata.fbp,'fb.1.1.123.456');
+});
+test('webhook sends a deduplicated Meta CAPI Purchase only with marketing consent',async()=>{
+ const session={id:'cs_test_capi',payment_status:'paid',amount_total:3900,currency:'eur',customer_email:'test@example.com',metadata:{full_name:'Test Person',marketing_consent:'true',fbp:'fb.1.1.123.456',fbc:'fb.1.1.123.789',event_source_url:'https://nostosprogram.com/'}};
+ const api=backend('stripe-webhook',{session,metaToken:'meta-token'});const result=await api.handler({httpMethod:'POST',headers:{'stripe-signature':'test'},body:'{}'});assert.equal(result.statusCode,200);
+ const capi=api.fetchCalls.find(call=>call.url.includes('graph.facebook.com'));assert.ok(capi);const payload=JSON.parse(capi.options.body);assert.equal(payload.data[0].event_name,'Purchase');assert.equal(payload.data[0].event_id,session.id);assert.equal(payload.data[0].custom_data.value,39);assert.equal(payload.data[0].user_data.em[0],crypto.createHash('sha256').update('test@example.com').digest('hex'));
+ const refused=backend('stripe-webhook',{session:{...session,metadata:{...session.metadata,marketing_consent:'false'}},metaToken:'meta-token'});await refused.handler({httpMethod:'POST',headers:{'stripe-signature':'test'},body:'{}'});assert.equal(refused.fetchCalls.some(call=>call.url.includes('graph.facebook.com')),false);
 });
 test('webhook only delivers paid orders and returns a retryable error on Kit failure',async()=>{
  const request={httpMethod:'POST',headers:{'stripe-signature':'test'},body:'{}'};

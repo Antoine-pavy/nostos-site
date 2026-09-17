@@ -35,9 +35,19 @@ exports.handler = async (event) => {
     const email = String(payload.email || '').trim().toLowerCase();
     const fullName = String(payload.full_name || payload.fullName || payload.first_name || payload.firstName || '').trim();
 
-    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+    if (email && !/^\S+@\S+\.\S+$/.test(email)) {
       return json(400, { error: 'Email invalide' });
     }
+    const marketingConsent = payload.marketing_consent === true;
+    const metadata = {
+      full_name: fullName.slice(0, 200),
+      source: 'nostosprogram.com',
+      marketing_consent: String(marketingConsent),
+      fbp: marketingConsent ? String(payload.fbp || '').slice(0, 200) : '',
+      fbc: marketingConsent ? String(payload.fbc || '').slice(0, 200) : '',
+      event_source_url: marketingConsent ? String(payload.event_source_url || siteUrl).slice(0, 500) : '',
+      cta: String(payload.cta || 'checkout').slice(0, 100)
+    };
 
     const stripe = new Stripe(stripeKey);
     const price = await stripe.prices.retrieve(priceId);
@@ -48,16 +58,13 @@ exports.handler = async (event) => {
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       line_items: [{ price: priceId, quantity: 1 }],
-      customer_email: email,
+      ...(email ? { customer_email: email } : { customer_creation: 'always' }),
       success_url: `${siteUrl}/merci?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/annulation`,
-      metadata: {
-        full_name: fullName,
-        source: 'nostosprogram.com'
-      },
+      metadata,
       payment_intent_data: {
         metadata: {
-          full_name: fullName,
+          ...metadata,
           source: 'nostosprogram.com',
           kit_sync_completed: 'false'
         }

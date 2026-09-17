@@ -17,7 +17,9 @@ Le conteneur consulté contient GA4 et cta_click, sans second pixel Meta identif
 
 Vérifier que le Payment Link redirige vers `https://nostosprogram.com/merci.html?session_id={CHECKOUT_SESSION_ID}`. Confirmer les variables serveur, le secret et l’URL du webhook Stripe ; vérifier un parcours autorisé de bout en bout jusqu’à l’inscription Kit et la réception du premier email. Contrôler PageView, InitiateCheckout et Purchase dans Meta Events Manager, Tag Assistant et GA4. Tester aussi l’enregistrement sans marketing et le retrait du consentement marketing. Aucun paiement réel ni envoi Kit n’a été réalisé pendant cet audit.
 
-Les événements Meta sont côté navigateur et soumis au consentement marketing et aux bloqueurs. Une couverture serveur via Meta Conversions API n’a pas été ajoutée et n’est pas présumée existante.
+Les événements Meta restent soumis au consentement marketing. Lorsqu’il est accepté avant le paiement, le checkout conserve cet état avec les identifiants `_fbp` et `_fbc` autorisés dans la session Stripe. Le webhook envoie alors un `Purchase` à Meta Conversions API avec l’identifiant stable de session Stripe ; il est dédupliqué avec le pixel navigateur par `event_id`. Sans consentement marketing, aucun événement CAPI n’est envoyé.
+
+Configurer dans Netlify `META_CONVERSIONS_API_TOKEN`, `META_PIXEL_ID` et `META_GRAPH_API_VERSION` avant mise en production. Le token ne doit jamais être présent dans le code ou les fichiers publics. Stripe et Analytics restent les sources de référence pour les ventes lorsqu’un visiteur refuse le marketing ou utilise un bloqueur.
 
 ## Correction publiée le 14 septembre 2026
 
