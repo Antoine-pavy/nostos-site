@@ -91,7 +91,6 @@
   }
   window.nostosTracking = {
     ids, preview,
-    marketingConsent() { return marketingAllowed(); },
     verifiedPurchase(order) {
       if (!order || !/^cs_(test_|live_)?[A-Za-z0-9]+$/.test(order.id) || !Number.isFinite(order.value) || order.value < 0 || !/^[A-Z]{3}$/.test(order.currency)) return;
       pendingPurchase = order;
@@ -132,40 +131,6 @@
   panel.querySelector('[data-consent="back"]').addEventListener('click', () => { showSummary(); panel.querySelector('[data-consent="settings"]').focus(); });
   if (!consent) document.documentElement.classList.add('consent-visible');
   document.querySelectorAll('#privacy-open, #openCookieSettings').forEach(button => button.addEventListener('click', () => { panel.hidden = false; showSettings(); document.documentElement.classList.add('consent-visible'); }));
-  function marketingContext() {
-    if (!marketingAllowed()) return { marketing_consent: false };
-    const cookie = name => document.cookie.split('; ').find(value => value.startsWith(`${name}=`))?.slice(name.length + 1) || '';
-    return {
-      marketing_consent: true,
-      fbp: cookie('_fbp').slice(0, 200),
-      fbc: cookie('_fbc').slice(0, 200),
-      event_source_url: location.href.slice(0, 500)
-    };
-  }
-  async function beginServerCheckout(element, event) {
-    if (element.dataset.checkoutLoading || typeof fetch !== 'function') return;
-    event?.preventDefault();
-    element.dataset.checkoutLoading = 'true';
-    element.setAttribute('aria-busy', 'true');
-    try {
-      const res = await fetch('/.netlify/functions/create-checkout-session', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...marketingContext(), cta: element.id || 'landing-checkout' })
-      });
-      const data = await res.json();
-      if (!res.ok || !data.url) throw new Error('Checkout unavailable');
-      location.assign(data.url);
-    } catch (_) {
-      // Preserve the existing Stripe payment link if the server is temporarily unavailable.
-      location.assign(element.href);
-    } finally {
-      element.dataset.checkoutLoading = '';
-      element.removeAttribute('aria-busy');
-    }
-  }
-  document.querySelectorAll('a[href^="https://buy.stripe.com/"]').forEach(element => element.addEventListener('click', event => {
-    checkout(element);
-    if (element.dataset?.checkout === 'true') beginServerCheckout(element, event);
-  }));
+  document.querySelectorAll('a[href^="https://buy.stripe.com/"]').forEach(element => element.addEventListener('click', () => checkout(element)));
   schedule();
 })();

@@ -1,5 +1,4 @@
 const Stripe = require('stripe');
-const crypto = require('node:crypto');
 
 const KIT_API_BASE = 'https://api.kit.com/v4';
 
@@ -46,52 +45,6 @@ function isSubscriberAlreadyExists(result) {
   return text.includes('already exists') || text.includes('has already been taken');
 }
 
-function sha256(value) {
-  return crypto.createHash('sha256').update(String(value).trim().toLowerCase()).digest('hex');
-}
-
-async function sendMetaPurchase(session, event, settings) {
-  if (session.metadata?.marketing_consent !== 'true') return { skipped: 'no_marketing_consent' };
-  if (!settings.token) {
-    console.warn('[stripe-webhook] Meta CAPI is not configured; marketing conversion was not sent');
-    return { skipped: 'not_configured' };
-  }
-  const email = (session.customer_details?.email || session.customer_email || '').trim();
-  const name = String(session.metadata?.full_name || '').trim().split(/\s+/).filter(Boolean);
-  const userData = {};
-  if (email) userData.em = [sha256(email)];
-  if (name[0]) userData.fn = [sha256(name[0])];
-  if (name.length > 1) userData.ln = [sha256(name.at(-1))];
-  if (session.metadata?.fbp) userData.fbp = session.metadata.fbp;
-  if (session.metadata?.fbc) userData.fbc = session.metadata.fbc;
-  const sourceUrl = session.metadata?.event_source_url || settings.siteUrl;
-  const payload = {
-    data: [{
-      event_name: 'Purchase',
-      event_time: Math.floor(Date.now() / 1000),
-      event_id: session.id,
-      action_source: 'website',
-      event_source_url: sourceUrl,
-      user_data: userData,
-      custom_data: {
-        currency: String(session.currency || 'eur').toUpperCase(),
-        value: Number(session.amount_total || 0) / 100,
-        order_id: session.id,
-        content_name: 'Nostos 30 jours'
-      }
-    }],
-    access_token: settings.token
-  };
-  const res = await fetch(`https://graph.facebook.com/${settings.graphVersion}/${settings.pixelId}/events`, {
-    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
-  });
-  if (!res.ok) {
-    const raw = await res.text();
-    throw new Error(`Meta CAPI request failed (${res.status}): ${raw.slice(0, 300)}`);
-  }
-  return { sent: true };
-}
-
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return response(405, { error: 'Method not allowed' });
@@ -101,12 +54,6 @@ exports.handler = async (event) => {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
   const kitApiKey = process.env.KIT_API_KEY;
   const kitTagId = process.env.KIT_TAG_ID;
-  const metaSettings = {
-    token: process.env.META_CONVERSIONS_API_TOKEN,
-    pixelId: process.env.META_PIXEL_ID || '1837727546891540',
-    graphVersion: process.env.META_GRAPH_API_VERSION || 'v22.0',
-    siteUrl: (process.env.SITE_URL || 'https://nostosprogram.com').replace(/\/$/, '')
-  };
 
   const missing = [];
   if (!stripeKey) missing.push('STRIPE_SECRET_KEY');
@@ -186,14 +133,6 @@ exports.handler = async (event) => {
         statusText: 'Tag sync failed'
       });
       return response(503, { received: true, processed: false });
-    }
-
-    try {
-      const metaResult = await sendMetaPurchase(session, stripeEvent, metaSettings);
-      console.log(`[stripe-webhook] Meta CAPI: ${metaResult.sent ? 'sent' : metaResult.skipped}`);
-    } catch (metaError) {
-      // The email delivery remains the priority; Meta can be reconciled from Stripe if needed.
-      console.error('[stripe-webhook] Meta CAPI error:', metaError.message);
     }
 
     return response(200, { received: true, processed: true });

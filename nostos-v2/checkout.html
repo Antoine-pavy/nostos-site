@@ -18,7 +18,7 @@
         .noise { background-image: none; opacity: 0.4; pointer-events: none; }
         .border-ink-10 { border-color: rgba(26, 26, 27, 0.1); }
     </style>
-<script src="tracking.js?v=20260917" defer></script><link rel="stylesheet" href="fonts.css"></head>
+<script src="tracking.js?v=20260916" defer></script><link rel="stylesheet" href="fonts.css"></head>
 <body class="antialiased selection:bg-cobalt selection:text-white">
     <div class="fixed inset-0 noise z-0"></div>
 
@@ -67,9 +67,7 @@
 
             const payload = {
                 full_name: form.full_name.value.trim(),
-                email: form.email.value.trim(),
-                marketing_consent: window.nostosTracking?.marketingConsent?.() === true,
-                event_source_url: window.location.href
+                email: form.email.value.trim()
             };
 
             try {
